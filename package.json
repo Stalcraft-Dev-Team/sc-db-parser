@@ -1,0 +1,25 @@
+{
+  "name": "sc-db-parser",
+  "version": "1.0.0",
+  "description": "Use it to make StalCraft database more readable.",
+  "main": "index.js",
+  "scripts": {
+    "parse": "node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NewGrafon/sc-db-parser.git"
+  },
+  "keywords": [
+    "stalcraft"
+  ],
+  "author": "Nikita (NewGrafon)",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/NewGrafon/sc-db-parser/issues"
+  },
+  "homepage": "https://github.com/NewGrafon/sc-db-parser#readme",
+  "dependencies": {
+    "shelljs": "^0.8.5"
+  }
+}
