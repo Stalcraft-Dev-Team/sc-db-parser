@@ -4,23 +4,25 @@ const fs = require('fs');
 const path = require('path');
 const { execSync } = require('child_process');
 
-const pathToParseFuncs = 'parsing functions/';
+const pathToParseFuncs = './Parsing Functions/';
 const
-    { ParseArmor } = require(pathToParseFuncs+'parseArmor.js'),
-    { ParseArtefact } = require(pathToParseFuncs+'parseArtefact.js'),
-    { ParseAttachment } = require(pathToParseFuncs+'parseAttachment.js'),
-    { ParseBackpack } = require(pathToParseFuncs+'parseBackpack.js'),
-    { ParseBullet } = require(pathToParseFuncs+'parseBullet.js'),
-    { ParseContainer } = require(pathToParseFuncs+'parseContainer.js'),
-    { ParseGrenade } = require(pathToParseFuncs+'parseGrenade.js'),
-    { ParseMedicine } = require(pathToParseFuncs+'parseMedicine.js'),
-    { ParseWeapon } = require(pathToParseFuncs+'parseWeapon.js');
+    // { ParseArmor } = require(pathToParseFuncs+'parseArmor.js'),
+    // { ParseArtefact } = require(pathToParseFuncs+'parseArtefact.js'),
+    // { ParseAttachment } = require(pathToParseFuncs+'parseAttachment.js'),
+    // { ParseBackpack } = require(pathToParseFuncs+'parseBackpack.js'),
+    // { ParseBullet } = require(pathToParseFuncs+'parseBullet.js'),
+    // { ParseContainer } = require(pathToParseFuncs+'parseContainer.js'),
+    // { ParseGrenade } = require(pathToParseFuncs+'parseGrenade.js'),
+    // { ParseMedicine } = require(pathToParseFuncs+'parseMedicine.js'),
+    { ParseWeapon } = require(pathToParseFuncs+'parseWeapon.js'),
+    { ParseMeleeWeapon } = require(pathToParseFuncs+'parseMeleeWeapon.js');
 // END LIBS
 
 // CONST'S
 const UrlToSCDB = 'https://github.com/EXBO-Studio/stalcraft-database.git';
-const PathToDB = 'clonedDB';
+const PathToDB = 'Cloned DataBase';
 const FoldersNeedsToPullInsteadOfClone = ['.git', 'global', 'ru'];
+const { pathToParse } = require(pathToParseFuncs+'pathToParse.js');
 // END CONST'S
 
 function callGit(type = '') {
@@ -67,26 +69,39 @@ function PrepareData() {
 }
 
 async function ParseAllData(server = '') {
-    if (server !== 'ru' || server !== 'global') {
+    if (!(server === 'ru' || server === 'global')) {
         console.error('ParseAllData: incorrect server name.');
         return;
     }
 
-    if (!fs.existsSync('parsedData')) {
-        fs.mkdirSync('parsedData', { recursive: true });
+    if (!fs.existsSync(pathToParse)) {
+        fs.mkdirSync(pathToParse, { recursive: true });
     }
-    const pathToSomething = PathToDB+'/'+server+'/'+'items'+'/';
-    /* await ParseArmor(pathToSomething+'armor/');
-    await ParseArtefact(pathToSomething+'artefact/');
-    await ParseAttachment(pathToSomething+'attachment/');
-    await ParseBackpack(pathToSomething+'backpack');
-    await ParseBullet(pathToSomething+'bullet');
-    await ParseContainer(pathToSomething+'container');
-    await ParseGrenade(pathToSomething+'grenade');
-    await ParseMedicine(pathToSomething+'medicine'); */
-    await ParseWeapon(pathToSomething+'weapon/');
+
+    const pathToItems = PathToDB+'/'+server+'/'+'items'+'/';
+    /* await ParseArmor(pathToItems+'armor/');
+    await ParseArtefact(pathToItems+'artefact/');
+    await ParseAttachment(pathToItems+'attachment/');
+    await ParseBackpack(pathToItems+'backpack/');
+    await ParseBullet(pathToItems+'bullet/');
+    await ParseContainer(pathToItems+'container/');
+    await ParseGrenade(pathToItems+'grenade/');
+    await ParseMedicine(pathToItems+'medicine/'); */
+    await ParseWeapon(pathToItems+'weapon/');
+    await ParseMeleeWeapon(pathToItems+'weapon/melee');
 }
 
+async function StartParse() {
+    await ParseAllData('ru');
+    await ParseAllData('global');
+}
+
+
+// START PROGRAM
 PrepareData();
-await ParseAllData('ru');
-await ParseAllData('global');
+StartParse().then(r => {
+    if (r)
+        console.log(r);
+    else
+        console.log('Parsing complete.');
+});
