@@ -1,2 +1,2 @@
-const pathToParse = 'parsedData';
+const pathToParse = 'Parsed Data';
 module.exports.pathToParse = pathToParse;
