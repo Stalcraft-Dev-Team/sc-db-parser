@@ -1,5 +1,7 @@
 .idea
+*.js
 Cloned DataBase
 Parsed Data
+build
 node_modules
 package-lock.json
