@@ -19,7 +19,7 @@ import { ParseWeapon } from './Parsing Functions/parseWeapon';
 
 // CONST'S
 const UrlToSCDB: string = 'https://github.com/EXBO-Studio/stalcraft-database.git';
-const PathToDB: string = 'Cloned DataBase';
+const PathToDB: string = __dirname+'\\'+'Cloned DataBase';
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
 import { pathToParse } from './Parsing Functions/pathToParse';
 // END CONST'S
@@ -53,7 +53,7 @@ function PrepareData(): void {
     } else {
         let allExists: boolean = true;
         FoldersNeedsToPullInsteadOfClone.map(value => {
-            if (!fs.existsSync(__dirname+'/'+PathToDB+'/'+value)) {
+            if (!fs.existsSync(PathToDB+'\\'+value)) {
                 allExists = false;
             }
         })
@@ -79,7 +79,7 @@ async function ParseAllData(server = '') {
     }
 
     let parseResults: boolean[] = [];
-    const pathToItemsFolder = __dirname+'\\'+PathToDB+'\\'+server+'\\'+'items'+'\\';
+    const pathToItemsFolder = PathToDB+'\\'+server+'\\'+'items'+'\\';
     /* parseResults.push( await ParseArmor(pathToItemsFolder+'armor\\') );
     parseResults.push( await ParseArtefact(pathToItemsFolder+'artefact\\') );
     parseResults.push( await ParseAttachment(pathToItemsFolder+'attachment\\') );

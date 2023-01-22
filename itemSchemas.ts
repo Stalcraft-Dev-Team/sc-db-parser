@@ -95,7 +95,6 @@ export class WeaponSchema {
         this.description = obj.description;
 
         if (obj.damageFeatures.uniqueFeature.en.search('x0.') > 0) {
-            console.log(obj.name)
             if (obj.damageFeatures.uniqueFeature.en.search('x0.7') > 0)
                 obj.damageModifiers.limbs = '0.7';
             else if (obj.damageFeatures.uniqueFeature.en.search('x0.9') > 0)
