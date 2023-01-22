@@ -61,7 +61,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         parseResult = true;
     }
     ////////
-    fs.writeFileSync(resultFolder + '\\' + 'AllWeapons.json', JSON.stringify(AllWeapons, null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all weapons (exclude melee and device).json', JSON.stringify(AllWeapons, null, 4));
 
     async function parseItemsInFolder(folderPath: string) {
         const SelectedCategoryWeapons: WeaponSchema[] = [];
