@@ -11,7 +11,7 @@ import { execSync } from 'child_process';
 //import { ParseBullet } from './Parsing Functions/parseBullet';
 //import { ParseContainer } from './Parsing Functions/parseContainer';
 //import { ParseGrenade } from './Parsing Functions/parseGrenade';
-//import { ParseMedicine } from './Parsing Functions/parseMedicine';
+import { ParseMedicine } from './Parsing Functions/parseMedicine';
 import { ParseWeapon } from './Parsing Functions/parseWeapon';
 import { ParseMeleeWeapon } from './Parsing Functions/parseMeleeWeapon';
 
@@ -87,7 +87,10 @@ async function ParseAllData(server = '') {
     // parseResults.push( await ParseBullet(pathToItemsFolder+'bullet\\') );
     // parseResults.push( await ParseContainer(pathToItemsFolder+'container\\') );
     // parseResults.push( await ParseGrenade(pathToItemsFolder+'grenade\\') );
-    // parseResults.push( await ParseMedicine(pathToItemsFolder+'medicine\\') );
+
+    parseResults.push( await ParseMedicine(pathToItemsFolder+'medicine\\')
+        .then(() => { return true; })
+        .catch((e) => { console.error(e); return false; }) );
 
     parseResults.push( await ParseMeleeWeapon(pathToItemsFolder + 'weapon\\melee\\')
         .then(() => { return true; })

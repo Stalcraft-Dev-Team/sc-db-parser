@@ -64,7 +64,7 @@ export class WeaponSchema {
         en: ''
     };
 
-    constructor (obj: any) {
+    constructor(obj: any) {
         this.id = obj.id;
         this.name = obj.name;
         this.color = obj.color;
@@ -150,7 +150,7 @@ export class MeleeWeaponSchema {
         en: ''
     };
 
-    constructor (obj: any) {
+    constructor(obj: any) {
         this.id = obj.id;
         this.name = obj.name;
         this.color = obj.color;
@@ -165,5 +165,69 @@ export class MeleeWeaponSchema {
         this.damageModifiers = obj.damageModifiers;
         this.damageFeatures = obj.damageFeatures;
         this.description = obj.description;
-        }
     }
+}
+
+export class MedicineSchema {
+    id: string = '';
+    name: object = {
+        ru: '',
+        en: ''
+    };
+    color: string = '';
+    class: object = {
+        ru: '',
+        en: ''
+    };
+    weight: string = '0';
+    purpose: object = {
+        ru: 'null',
+        en: 'null'
+    };
+    duration: string = '0';
+    positiveProperties: object = {
+        radiationDamageDefence: '0',
+        biologicalDamageDefence: '0',
+        thermalDamageDefence: '0',
+        psychoDamageDefence: '0',
+        bleedAccumulationDefence: '0',
+        periodHealing: '0',
+        healEfficiency: '0',
+        healthRegeneration: '0',
+        healthBonus: '0',
+        momentHeal: '0',
+        speedModifier: '0',
+        staminaRegeneration: '0',
+        staminaBonus: '0',
+        weightBonus: '0'
+    };
+    negativeProperties: object = {
+        toxiticy: '0',
+        radiationAccumulation: '0',
+        biologicalAccumulation: '0',
+        thermalAccumulation: '0',
+        psychoAccumulation: '0',
+        bleedAccumulation: '0',
+    };
+    description: object = {
+        ru: '',
+        en: ''
+    };
+
+    constructor(obj: any) {
+        this.id = obj.id;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.purpose = obj.purpose;
+        this.duration = obj.duration;
+        this.positiveProperties = obj.positiveProperties;
+        this.negativeProperties = obj.negativeProperties;
+        this.description = obj.description;
+    }
+}
+
+export class AttachmentSchema {
+
+}
