@@ -13,7 +13,7 @@ import { execSync } from 'child_process';
 //import { ParseGrenade } from './Parsing Functions/parseGrenade';
 //import { ParseMedicine } from './Parsing Functions/parseMedicine';
 import { ParseWeapon } from './Parsing Functions/parseWeapon';
-//import { ParseMeleeWeapon } from './Parsing Functions/parseMeleeWeapon';
+import { ParseMeleeWeapon } from './Parsing Functions/parseMeleeWeapon';
 
 // END LIBS
 
@@ -80,16 +80,22 @@ async function ParseAllData(server = '') {
 
     let parseResults: boolean[] = [];
     const pathToItemsFolder = PathToDB+'\\'+server+'\\'+'items'+'\\';
-    /* parseResults.push( await ParseArmor(pathToItemsFolder+'armor\\') );
-    parseResults.push( await ParseArtefact(pathToItemsFolder+'artefact\\') );
-    parseResults.push( await ParseAttachment(pathToItemsFolder+'attachment\\') );
-    parseResults.push( await ParseBackpack(pathToItemsFolder+'backpack\\') );
-    parseResults.push( await ParseBullet(pathToItemsFolder+'bullet\\') );
-    parseResults.push( await ParseContainer(pathToItemsFolder+'container\\') );
-    parseResults.push( await ParseGrenade(pathToItemsFolder+'grenade\\') );
-    parseResults.push( await ParseMedicine(pathToItemsFolder+'medicine\\') );
-    parseResults.push( await ParseMeleeWeapon(pathToItemsFolder + 'weapon\\melee\\') ); */
-    parseResults.push( await ParseWeapon(pathToItemsFolder+'weapon\\') );
+    // parseResults.push( await ParseArmor(pathToItemsFolder+'armor\\') );
+    // parseResults.push( await ParseArtefact(pathToItemsFolder+'artefact\\') );
+    // parseResults.push( await ParseAttachment(pathToItemsFolder+'attachment\\') );
+    // parseResults.push( await ParseBackpack(pathToItemsFolder+'backpack\\') );
+    // parseResults.push( await ParseBullet(pathToItemsFolder+'bullet\\') );
+    // parseResults.push( await ParseContainer(pathToItemsFolder+'container\\') );
+    // parseResults.push( await ParseGrenade(pathToItemsFolder+'grenade\\') );
+    // parseResults.push( await ParseMedicine(pathToItemsFolder+'medicine\\') );
+
+    parseResults.push( await ParseMeleeWeapon(pathToItemsFolder + 'weapon\\melee\\')
+        .then(() => { return true; })
+        .catch((e) => { console.error(e); return false; }));
+
+    parseResults.push( await ParseWeapon(pathToItemsFolder+'weapon\\')
+        .then(() => { return true; })
+        .catch((e) => { console.error(e); return false; }));
 
     if (parseResults.filter(value => !value).length > 0) {
         console.error(parseResults.length+" unparsed categories after complete!")

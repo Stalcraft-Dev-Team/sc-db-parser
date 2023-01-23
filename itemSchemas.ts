@@ -13,33 +13,33 @@ export class WeaponSchema {
         ru: '',
         en: ''
     };
-    weight: number = 0;
+    weight: string = '0';
     ammoType: object = {
         ru: '',
         en: ''
     };
-    startDamage: number = 0;
-    endDamage: number = 0;
-    startDistance: number = 0;
-    endDistance: number = 0;
-    maxDistance: number = 0;
-    ammoCapacity: number = 0;
-    rateOfFire: number = 0;
-    reloadTime: number = 0;
-    tacticalReloadTime: number = 0; /* Не все оружия имеют тактическую перезарядку */
-    spread: number = 0;
-    hipSpread: number = 0;
-    verticalRecoil: number = 0;
-    horizontalRecoil: number = 0;
-    drawTime: number = 0;
-    aimTime: number = 0;
+    startDamage: string = '0';
+    endDamage: string = '0';
+    startDistance: string = '0';
+    endDistance: string = '0';
+    maxDistance: string = '0';
+    ammoCapacity: string = '0';
+    rateOfFire: string = '0';
+    reloadTime: string = '0';
+    tacticalReloadTime: string = '0'; /* Не все оружия имеют тактическую перезарядку */
+    spread: string = '0';
+    hipSpread: string = '0';
+    verticalRecoil: string = '0';
+    horizontalRecoil: string = '0';
+    drawTime: string = '0';
+    aimTime: string = '0';
     damageModifiers: object = {
-        head: 1.25,
-        limbs: 0.5,
-        mobsDamage: 1,
-        pierce: 0,
-        bleeding: 0,
-        stoppingPower: 0
+        head: '1.25',
+        limbs: '0.5',
+        mobsDamage: '1',
+        pierce: '0',
+        bleeding: '0',
+        stoppingPower: '0'
     };
     damageFeatures: object = {
         damageIncreasing: {
@@ -55,8 +55,8 @@ export class WeaponSchema {
             en: ''
         },
         damageTypes: { /* Огнемет и огниво берут часть от обычного урона, параметры ниже указывают процент урона от обычного */
-            burnDamage: 0,
-            pureDamage: 0
+            burnDamage: '0',
+            pureDamage: '0'
         }
     };
     description: object = {
@@ -105,47 +105,65 @@ export class WeaponSchema {
     }
 }
 
-interface MeleeWeaponSchema {
-    id: "",
-    category: "",
-    name: {
-        ru: "",
-        en: ""
-    },
-    color: "",
-    rank: {
-        ru: "",
-        en: ""
-    },
-    class: {
-        ru: "",
-        en: ""
-    },
-    weight: 0,
-    quickHit: {
-        minDamage: 0,
-        maxDamage: 0,
-        distance: 0
-    },
-    strongHit: {
-        minDamage: 0,
-        maxDamage: 0,
-        distance: 0
-    },
-    penetration: 0,
-    chanceForADeepWound: 0,
-    damageModifiers: {
-        backStabDamage: 1,
-        mobsDamage: 1,
-    },
-    damageFeatures: {
-        frostDamage: 0,
-        fireDamage: 0,
-        chemicalDamage: 0,
-        pureDamage: 0
-    },
-    description: {
-        ru: "",
-        en: ""
+export class MeleeWeaponSchema {
+    id: string = '';
+    name: object = {
+        ru: '',
+        en: ''
+    };
+    color: string = '';
+    rank: object = {
+        ru: '',
+        en: ''
+    };
+    class: object = {
+        ru: '',
+        en: ''
+    };
+    weight: string = '0';
+    quickHit: object = {
+        minDamage: '0',
+        maxDamage: '0',
+        distance: '0',
+    };
+    strongHit: object = {
+        minDamage: '0',
+        maxDamage: '0',
+        distance: '0',
+    };
+    damageModifiers: object = {
+        backStabDamage: '1.2',
+        mobsDamage: '1',
+        penetration: '0',
+        chanceToDeepWound: '0',
+    };
+    damageFeatures: object = {
+        damageTypes: {
+            frostDamage: '0',
+            burnDamage: '0',
+            chemicalDamage: '0',
+            pureDamage: '0'
+        }
+    };
+    description: object = {
+        ru: '',
+        en: ''
+    };
+
+    constructor (obj: any) {
+        this.id = obj.id;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.quickHit = obj.quickHit;
+        this.strongHit = obj.strongHit;
+        if (Number(obj.damageModifiers.mobsDamage) < 1) {
+            obj.damageModifiers.mobsDamage = '1';
+        }
+        this.damageModifiers = obj.damageModifiers;
+        this.damageFeatures = obj.damageFeatures;
+        this.description = obj.description;
+        }
     }
-}
