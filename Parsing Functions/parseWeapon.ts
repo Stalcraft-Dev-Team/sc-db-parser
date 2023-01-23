@@ -4,12 +4,10 @@ import {WeaponSchema} from "../itemSchemas";
 
 
 // EXCLUDE DEVICE AND MELEE
-export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): Promise<boolean> {
-    let parseResult: boolean = false;
-
+export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): Promise<void> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         console.error('ParseWeapon: incorrect or null path to folder');
-        return false;
+        return;
     }
 
     let server: string;
@@ -52,16 +50,20 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
     const AllWeapons: WeaponSchema[] = [];
     let dataJson: any;
     if (subFolders.length == 0) {
-        await parseItemsInFolder(pathToItemsFolder);
-        parseResult = true;
+        await parseItemsInFolder(pathToItemsFolder)
+            .then(() => {
+                fs.writeFileSync(resultFolder + '\\' + 'all weapons.json', JSON.stringify(AllWeapons, null, 4));
+            })
+            .catch((e) => {
+                console.error(e);
+            });
     } else {
         subFolders.map(async folder => {
             await parseItemsInFolder(pathToItemsFolder + folder + '\\');
         })
-        parseResult = true;
     }
+    fs.writeFileSync(resultFolder + '\\' + 'all weapons.json', JSON.stringify(AllWeapons, null, 4));
     ////////
-    fs.writeFileSync(resultFolder + '\\' + 'all weapons (exclude melee and device).json', JSON.stringify(AllWeapons, null, 4));
 
     async function parseItemsInFolder(folderPath: string) {
         const SelectedCategoryWeapons: WeaponSchema[] = [];
@@ -92,11 +94,13 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                     en: dataJson.name.lines.en
                 },
                 color: dataJson.color,
-                rank: FindLinesByKey("core.tooltip.info.rank"),
-                class: FindLinesByKey("core.tooltip.info.category"),
+                rank: FindLinesInValueByKey("core.tooltip.info.rank"),
+                class: FindLinesInValueByKey("core.tooltip.info.category"),
                 weight: FindValueByKey("core.tooltip.info.weight", "float", 1),
-                ammoType: FindLinesByKey("weapon.tooltip.weapon.info.ammo_type"),
-                startDamage: DamagesAndDistances.startDamage,
+                ammoType: FindLinesInValueByKey("weapon.tooltip.weapon.info.ammo_type"),
+                startDamage: DamagesAndDistances.startDamage == undefined
+                    ? FindValueByKey('core.tooltip.stat_name.damage_type.direct', 'int', null)
+                    : DamagesAndDistances.startDamage,
                 endDamage: DamagesAndDistances.endDamage,
                 startDistance: DamagesAndDistances.damageDecreaseStart,
                 endDistance: DamagesAndDistances.damageDecreaseEnd,
@@ -162,6 +166,26 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 if (dataJson.infoBlocks[i].type == 'text')
                     return dataJson.infoBlocks[i].text.lines;
             }
+        }
+
+        return result;
+    }
+
+    function FindLinesInValueByKey(searchingKey: string): object {
+        const result: object = {
+            ru: "null",
+            en: "null"
+        }
+
+        for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
+            if (dataJson.infoBlocks[i].elements != undefined)
+                for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
+                    for (const [key, value] of Object.entries(dataJson.infoBlocks[i].elements[j])) {
+                        if ((key == 'key' || key == 'text') && (value as any).key as string == searchingKey) {
+                            return dataJson.infoBlocks[i].elements[j].value.lines;
+                        }
+                    }
+                }
         }
 
         return result;
@@ -237,7 +261,5 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
 
         return {};
     }
-
-    return parseResult;
 }
 
