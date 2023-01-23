@@ -37,6 +37,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         fs.mkdirSync(resultFolder);
     }
 
+    ////////
     const subFolders: string[] = [];
     fs.readdirSync(pathToItemsFolder, {withFileTypes: true})
         .filter((dirent: { isDirectory: () => boolean; }) => dirent.isDirectory())
@@ -46,7 +47,6 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
             }
         });
 
-    ////////
     const AllWeapons: WeaponSchema[] = [];
     let dataJson: any;
     if (subFolders.length == 0) {

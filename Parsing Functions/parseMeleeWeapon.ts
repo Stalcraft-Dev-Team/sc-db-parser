@@ -6,7 +6,7 @@ import { MeleeWeaponSchema } from "../itemSchemas";
 // EXCLUDE DEVICE AND MELEE
 export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolder = ''): Promise<void> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
-        console.error('ParseWeapon: incorrect or null path to folder');
+        console.error('Parse Melee Weapon: incorrect or null path to folder');
         return;
     }
 
