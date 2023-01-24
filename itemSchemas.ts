@@ -1,71 +1,68 @@
+export interface ICanMutateValue {
+    defaultValue: '0',
+    mutatedValue: 'null'
+}
+
+export interface ILines {
+    ru: string,
+    en: string
+}
+
 export class WeaponSchema {
-    id: string = '';
-    name: object = {
-        ru: '',
-        en: ''
-    };
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
     color: string = '';
-    rank: object = {
-        ru: '',
-        en: ''
-    };
-    class: object = {
-        ru: '',
-        en: ''
-    };
+    rank: ILines = { ru: "", en: "" };
+    class: ILines = { ru: "", en: "" };
     weight: string = '0';
-    ammoType: object = {
-        ru: '',
-        en: ''
-    };
-    startDamage: string = '0';
-    endDamage: string = '0';
-    startDistance: string = '0';
-    endDistance: string = '0';
-    maxDistance: string = '0';
-    ammoCapacity: string = '0';
-    rateOfFire: string = '0';
-    reloadTime: string = '0';
-    tacticalReloadTime: string = '0'; /* Не все оружия имеют тактическую перезарядку */
-    spread: string = '0';
-    hipSpread: string = '0';
-    verticalRecoil: string = '0';
-    horizontalRecoil: string = '0';
-    drawTime: string = '0';
-    aimTime: string = '0';
+    ammoType: ILines = { ru: "", en: "" };
+    startDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    endDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    startDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    endDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    maxDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    ammoCapacity: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    rateOfFire: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    reloadTime: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    tacticalReloadTime: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" }; /* Не все оружия имеют тактическую перезарядку */
+    spread: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    hipSpread: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    verticalRecoil: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    horizontalRecoil: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    drawTime: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    aimTime: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
     damageModifiers: object = {
         head: '1.25',
         limbs: '0.5',
         mobsDamage: '1',
-        pierce: '0',
-        bleeding: '0',
-        stoppingPower: '0'
+        pierce:  { defaultValue: "0", mutatedValue: "null" },
+        bleeding: { defaultValue: "0", mutatedValue: "null" },
+        stoppingPower: { defaultValue: "0", mutatedValue: "null" }
     };
     damageFeatures: object = {
         damageIncreasing: {
-            ru: '',
-            en: ''
+            ru: 'null',
+            en: 'null'
         },
         executeModifier: {
-            ru: '',
-            en: ''
+            ru: 'null',
+            en: 'null'
         },
         uniqueFeature: {
-            ru: '',
-            en: ''
+            ru: 'null',
+            en: 'null'
         },
         damageTypes: { /* Огнемет и огниво берут часть от обычного урона, параметры ниже указывают процент урона от обычного */
             burnDamage: '0',
             pureDamage: '0'
         }
     };
-    description: object = {
-        ru: '',
-        en: ''
-    };
+    description: ILines = { ru: "", en: "" };
 
     constructor(obj: any) {
-        this.id = obj.id;
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
         this.name = obj.name;
         this.color = obj.color;
         this.rank = obj.rank;
@@ -80,7 +77,7 @@ export class WeaponSchema {
         this.ammoCapacity = obj.ammoCapacity;
         this.rateOfFire = obj.rateOfFire;
         this.reloadTime = obj.reloadTime;
-        this.tacticalReloadTime = obj.tacticalReloadTime == 0 ? obj.reloadTime : obj.tacticalReloadTime;
+        this.tacticalReloadTime = Number(obj.tacticalReloadTime.defaultValue) == 0 ? obj.reloadTime : obj.tacticalReloadTime;
         this.spread = obj.spread;
         this.hipSpread = obj.hipSpread;
         this.verticalRecoil = obj.verticalRecoil;
@@ -94,7 +91,7 @@ export class WeaponSchema {
         this.damageFeatures = obj.damageFeatures;
         this.description = obj.description;
 
-        if (obj.damageFeatures.uniqueFeature.en.search('x0.') > 0) {
+        if (obj.damageFeatures.uniqueFeature.en.includes('x0.') > 0) {
             if (obj.damageFeatures.uniqueFeature.en.search('x0.7') > 0)
                 obj.damageModifiers.limbs = '0.7';
             else if (obj.damageFeatures.uniqueFeature.en.search('x0.9') > 0)
@@ -106,20 +103,12 @@ export class WeaponSchema {
 }
 
 export class MeleeWeaponSchema {
-    id: string = '';
-    name: object = {
-        ru: '',
-        en: ''
-    };
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
     color: string = '';
-    rank: object = {
-        ru: '',
-        en: ''
-    };
-    class: object = {
-        ru: '',
-        en: ''
-    };
+    rank: ILines = { ru: "", en: "" };
+    class: ILines = { ru: "", en: "" };
     weight: string = '0';
     quickHit: object = {
         minDamage: '0',
@@ -145,13 +134,11 @@ export class MeleeWeaponSchema {
             pureDamage: '0'
         }
     };
-    description: object = {
-        ru: '',
-        en: ''
-    };
+    description: ILines = { ru: "", en: "" };
 
     constructor(obj: any) {
-        this.id = obj.id;
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
         this.name = obj.name;
         this.color = obj.color;
         this.rank = obj.rank;
@@ -169,65 +156,88 @@ export class MeleeWeaponSchema {
 }
 
 export class MedicineSchema {
-    id: string = '';
-    name: object = {
-        ru: '',
-        en: ''
-    };
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
     color: string = '';
-    class: object = {
-        ru: '',
-        en: ''
-    };
+    class: ILines = { ru: "", en: "" };
     weight: string = '0';
-    purpose: object = {
-        ru: 'null',
-        en: 'null'
-    };
+    purpose: ILines = { ru: "", en: "" };
     duration: string = '0';
-    positiveProperties: object = {
-        radiationDamageDefence: '0',
-        biologicalDamageDefence: '0',
-        thermalDamageDefence: '0',
-        psychoDamageDefence: '0',
-        bleedAccumulationDefence: '0',
-        periodHealing: '0',
-        healEfficiency: '0',
-        healthRegeneration: '0',
-        healthBonus: '0',
-        momentHeal: '0',
-        speedModifier: '0',
-        staminaRegeneration: '0',
-        staminaBonus: '0',
-        weightBonus: '0'
-    };
-    negativeProperties: object = {
-        toxiticy: '0',
-        radiationAccumulation: '0',
-        biologicalAccumulation: '0',
-        thermalAccumulation: '0',
-        psychoAccumulation: '0',
-        bleedAccumulation: '0',
-    };
+    stats: object[] = [];
     description: object = {
         ru: '',
         en: ''
     };
 
     constructor(obj: any) {
-        this.id = obj.id;
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
         this.name = obj.name;
         this.color = obj.color;
         this.class = obj.class;
         this.weight = obj.weight;
         this.purpose = obj.purpose;
         this.duration = obj.duration;
-        this.positiveProperties = obj.positiveProperties;
-        this.negativeProperties = obj.negativeProperties;
+        this.stats = obj.stats;
         this.description = obj.description;
     }
 }
 
 export class AttachmentSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    rank: ILines = { ru: "", en: "" };
+    class: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    stats: object[] = [];
+    features: object = {
+        zoom: 'null'
+    }
+    suitableFor: object[] = [];
+    description: ILines = { ru: "", en: "" };
 
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.stats = obj.stats;
+        if (obj.features != undefined)
+            this.features = obj.features;
+        this.description = obj.description;
+    }
+}
+
+export class BulletSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    class: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    bulletType: ILines = { ru: "", en: "" };
+    penetration: ILines = {
+        ru: 'Низкая пробиваемость',
+        en: 'Low penetration'
+
+    };
+    stats: object[] = [];
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.bulletType = obj.bulletType;
+        this.penetration = obj.penetration.en == 'null' ? this.penetration : obj.penetration;
+        this.stats = obj.stats;
+    }
 }
