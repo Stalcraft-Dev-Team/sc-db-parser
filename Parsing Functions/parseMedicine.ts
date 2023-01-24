@@ -1,13 +1,14 @@
 import fs from "fs";
-import {pathToParse} from './pathToParse';
-import { MedicineSchema } from "../itemSchemas";
+import {PathToParse} from '../Static/fileds';
+import {MedicineSchema} from "../itemSchemas";
+import {ItemProperties} from "../Static/itemProperties-class";
+import {FindLinesInValueByKey, FindValueByKey} from "../Static/functions";
 
 
 // EXCLUDE DEVICE AND MELEE
 export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''): Promise<void> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
-        console.error('Parse Medicine: incorrect or null path to folder');
-        return;
+        throw new Error('ParseMedicine: incorrect or null path to folder');
     }
 
     let server: string;
@@ -23,7 +24,7 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
         for (let i = 0; i < dirname.length - 1; i++) {
             result += dirname[i] + '\\';
         }
-        result += pathToParse + '\\' + server;
+        result += PathToParse + '\\' + server;
         return result;
     }
 
@@ -45,6 +46,7 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
     }).catch(e => {
         console.error(e);
     });
+
     ////////
 
     async function parseItemsInFolder(folderPath: string) {
@@ -68,82 +70,39 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
             };
 
             const medicine = new MedicineSchema({
-                id: fileName,
-                name: {
-                    ru: dataJson.name.lines.ru,
-                    en: dataJson.name.lines.en
-                },
+                exbo_id: fileName,
+                key: dataJson.name.key,
+                name: dataJson.name.lines,
                 color: dataJson.color,
-                class: FindLinesInValueByKey("core.tooltip.info.category"),
-                weight: FindValueByKey("core.tooltip.info.weight", "float", 1),
-                purpose: FindLinesInValueByKey('stalker.tooltip.medicine.info.effect_type'),
-                duration: FindValueByKey('stalker.tooltip.medicine.info.duration', 'int', null),
-                positiveProperties: {
-                    radiationDamageDefence: FindValueByKey('stalker.artefact_properties.factor.radiation_dmg_factor', 'int', null),
-                    biologicalDamageDefence: FindValueByKey('stalker.artefact_properties.factor.biological_dmg_factor', 'int', null),
-                    thermalDamageDefence: FindValueByKey('stalker.artefact_properties.factor.thermal_dmg_factor', 'int', null),
-                    psychoDamageDefence: FindValueByKey('stalker.artefact_properties.factor.psycho_dmg_factor', 'int', null),
-                    bleedAccumulationDefence: FindValueByKey('stalker.artefact_properties.factor.bleeding_protection', 'int', null),
-                    periodHealing: FindValueByKey('stalker.artefact_properties.factor.artefakt_heal', 'float', 1),
-                    healEfficiency: FindValueByKey('stalker.artefact_properties.factor.heal_efficiency', 'int', null),
-                    healthRegeneration: FindValueByKey('stalker.artefact_properties.factor.regeneration_bonus', 'float', 1),
-                    healthBonus: FindValueByKey('stalker.artefact_properties.factor.health_bonus', 'int', null),
-                    momentHeal: FindValueByKey('stalker.tooltip.medicine.info.hp_regen', 'int', null),
-                    speedModifier: FindValueByKey('stalker.artefact_properties.factor.speed_modifier', 'int', null),
-                    staminaRegeneration: FindValueByKey('stalker.artefact_properties.factor.stamina_regeneration_bonus', 'int', null),
-                    staminaBonus: FindValueByKey( 'stalker.artefact_properties.factor.stamina_bonus', 'int', null),
-                    weightBonus: FindValueByKey('stalker.artefact_properties.factor.max_weight_bonus', 'int', null)
-                },
-                negativeProperties: {
-                    toxiticy: FindValueByKey('stalker.tooltip.medicine.info.toxicity', 'int', null),
-                    radiationAccumulation: FindValueByKey('stalker.artefact_properties.factor.radiation_accumulation', 'float', 1),
-                    biologicalAccumulation: FindValueByKey('stalker.artefact_properties.factor.biological_accumulation', 'float', 1),
-                    thermalAccumulation: FindValueByKey('stalker.artefact_properties.factor.thermal_accumulation', 'float', 1),
-                    psychoAccumulation: FindValueByKey('stalker.artefact_properties.factor.psycho_accumulation', 'float', 1),
-                    bleedAccumulation: FindValueByKey('stalker.artefact_properties.factor.bleeding_accumulation', 'float', 1),
-                },
+                class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
+                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 1),
+                purpose: FindLinesInValueByKey(dataJson, 'stalker.tooltip.medicine.info.effect_type'),
+                duration: FindValueByKey(dataJson, 'stalker.tooltip.medicine.info.duration', 'int', null),
+                stats: [],
                 description: FindLinesByKey(itemKey() + 'description')
             });
 
-            const positives: any = {};
-            for (const [key, value] of Object.entries(medicine.positiveProperties)) {
+            const Stats: object[] = [];
+            ItemProperties.AllProperties.playerProperties.forEach(prop => {
+                const value = FindValueByKey(dataJson, prop.key, 'float', 1);
                 if (Number(value) != 0) {
-                    positives[key] = value;
+                    Stats.push({
+                        key: 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1],
+                        value: value,
+                        isPositive: (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
+                            ? '1'
+                            : '0',
+                        lines: prop.lines
+                    })
                 }
-            }
+            })
 
-            const negativities: any = {};
-            for (const [key, value] of Object.entries(medicine.negativeProperties)) {
-                if (Number(value) != 0) {
-                    negativities[key] = value;
-                }
-            }
-
-            medicine.positiveProperties = positives;
-            medicine.negativeProperties = negativities;
+            const Positive: object[] = Stats.filter(prop => (prop as any).isPositive == "1");
+            const Negative: object[] = Stats.filter(prop => (prop as any).isPositive == "0");
+            medicine.stats = Positive.concat(Negative);
 
             AllMedicine.push(medicine);
         });
-    }
-
-    function FindLinesInValueByKey(searchingKey: string): object {
-        const result: object = {
-            ru: "null",
-            en: "null"
-        }
-
-        for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
-            if (dataJson.infoBlocks[i].elements != undefined)
-                for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
-                    for (const [key, value] of Object.entries(dataJson.infoBlocks[i].elements[j])) {
-                        if ((key == 'key' || key == 'text') && (value as any).key as string == searchingKey) {
-                            return dataJson.infoBlocks[i].elements[j].value.lines;
-                        }
-                    }
-                }
-        }
-
-        return result;
     }
 
     function FindLinesByKey(searchingKey: string): object {
@@ -167,49 +126,6 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
             for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
                 if (dataJson.infoBlocks[i].type == 'text')
                     return dataJson.infoBlocks[i].text.lines;
-            }
-        }
-
-        return result;
-    }
-
-    // [null, ...] == integer, ('f' || 'float') == float
-    function FindValueByKey(searchingKey: string, type: string | null, roundValueIfFloat: number | null): string {
-        let result: string = '0';
-
-        const returnType: string =
-            (type == 'f' || type == 'float')
-                ? 'float'
-                : 'integer';
-
-        for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
-            if (dataJson.infoBlocks[i].elements != undefined)
-                for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
-                    for (const [key, value] of Object.entries(dataJson.infoBlocks[i].elements[j])) {
-                        if ((key == 'name' || key == 'key' || key == 'text') && (value as any).key as string == searchingKey) {
-                            if (dataJson.infoBlocks[i].elements[j].value != null) {
-                                result = dataJson.infoBlocks[i].elements[j].value as string;
-                            } else if (Object.entries(dataJson.infoBlocks[i].elements[j].text.args).length > 0) {
-                                result = dataJson.infoBlocks[i].elements[j].text.args.factor as string;
-                            }
-                        }
-                    }
-                }
-        }
-
-        switch (returnType) {
-            case 'integer': {
-                result = Number.parseInt(result).toString();
-                break;
-            }
-            case 'float': {
-                if (typeof roundValueIfFloat == 'number' && roundValueIfFloat > 0)
-                    result = Number(result).toFixed(roundValueIfFloat);
-
-                break;
-            }
-            default: {
-                console.error("WHAT THE HELL???");
             }
         }
 
