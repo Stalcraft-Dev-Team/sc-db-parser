@@ -1,5 +1,4 @@
 // LIBS
-//const shell = require('shelljs');
 import fs from "fs";
 const path = require('path');
 import { execSync } from 'child_process';
@@ -14,14 +13,18 @@ import { execSync } from 'child_process';
 import { ParseMedicine } from './Parsing Functions/parseMedicine';
 import { ParseWeapon } from './Parsing Functions/parseWeapon';
 import { ParseMeleeWeapon } from './Parsing Functions/parseMeleeWeapon';
+import { ItemProperties } from "./Static/itemProperties-class";
 
 // END LIBS
 
 // CONST'S
-const UrlToSCDB: string = 'https://github.com/EXBO-Studio/stalcraft-database.git';
-const PathToDB: string = __dirname+'\\'+'Cloned DataBase';
+import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
+import {WeaponSchema} from "./itemSchemas";
+import {ParseAttachment} from "./Parsing Functions/parseAttachment";
+import {ParseBullet} from "./Parsing Functions/parseBullet";
+export const IndexDirName: string = __dirname;
+const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
-import { pathToParse } from './Parsing Functions/pathToParse';
 // END CONST'S
 
 function callGit(type = ''): void {
@@ -74,35 +77,42 @@ async function ParseAllData(server = '') {
         return;
     }
 
-    if (!fs.existsSync(__dirname+'\\'+pathToParse)) {
-        fs.mkdirSync(__dirname+'\\'+pathToParse, { recursive: true });
+    if (!fs.existsSync(__dirname+'\\'+PathToParse)) {
+        fs.mkdirSync(__dirname+'\\'+PathToParse, { recursive: true });
     }
 
-    let parseResults: boolean[] = [];
     const pathToItemsFolder = PathToDB+'\\'+server+'\\'+'items'+'\\';
-    // parseResults.push( await ParseArmor(pathToItemsFolder+'armor\\') );
-    // parseResults.push( await ParseArtefact(pathToItemsFolder+'artefact\\') );
-    // parseResults.push( await ParseAttachment(pathToItemsFolder+'attachment\\') );
-    // parseResults.push( await ParseBackpack(pathToItemsFolder+'backpack\\') );
-    // parseResults.push( await ParseBullet(pathToItemsFolder+'bullet\\') );
-    // parseResults.push( await ParseContainer(pathToItemsFolder+'container\\') );
-    // parseResults.push( await ParseGrenade(pathToItemsFolder+'grenade\\') );
 
-    parseResults.push( await ParseMedicine(pathToItemsFolder+'medicine\\')
-        .then(() => { return true; })
-        .catch((e) => { console.error(e); return false; }) );
+    // await ParseArmor(pathToItemsFolder+'armor\\');
 
-    parseResults.push( await ParseMeleeWeapon(pathToItemsFolder + 'weapon\\melee\\')
-        .then(() => { return true; })
-        .catch((e) => { console.error(e); return false; }));
+    // await ParseArtefact(pathToItemsFolder+'artefact\\');
 
-    parseResults.push( await ParseWeapon(pathToItemsFolder+'weapon\\')
-        .then(() => { return true; })
-        .catch((e) => { console.error(e); return false; }));
+    // await ParseContainer(pathToItemsFolder+'container\\');
 
-    if (parseResults.filter(value => !value).length > 0) {
-        console.error(parseResults.length+" unparsed categories after complete!")
-    }
+    // await ParseBackpack(pathToItemsFolder+'backpack\\');
+
+    await ParseMedicine(pathToItemsFolder+'medicine\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseMedicine: complete!'); })
+        .catch((e) => { console.error(e); });
+
+    await ParseWeapon(pathToItemsFolder+'weapon\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseWeapon: complete!'); })
+        .catch((e) => { console.error(e); });
+
+    await ParseAttachment(pathToItemsFolder+'attachment\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseAttachment: complete!'); })
+        .catch((e) => { console.error(e); });
+
+    await ParseBullet(pathToItemsFolder+'bullet\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseBullet: complete!'); })
+        .catch((e) => { console.error(e); });
+
+    await ParseMeleeWeapon(pathToItemsFolder + 'weapon\\melee\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseMeleeWeapon: complete!'); })
+        .catch((e) => { console.error(e); });
+
+    // await ParseGrenade(pathToItemsFolder+'grenade\\');
+
 }
 
 async function StartParse() {
@@ -113,9 +123,11 @@ async function StartParse() {
 
 // START PROGRAM
 PrepareData();
-StartParse().then(r => {
-    if (r != undefined)
-        console.log(r)
-    else
+ItemProperties.Init();
+StartParse()
+    .then(() => {
         console.log("Parsing complete!")
-});
+    })
+    .catch((e) => {
+        console.error(e);
+    });
