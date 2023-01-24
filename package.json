@@ -21,9 +21,6 @@
     "url": "https://github.com/NewGrafon/sc-db-parser/issues"
   },
   "homepage": "https://github.com/NewGrafon/sc-db-parser#readme",
-  "dependencies": {
-    "shelljs": "^0.8.5"
-  },
   "devDependencies": {
     "@types/node": "^18.11.18",
     "ts-node": "^10.9.1",
