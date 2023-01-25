@@ -2,14 +2,12 @@ import {PathToClone} from "./fileds";
 import {IndexDirName} from "../index";
 import fs from 'fs';
 import Path from "path";
+import {ILines} from "../itemSchemas";
 
 interface IPropertiesElement {
     key: string,
     goodIfGreaterThanZero: boolean,
-    lines: {
-        ru: string,
-        en: string
-    }
+    lines: ILines;
 }
 
 interface IProperties {

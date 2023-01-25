@@ -4,7 +4,6 @@ import {GrenadeSchema} from "../itemSchemas";
 import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
 
 
-// EXCLUDE DEVICE AND MELEE
 export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''): Promise<void> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseGrenade: incorrect or null path to folder');
@@ -32,7 +31,7 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'grenade';
+    const resultFolder = RegionalPathToParse + '\\' + 'grenades';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

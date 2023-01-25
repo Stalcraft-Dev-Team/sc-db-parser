@@ -296,10 +296,7 @@ export class MedicineSchema {
     purpose: ILines = { ru: "", en: "" };
     duration: string = '0';
     stats: object[] = [];
-    description: object = {
-        ru: '',
-        en: ''
-    };
+    description: ILines = { ru: "", en: "" };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -312,6 +309,93 @@ export class MedicineSchema {
         this.purpose = obj.purpose;
         this.duration = obj.duration;
         this.stats = obj.stats;
+        this.description = obj.description;
+    }
+}
+
+export class ArmorSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    rank: ILines = { ru: "", en: "" };
+    class: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    nightVisionGlasses: ILines = { ru: "", en: "" };
+    compatibilityBackpacks: ILines = { ru: "", en: "" };
+    compatibilityContainers: ILines = { ru: "", en: "" };
+    stats: object[] = [];
+
+    description: ILines = { ru: "", en: "" };
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.nightVisionGlasses = obj.nightVisionGlasses;
+        this.compatibilityBackpacks = obj.compatibilityBackpacks;
+        this.compatibilityContainers = obj.compatibilityContainers;
+        this.stats = obj.stats;
+        this.description = obj.description;
+    }
+}
+
+export class ArtefactSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    rank: string = '';
+    class: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    stats: object[] = [];
+    additionalStats: object[] = [];
+    features: object = {};
+    description: ILines = { ru: "", en: "" };
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.stats = obj.stats;
+        this.additionalStats = obj.additionalStats;
+        this.features = obj.features;
+        this.description = obj.description;
+    }
+}
+
+export class ContainerSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    rank: string = '';
+    class: ILines = { ru: "", en: "" };
+    containerType: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    stats: object[] = [];
+    features: object = {};
+    description: ILines = { ru: "", en: "" };
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.containerType = obj.containerType;
+        this.weight = obj.weight;
+        this.stats = obj.stats;
+        this.features = obj.features;
         this.description = obj.description;
     }
 }

@@ -6,12 +6,11 @@ import {
     FindLinesInValueByKey,
     FindObjectValueByKey,
     FindValueByKey,
-    SortByGearKeys
+    SortByGearRanksKeys
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
 
 
-// EXCLUDE DEVICE AND MELEE
 export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): Promise<void> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseBullet: incorrect or null path to folder');

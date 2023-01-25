@@ -1,10 +1,9 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {MeleeWeaponSchema} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearKeys} from "../Static/functions";
+import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
 
 
-// EXCLUDE DEVICE AND MELEE
 export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolder = ''): Promise<void> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseMeleeWeapon: incorrect or null path to folder');
@@ -32,7 +31,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'melee';
+    const resultFolder = RegionalPathToParse + '\\' + 'melee`s';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }
@@ -41,7 +40,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
     const AllMeleeWeapons: MeleeWeaponSchema[] = [];
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
-        fs.writeFileSync(resultFolder + '\\' + 'all melee.json', JSON.stringify(SortByGearKeys(AllMeleeWeapons), null, 4));
+        fs.writeFileSync(resultFolder + '\\' + 'all melee.json', JSON.stringify(SortByGearRanksKeys(AllMeleeWeapons), null, 4));
     }).catch(e => {
         console.error(e);
     });
@@ -49,7 +48,6 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
     ////////
 
     async function parseItemsInFolder(folderPath: string) {
-        const SelectedCategoryWeapons: MeleeWeaponSchema[] = [];
         const files: string[] = fs.readdirSync(folderPath);
 
         files.map((file) => {
@@ -103,10 +101,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                 },
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
-            SelectedCategoryWeapons.push(meleeWeapon);
+            AllMeleeWeapons.push(meleeWeapon);
         });
-
-        SelectedCategoryWeapons.map(weapon => AllMeleeWeapons.push(weapon));
     }
 }
 

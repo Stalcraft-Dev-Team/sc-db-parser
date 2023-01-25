@@ -24,6 +24,9 @@ import {ParseAttachment} from "./Parsing Functions/parseAttachment";
 import {ParseBullet} from "./Parsing Functions/parseBullet";
 import {ParseDevice} from "./Parsing Functions/parseDevice";
 import {ParseGrenade} from "./Parsing Functions/parseGrenade";
+import {ParseContainer} from "./Parsing Functions/parseContainer";
+import {ParseArtefact} from "./Parsing Functions/parseArtefact";
+import {ParseArmor} from "./Parsing Functions/parseArmor";
 export const IndexDirName: string = __dirname;
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
@@ -85,13 +88,19 @@ async function ParseAllData(server = '') {
 
     const pathToItemsFolder = PathToDB+'\\'+server+'\\'+'items'+'\\';
 
-    // await ParseArmor(pathToItemsFolder+'armor\\');
+    await ParseArmor(pathToItemsFolder+'armor\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseArmor: complete!'); })
+        .catch((e) => { console.error(e); });
 
-    // await ParseArtefact(pathToItemsFolder+'artefact\\');
+    await ParseArtefact(pathToItemsFolder+'artefact\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseArtefact: complete!'); })
+        .catch((e) => { console.error(e); });
 
-    // await ParseContainer(pathToItemsFolder+'container\\');
+    await ParseContainer(pathToItemsFolder+'containers\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseContainer: complete!'); })
+        .catch((e) => { console.error(e); });
 
-    // await ParseBackpack(pathToItemsFolder+'backpack\\');
+    // await ParseBackpack(pathToItemsFolder+'backpack\\'); // юзлесс на данный момент
 
     await ParseMedicine(pathToItemsFolder+'medicine\\')
         .then(() => { console.log (server.toUpperCase()+': ParseMedicine: complete!'); })

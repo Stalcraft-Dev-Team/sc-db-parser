@@ -1,7 +1,7 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {WeaponSchema} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearKeys} from "../Static/functions";
+import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
 
 
 // EXCLUDE DEVICE AND MELEE
@@ -52,7 +52,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
-    fs.writeFileSync(resultFolder + '\\' + 'all weapons.json', JSON.stringify(SortByGearKeys(AllWeapons), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all weapons.json', JSON.stringify(SortByGearRanksKeys(AllWeapons), null, 4));
 
     ////////
 
@@ -63,8 +63,8 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         files.map((file) => {
             const fileName: string = file.split('.')[0];
             file = folderPath + file;
-            const data: Buffer = fs.readFileSync(file);
 
+            const data: Buffer = fs.readFileSync(file);
             dataJson = JSON.parse(data.toString());
 
             const itemKey = () => {
@@ -195,7 +195,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        fs.writeFile(resultFolder + '\\' + `${CategoryName}.json`, JSON.stringify(SortByGearKeys(SelectedCategoryWeapons), null, 4), (e) => {
+        fs.writeFile(resultFolder + '\\' + `${CategoryName}.json`, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons), null, 4), (e) => {
             if (e) console.error(e);
         });
         SelectedCategoryWeapons.map(weapon => AllWeapons.push(weapon));

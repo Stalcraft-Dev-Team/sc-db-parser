@@ -6,12 +6,11 @@ import {
     FindLinesInValueByKey,
     FindObjectValueByKey,
     FindValueByKey,
-    SortByGearKeys
+    SortByGearRanksKeys
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
 
 
-// EXCLUDE DEVICE AND MELEE
 export const ParseAttachment = async function ParseAttachment(pathToItemsFolder = ''): Promise<void> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseAttachment: incorrect or null path to folder');
@@ -57,7 +56,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
-    fs.writeFileSync(resultFolder + '\\' + 'all attachments.json', JSON.stringify(SortByGearKeys(AllAttachments), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all attachments.json', JSON.stringify(SortByGearRanksKeys(AllAttachments), null, 4));
 
     ////////
 
@@ -110,7 +109,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
                         isPositive: (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
                             ? '1'
                             : '0',
-                        //lines: prop.lines
+                        lines: prop.lines
                     })
                 }
             })
@@ -123,7 +122,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        fs.writeFile(resultFolder + '\\' + `${CategoryName}.json`, JSON.stringify(SortByGearKeys(SelectedCategoryWeapons), null, 4), (e) => {
+        fs.writeFile(resultFolder + '\\' + `${CategoryName}.json`, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons), null, 4), (e) => {
             if (e) console.error(e);
         });
 

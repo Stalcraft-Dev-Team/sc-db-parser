@@ -1,22 +1,30 @@
 import {GearRanks} from "./enums";
+import {ILines} from "../itemSchemas";
 
-export function SortByGearKeys(array: any[]): object[] {
+export function SortByGearRanksKeys(array: any[]): object[] {
     const SortedItems: object[] = [];
+    const ItemWithoutGearRanks: object[] = [];
     for (let gearRanksKey in GearRanks) {
         const ItemStorage: object[] = [];
+
+
         array.forEach(item => {
-            if (item.rank.en == gearRanksKey) {
+            if (item.hasOwnProperty('rank') && item.rank.en != 'null' && item.rank.en == gearRanksKey) {
                 ItemStorage.push(item);
+            } else if (item.rank.en == 'null' && ItemWithoutGearRanks.indexOf(item) == -1) {
+                ItemWithoutGearRanks.push(item)
             }
         })
         ItemStorage.forEach(item => {
             SortedItems.push(item);
-        })
+        });
     }
-    if (SortedItems.length > 0)
-        return SortedItems;
-    else
-        return array;
+
+    ItemWithoutGearRanks.forEach(item => {
+        SortedItems.push(item);
+    });
+
+    return SortedItems;
 }
 
 export function FindLinesInValueByKey(dataJson: any, searchingKey: string): object {
@@ -39,14 +47,14 @@ export function FindLinesInValueByKey(dataJson: any, searchingKey: string): obje
     return result;
 }
 
-export function FindLinesByKey(dataJson: any, searchingKey: string): object {
-    const result: object = {
+export function FindLinesByKey(dataJson: any, searchingKey: string): ILines {
+    const result: ILines = {
         ru: "null",
         en: "null"
     }
 
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
-        if (dataJson.infoBlocks[i].elements != undefined)
+        if (dataJson.infoBlocks[i].elements != undefined) {
             for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
                 for (const [key, value] of Object.entries(dataJson.infoBlocks[i].elements[j])) {
                     if ((key == 'key' || key == 'text') && (value as any).key.includes(searchingKey)) {
@@ -54,11 +62,18 @@ export function FindLinesByKey(dataJson: any, searchingKey: string): object {
                     }
                 }
             }
+        } else {
+            for (const [key, value] of Object.entries(dataJson.infoBlocks[i])) {
+                if (key == 'text' && (value as any).key.includes(searchingKey)) {
+                    return (value as any).lines;
+                }
+            }
+        }
     }
 
     if (searchingKey.split('.')[searchingKey.split('.').length - 1] == 'description') {
         for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
-            if (dataJson.infoBlocks[i].type == 'text')
+            if (dataJson.infoBlocks[i].type == 'text' && dataJson.infoBlocks[i].text.key.includes(searchingKey))
                 return dataJson.infoBlocks[i].text.lines;
         }
     }

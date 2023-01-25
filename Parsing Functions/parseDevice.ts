@@ -4,7 +4,6 @@ import {DeviceSchema} from "../itemSchemas";
 import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
 
 
-// EXCLUDE DEVICE AND MELEE
 export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): Promise<void> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseDevice: incorrect or null path to folder');
@@ -32,7 +31,7 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'device';
+    const resultFolder = RegionalPathToParse + '\\' + 'devices';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

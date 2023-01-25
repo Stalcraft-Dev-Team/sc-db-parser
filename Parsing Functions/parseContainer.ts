@@ -1,0 +1,125 @@
+import fs from "fs";
+import {PathToParse} from '../Static/fileds';
+import {ContainerSchema, ILines} from "../itemSchemas";
+import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
+import {ContainerTypes} from "../Static/enums";
+import {ItemProperties} from "../Static/itemProperties-class";
+
+
+export const ParseContainer = async function ParseContainer(pathToItemsFolder = ''): Promise<void> {
+    if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
+        throw new Error('ParseContainer: incorrect or null path to folder');
+    }
+
+    let server: string;
+    if (pathToItemsFolder.split('\\').filter(folderName => folderName == 'ru').length > 0) {
+        server = 'ru';
+    } else {
+        server = 'global';
+    }
+
+    function RPToP(): string {
+        let result: string = '';
+        let dirname: string[] = __dirname.split('\\');
+        for (let i = 0; i < dirname.length - 1; i++) {
+            result += dirname[i] + '\\';
+        }
+        result += PathToParse + '\\' + server;
+        return result;
+    }
+
+    const RegionalPathToParse: string = RPToP();
+    if (!fs.existsSync(RegionalPathToParse)) {
+        fs.mkdirSync(RegionalPathToParse);
+    }
+
+    const resultFolder = RegionalPathToParse + '\\' + 'containers';
+    if (!fs.existsSync(resultFolder)) {
+        fs.mkdirSync(resultFolder);
+    }
+
+    ////////
+    const AllContainers: ContainerSchema[] = [];
+    let dataJson: any;
+    parseItemsInFolder(pathToItemsFolder).then(() => {
+        fs.writeFileSync(resultFolder + '\\' + 'all containers.json', JSON.stringify( SortByGearRanksKeys(AllContainers), null, 4));
+    }).catch(e => {
+        console.error(e);
+    });
+    ////////
+
+    async function parseItemsInFolder(folderPath: string) {
+        const files: string[] = fs.readdirSync(folderPath);
+
+        files.map((file) => {
+            const fileName: string = file.split('.')[0];
+            file = folderPath + file;
+
+            const data: Buffer = fs.readFileSync(file);
+            dataJson = JSON.parse(data.toString());
+
+            const itemKey = () => {
+                const keys: string[] = (dataJson.name.key).split('.');
+                let result: string = '';
+                for (let i = 0; i < keys.length - 1; i++) {
+                    result += keys[i] + '.';
+                }
+
+                return result;
+            };
+
+            const container = new ContainerSchema({
+                exbo_id: fileName,
+                key: dataJson.name.key,
+                name: dataJson.name.lines,
+                color: dataJson.color,
+                class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
+                rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
+                containerType: {},
+                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 1),
+                stats: [],
+                features: {
+                    canCarryArtefacts: FindValueByKey(dataJson, "stalker.tooltip.backpack.info.size", "int", null)
+                    != '0'
+                        ? '1'
+                        : '0',
+                    innerProtection: FindValueByKey(dataJson, "stalker.tooltip.backpack.stat_name.inner_protection", "int", null),
+                    effectiveness: FindValueByKey(dataJson, "stalker.tooltip.backpack.stat_name.effectiveness", "int", null),
+                    artefactCapacity: FindValueByKey(dataJson, "stalker.tooltip.backpack.info.size", "int", null)
+                },
+                description: FindLinesByKey(dataJson, itemKey() + 'description')
+            });
+
+
+            for (const [key, value] of Object.entries(ContainerTypes)) {
+                let isIt: ILines = FindLinesByKey(dataJson, value);
+                if (isIt.en != 'null') {
+                    container.containerType = isIt;
+                    break;
+                }
+            }
+
+            const Stats: object[] = [];
+            ItemProperties.AllProperties.playerProperties.forEach(prop => {
+                const value = FindValueByKey(dataJson, prop.key, 'float', 1);
+                if (Number(value) != 0) {
+                    Stats.push({
+                        key: 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1],
+                        value: value,
+                        isPositive: (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
+                            ? '1'
+                            : '0',
+                        lines: prop.lines
+                    })
+                }
+            })
+
+            const Positive: object[] = Stats.filter(prop => (prop as any).isPositive == "1");
+            const Negative: object[] = Stats.filter(prop => (prop as any).isPositive == "0");
+            container.stats = Positive.concat(Negative);
+
+            AllContainers.push(container);
+        });
+    }
+}
+
