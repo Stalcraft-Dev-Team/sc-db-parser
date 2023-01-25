@@ -22,6 +22,7 @@ import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
 import {WeaponSchema} from "./itemSchemas";
 import {ParseAttachment} from "./Parsing Functions/parseAttachment";
 import {ParseBullet} from "./Parsing Functions/parseBullet";
+import {ParseDevice} from "./Parsing Functions/parseDevice";
 export const IndexDirName: string = __dirname;
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
@@ -112,6 +113,10 @@ async function ParseAllData(server = '') {
         .catch((e) => { console.error(e); });
 
     // await ParseGrenade(pathToItemsFolder+'grenade\\');
+
+    await ParseDevice(pathToItemsFolder+'weapon\\device\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseDevice: complete!'); })
+        .catch((e) => { console.error(e); });
 
 }
 

@@ -102,88 +102,6 @@ export class WeaponSchema {
     }
 }
 
-export class MeleeWeaponSchema {
-    exbo_id: string = '';
-    key: string = '';
-    name: ILines = { ru: "", en: "" };
-    color: string = '';
-    rank: ILines = { ru: "", en: "" };
-    class: ILines = { ru: "", en: "" };
-    weight: string = '0';
-    quickHit: object = {
-        minDamage: '0',
-        maxDamage: '0',
-        distance: '0',
-    };
-    strongHit: object = {
-        minDamage: '0',
-        maxDamage: '0',
-        distance: '0',
-    };
-    damageModifiers: object = {
-        backStabDamage: '1.2',
-        mobsDamage: '1',
-        penetration: '0',
-        chanceToDeepWound: '0',
-    };
-    damageFeatures: object = {
-        damageTypes: {
-            frostDamage: '0',
-            burnDamage: '0',
-            chemicalDamage: '0',
-            pureDamage: '0'
-        }
-    };
-    description: ILines = { ru: "", en: "" };
-
-    constructor(obj: any) {
-        this.exbo_id = obj.exbo_id;
-        this.key = obj.key;
-        this.name = obj.name;
-        this.color = obj.color;
-        this.rank = obj.rank;
-        this.class = obj.class;
-        this.weight = obj.weight;
-        this.quickHit = obj.quickHit;
-        this.strongHit = obj.strongHit;
-        if (Number(obj.damageModifiers.mobsDamage) < 1) {
-            obj.damageModifiers.mobsDamage = '1';
-        }
-        this.damageModifiers = obj.damageModifiers;
-        this.damageFeatures = obj.damageFeatures;
-        this.description = obj.description;
-    }
-}
-
-export class MedicineSchema {
-    exbo_id: string = '';
-    key: string = '';
-    name: ILines = { ru: "", en: "" };
-    color: string = '';
-    class: ILines = { ru: "", en: "" };
-    weight: string = '0';
-    purpose: ILines = { ru: "", en: "" };
-    duration: string = '0';
-    stats: object[] = [];
-    description: object = {
-        ru: '',
-        en: ''
-    };
-
-    constructor(obj: any) {
-        this.exbo_id = obj.exbo_id;
-        this.key = obj.key;
-        this.name = obj.name;
-        this.color = obj.color;
-        this.class = obj.class;
-        this.weight = obj.weight;
-        this.purpose = obj.purpose;
-        this.duration = obj.duration;
-        this.stats = obj.stats;
-        this.description = obj.description;
-    }
-}
-
 export class AttachmentSchema {
     exbo_id: string = '';
     key: string = '';
@@ -241,3 +159,123 @@ export class BulletSchema {
         this.stats = obj.stats;
     }
 }
+
+export class MeleeWeaponSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    rank: ILines = { ru: "", en: "" };
+    class: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    quickHit: object = {
+        minDamage: '0',
+        maxDamage: '0',
+        distance: '0',
+    };
+    strongHit: object = {
+        minDamage: '0',
+        maxDamage: '0',
+        distance: '0',
+    };
+    damageModifiers: object = {
+        backStabDamage: '1.2',
+        mobsDamage: '1',
+        penetration: '0',
+        chanceToDeepWound: '0',
+    };
+    damageFeatures: object = {
+        damageTypes: {
+            frostDamage: '0',
+            burnDamage: '0',
+            chemicalDamage: '0',
+            pureDamage: '0'
+        }
+    };
+    description: ILines = { ru: "", en: "" };
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.quickHit = obj.quickHit;
+        this.strongHit = obj.strongHit;
+        if (Number(obj.damageModifiers.mobsDamage) < 1) {
+            obj.damageModifiers.mobsDamage = '1';
+        }
+        this.damageModifiers = obj.damageModifiers;
+        this.damageFeatures = obj.damageFeatures;
+        this.description = obj.description;
+    }
+}
+
+export class DeviceSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    rank: string = '';
+    class: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    features: object = {
+        signalSearcher: {
+            canDetectSignals: '0',
+            canDetectArtefacts: '0',
+            range: 'null'
+        },
+        metalDetector: {
+            passiveRange: 'null',
+            activeRange: 'null',
+            scanAngle: 'null'
+        }
+    }
+    description: ILines = { ru: "", en: "" };
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.features = obj.features;
+        this.description = obj.description;
+    }
+}
+
+export class MedicineSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    class: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    purpose: ILines = { ru: "", en: "" };
+    duration: string = '0';
+    stats: object[] = [];
+    description: object = {
+        ru: '',
+        en: ''
+    };
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.purpose = obj.purpose;
+        this.duration = obj.duration;
+        this.stats = obj.stats;
+        this.description = obj.description;
+    }
+}
+
+
+
