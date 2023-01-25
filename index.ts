@@ -23,6 +23,7 @@ import {WeaponSchema} from "./itemSchemas";
 import {ParseAttachment} from "./Parsing Functions/parseAttachment";
 import {ParseBullet} from "./Parsing Functions/parseBullet";
 import {ParseDevice} from "./Parsing Functions/parseDevice";
+import {ParseGrenade} from "./Parsing Functions/parseGrenade";
 export const IndexDirName: string = __dirname;
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
@@ -112,7 +113,9 @@ async function ParseAllData(server = '') {
         .then(() => { console.log (server.toUpperCase()+': ParseMeleeWeapon: complete!'); })
         .catch((e) => { console.error(e); });
 
-    // await ParseGrenade(pathToItemsFolder+'grenade\\');
+    await ParseGrenade(pathToItemsFolder+'grenade\\')
+        .then(() => { console.log (server.toUpperCase()+': ParseGrenade: complete!'); })
+        .catch((e) => { console.error(e); });
 
     await ParseDevice(pathToItemsFolder+'weapon\\device\\')
         .then(() => { console.log (server.toUpperCase()+': ParseDevice: complete!'); })

@@ -213,6 +213,43 @@ export class MeleeWeaponSchema {
     }
 }
 
+export class GrenadeSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines = { ru: "", en: "" };
+    color: string = '';
+    rank: string = '';
+    class: ILines = { ru: "", en: "" };
+    weight: string = '0';
+    stats: object = {
+        maxDamage: '0',
+        minDamage: '0',
+        range: '0',
+        timeUntilDetonation: '0',
+        maxFlashTime: '0', // Если это светошумовая граната
+        hasContactExplosion: '0', // Если это граната/снаряд с детонацией при контакте
+        fuzeTime: '0', // Время, после которого включается взрыв при контакте, если он имеется у гранаты/снаряда
+
+    };
+    features: object = {
+
+    }
+    description: ILines = { ru: "", en: "" };
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.stats = obj.stats;
+        this.features = obj.features;
+        this.description = obj.description;
+    }
+}
+
 export class DeviceSchema {
     exbo_id: string = '';
     key: string = '';
@@ -253,6 +290,7 @@ export class MedicineSchema {
     key: string = '';
     name: ILines = { ru: "", en: "" };
     color: string = '';
+    rank: string = '';
     class: ILines = { ru: "", en: "" };
     weight: string = '0';
     purpose: ILines = { ru: "", en: "" };
@@ -268,6 +306,7 @@ export class MedicineSchema {
         this.key = obj.key;
         this.name = obj.name;
         this.color = obj.color;
+        this.rank = obj.rank;
         this.class = obj.class;
         this.weight = obj.weight;
         this.purpose = obj.purpose;
