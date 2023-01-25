@@ -83,7 +83,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
                 color: dataJson.color,
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 1),
+                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 stats: [],
                 additionalStats: [],
                 features: {},

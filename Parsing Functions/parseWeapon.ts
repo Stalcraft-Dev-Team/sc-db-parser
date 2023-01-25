@@ -85,7 +85,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 1),
+                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 ammoType: FindLinesInValueByKey(dataJson, "weapon.tooltip.weapon.info.ammo_type"),
                 startDamage: {
                     defaultValue: DamagesAndDistances.startDamage == undefined

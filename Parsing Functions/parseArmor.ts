@@ -87,7 +87,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 1),
+                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 nightVisionGlasses: FindLinesForArmorByKey(dataJson, "stalker.tooltip.armor_artefact.night_vision"),
                 compatibilityBackpacks: FindLinesForArmorByKey(dataJson, "stalker.lore.armor_artefact.info.compatible_backpacks"),
                 compatibilityContainers: FindLinesForArmorByKey(dataJson, "stalker.lore.armor_artefact.info.compatible_containers"),

@@ -78,7 +78,7 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
                 name: dataJson.name.lines,
                 color: dataJson.color,
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 3),
+                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 bulletType: FindLinesByKey(dataJson, "weapon.tooltip.bullet.bullet_type"),
                 penetration: FindLinesByKey(dataJson, "weapon.tooltip.bullet.high_penetration"),
                 stats: [],
@@ -86,7 +86,7 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
 
             const Stats: object[] = [];
             ItemProperties.AllProperties.attachmentAndBulletProperties.forEach(prop => {
-                const value = FindValueByKey(dataJson, prop.key, 'float', 1);
+                const value = FindValueByKey(dataJson, prop.key, 'float', 2);
                 if (Number(value) != 0) {
                     Stats.push({
                         key: 'properties' + '.' + 'additional_to_weapons' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1],

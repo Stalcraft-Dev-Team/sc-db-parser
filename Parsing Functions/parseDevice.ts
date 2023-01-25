@@ -73,7 +73,7 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
                 color: dataJson.color,
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 1),
+                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 features: {
                     signalSearcher: {
                         canDetectSignals: FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_signals').en != 'null' ? '1' : '0',

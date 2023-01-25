@@ -74,7 +74,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 1),
+                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 quickHit: {
                     minDamage: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.min.common", "int", null),
                     maxDamage: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.max.common", "int", null),

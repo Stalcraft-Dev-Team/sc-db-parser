@@ -116,7 +116,7 @@ export function FindValueByKey(dataJson: any, searchingKey: string, type: string
         }
         case 'float': {
             if (typeof roundValueIfFloat == 'number' && roundValueIfFloat > 0)
-                result = Number(result).toFixed(roundValueIfFloat);
+                result = Number.parseFloat(result).toFixed(roundValueIfFloat);
 
             break;
         }

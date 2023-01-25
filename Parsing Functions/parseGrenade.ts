@@ -78,8 +78,8 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                     maxDamage: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_strength", 'int', null),
                     minDamage: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_strength_min", 'int', null),
                     range: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_size", 'float', 1),
-                    timeUntilDetonation: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.lifetime", 'int', null),
-                    maxFlashTime: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.flash_time", 'int', null),
+                    timeUntilDetonation: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.lifetime", 'float', 2),
+                    maxFlashTime: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.flash_time", 'float', 2),
                     hasContactExplosion: (FindLinesByKey(dataJson, "weapon.grenade.frag.stats.explosion_on_collide") as any).en != 'null' ? '1' : '0',
                     fuzeTime: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_activation_time", 'float', 2),
                 },
@@ -87,7 +87,7 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
 
-            if ((grenade.stats as any).maxFlashTime != '0') {
+            if (Number((grenade.stats as any).maxFlashTime) != 0) {
 
                 (grenade.stats as any).range =
                     FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.explosion_size", 'float', 1);
