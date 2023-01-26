@@ -124,11 +124,11 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                     mutatedValue: 'null'
                 },
                 reloadTime: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 1),
+                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
                     mutatedValue: 'null'
                 },
                 tacticalReloadTime: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 1),
+                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
                     mutatedValue: 'null'
                 },
                 spread: {
