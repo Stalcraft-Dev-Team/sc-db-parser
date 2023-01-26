@@ -2,7 +2,7 @@ import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {MedicineSchema} from "../itemSchemas";
 import {ItemProperties} from "../Static/itemProperties-class";
-import {FindLinesInValueByKey, FindValueByKey} from "../Static/functions";
+import {FindLinesInValueByKey, FindValueByKey, SortProperties} from "../Static/functions";
 
 
 export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''): Promise<void> {
@@ -81,24 +81,7 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
                 description: FindLinesByKey(itemKey() + 'description')
             });
 
-            const Stats: object[] = [];
-            ItemProperties.AllProperties.playerProperties.forEach(prop => {
-                const value = FindValueByKey(dataJson, prop.key, 'float', 1);
-                if (Number(value) != 0) {
-                    Stats.push({
-                        key: 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1],
-                        value: value,
-                        isPositive: (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
-                            ? '1'
-                            : '0',
-                        lines: prop.lines
-                    })
-                }
-            })
-
-            const Positive: object[] = Stats.filter(prop => (prop as any).isPositive == "1");
-            const Negative: object[] = Stats.filter(prop => (prop as any).isPositive == "0");
-            medicine.stats = Positive.concat(Negative);
+            medicine.stats = SortProperties(dataJson, 'player');
 
             AllMedicine.push(medicine);
         });

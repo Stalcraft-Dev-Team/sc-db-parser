@@ -1,5 +1,7 @@
-import {GearRanks} from "./enums";
+import {GearRanks, PropertiesTypes} from "./enums";
 import {ILines} from "../itemSchemas";
+import {IPropertiesElement, ItemProperties} from "./itemProperties-class";
+import {FindRangeValueByKey} from "../Parsing Functions/parseArtefact";
 
 export function SortByGearRanksKeys(array: any[]): object[] {
     const SortedItems: object[] = [];
@@ -25,6 +27,52 @@ export function SortByGearRanksKeys(array: any[]): object[] {
     });
 
     return SortedItems;
+}
+
+// type must be 'player' or 'weapon'
+export function SortProperties(dataJson: any, type: string = ''): object[] {
+    if (type.toLowerCase() != 'player' && type.toLowerCase() != 'weapon') {
+        throw new Error('Incorrect type.');
+    } else {
+        type = type.toLowerCase();
+    }
+    const AllPropsKey = type == 'player' ? PropertiesTypes.Player : PropertiesTypes.AttachmentOrBullet;
+
+    const Stats: object[] = [];
+
+    (ItemProperties.AllProperties as any)[AllPropsKey].forEach((prop: IPropertiesElement) => {
+        let value;
+        let key: string;
+        if (AllPropsKey == PropertiesTypes.Player) {
+            key = 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1];
+        } else {
+            key = 'properties' + '.' + 'weapon' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1];
+        }
+
+        let isPositive: string = '';
+        if (dataJson.category.includes('artefact')) {
+            value = FindRangeValueByKey(dataJson, prop.key, 'float', 1);
+            isPositive = (prop.goodIfGreaterThanZero && Number(value.max) > 0) || (!prop.goodIfGreaterThanZero && Number(value.max) < 0)
+                ? '1'
+                : '0'
+        } else {
+            value = FindValueByKey(dataJson, prop.key, 'float', 1);
+            isPositive = (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
+                ? '1'
+                : '0'
+        }
+
+        if (Number(value) != 0) {
+            Stats.push({
+                key: key,
+                value: value,
+                isPositive: isPositive,
+                lines: prop.lines
+            })
+        }
+    })
+
+    return Stats;
 }
 
 export function FindLinesInValueByKey(dataJson: any, searchingKey: string): object {

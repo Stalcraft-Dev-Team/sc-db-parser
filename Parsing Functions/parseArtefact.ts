@@ -1,7 +1,7 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {ArtefactSchema, ILines} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey} from "../Static/functions";
+import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortProperties} from "../Static/functions";
 import {ArtefactTypes} from "../Static/enums";
 import {ItemProperties} from "../Static/itemProperties-class";
 
@@ -109,24 +109,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
                 // console.log(artefact.features);
             }
 
-            const Stats: object[] = [];
-            ItemProperties.AllProperties.playerProperties.forEach(prop => {
-                const range = FindRangeValueByKey(dataJson, prop.key, 'float', 2);
-                if (Number(range.max) != 0 || Number(range.min) != 0) {
-                    Stats.push({
-                        key: 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1],
-                        range: range,
-                        isPositive: (prop.goodIfGreaterThanZero && Number(range.max) > 0) || (!prop.goodIfGreaterThanZero && Number(range.max) < 0)
-                            ? '1'
-                            : '0',
-                        lines: prop.lines
-                    })
-                }
-            });
-
-            const Positive: object[] = Stats.filter(prop => (prop as any).isPositive == "1");
-            const Negative: object[] = Stats.filter(prop => (prop as any).isPositive == "0");
-            artefact.stats = Positive.concat(Negative);
+            artefact.stats = SortProperties(dataJson, 'player');
 
             SelectedArtefactType.push(artefact);
         });

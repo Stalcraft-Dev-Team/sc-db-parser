@@ -3,23 +3,25 @@ import {IndexDirName} from "../index";
 import fs from 'fs';
 import Path from "path";
 import {ILines} from "../itemSchemas";
+import {PropertiesTypes} from "./enums";
+import FileWithSortedProps from "../sortedProps.json";
 
-interface IPropertiesElement {
+export interface IPropertiesElement {
     key: string,
     goodIfGreaterThanZero: boolean,
     lines: ILines;
 }
 
 interface IProperties {
-    playerProperties: IPropertiesElement[],
-    attachmentAndBulletProperties: IPropertiesElement[]
+    player: IPropertiesElement[],
+    attachmentOrBullet: IPropertiesElement[]
 }
 
 export class ItemProperties {
 
     public static readonly AllProperties: IProperties = {
-        playerProperties: [],
-        attachmentAndBulletProperties: []
+        player: [],
+        attachmentOrBullet: []
     };
 
     private static isInitialized: boolean = false;
@@ -65,12 +67,12 @@ export class ItemProperties {
             const DataJson: object = JSON.parse(data.toString());
             for (const [key, value] of Object.entries(DataJson)) {
                 if ((typeof value) == 'object') {
-                    ItemProperties.IterateObject(key, value, ['stalker.artefact_properties.factor', 'stalker.tooltip.medicine.info.toxicity'], 0);
+                    ItemProperties.IterateObject(key, value, ['stalker.artefact_properties.factor', 'stalker.tooltip.medicine.info.toxicity'], PropertiesTypes.Player);
                 }
             }
         });
 
-        ItemProperties.AllProperties.playerProperties.forEach(prop => {
+        ItemProperties.AllProperties.player.forEach(prop => {
             prop.goodIfGreaterThanZero = !BadPropertiesKeys.includes(prop.key);
         });
 
@@ -104,19 +106,56 @@ export class ItemProperties {
                         'weapon.tooltip.magazine.info.additive_clip_size',
                         'core.tooltip.stat_name.damage_type',
                         'weapon.tooltip.bullet.stat_name'
-                    ], 1);
+                    ], PropertiesTypes.AttachmentOrBullet);
                 }
             }
         });
 
-        ItemProperties.AllProperties.attachmentAndBulletProperties.forEach(prop => {
+        ItemProperties.AllProperties.attachmentOrBullet.forEach(prop => {
             prop.goodIfGreaterThanZero = !BadPropertiesKeys.includes(prop.key);
         });
+
+
+
+        const SortedProps: IProperties = {
+            player: [],
+            attachmentOrBullet: []
+        }
+
+        // @ts-ignore
+        FileWithSortedProps[PropertiesTypes.Player].forEach(key => {
+            ItemProperties.AllProperties[PropertiesTypes.Player].forEach(prop => {
+                if (prop.key == key)
+                    SortedProps[PropertiesTypes.Player].push(prop);
+            })
+        })
+
+        // @ts-ignore
+        FileWithSortedProps[PropertiesTypes.AttachmentOrBullet].forEach(key => {
+            ItemProperties.AllProperties[PropertiesTypes.AttachmentOrBullet].forEach(prop => {
+                if (prop.key == key)
+                    SortedProps[PropertiesTypes.AttachmentOrBullet].push(prop);
+            })
+        })
+
+        if (ItemProperties.AllProperties[PropertiesTypes.Player].length == SortedProps[PropertiesTypes.Player].length) {
+            ItemProperties.AllProperties[PropertiesTypes.Player] = SortedProps[PropertiesTypes.Player];
+            console.log(`AllProperties - ${PropertiesTypes.Player}: successful sorted!`)
+        } else {
+            console.error(`AllProperties - ${PropertiesTypes.Player}: different arrays length`)
+        }
+
+        if (ItemProperties.AllProperties[PropertiesTypes.AttachmentOrBullet].length == SortedProps[PropertiesTypes.AttachmentOrBullet].length) {
+            ItemProperties.AllProperties[PropertiesTypes.AttachmentOrBullet] = SortedProps[PropertiesTypes.AttachmentOrBullet];
+            console.log(`AllProperties - ${PropertiesTypes.AttachmentOrBullet}: successful sorted!`)
+        } else {
+            console.error(`AllProperties - ${PropertiesTypes.AttachmentOrBullet}: different arrays length`)
+        }
 
         ItemProperties.isInitialized = true;
     }
 
-    private static IterateObject(k: string, v: object, searchingStrings: string[], type: number) {
+    private static IterateObject(k: string, v: object, searchingStrings: string[], type: PropertiesTypes) {
         for (const [key, value] of Object.entries(v)) {
             if (key == 'key') {
                 let goNext: boolean = false;
@@ -136,14 +175,9 @@ export class ItemProperties {
                     }
 
                     let isDublicate: boolean = false;
-                    const propsType: string = type == 0
-                        ? 'playerProperties'
-                        : type == 1
-                            ? 'attachmentAndBulletProperties'
-                            : '';
 
                     // @ts-ignore
-                    this.AllProperties[propsType].map(prop => {
+                    ItemProperties.AllProperties[type].forEach((prop: IPropertiesElement) => {
                         if (prop.key == property.key) {
                             isDublicate = true;
                         }
@@ -151,7 +185,7 @@ export class ItemProperties {
 
                     if (!isDublicate) {
                         // @ts-ignore
-                        ItemProperties.AllProperties[propsType].push(property);
+                        ItemProperties.AllProperties[type].push(property);
                     }
                 }
             } else if ((typeof value) == 'object') {

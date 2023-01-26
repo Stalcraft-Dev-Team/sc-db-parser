@@ -1,7 +1,13 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {ContainerSchema, ILines} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
+import {
+    FindLinesByKey,
+    FindLinesInValueByKey,
+    FindValueByKey,
+    SortByGearRanksKeys,
+    SortProperties
+} from "../Static/functions";
 import {ContainerTypes} from "../Static/enums";
 import {ItemProperties} from "../Static/itemProperties-class";
 
@@ -99,24 +105,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
                 }
             }
 
-            const Stats: object[] = [];
-            ItemProperties.AllProperties.playerProperties.forEach(prop => {
-                const value = FindValueByKey(dataJson, prop.key, 'float', 1);
-                if (Number(value) != 0) {
-                    Stats.push({
-                        key: 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1],
-                        value: value,
-                        isPositive: (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
-                            ? '1'
-                            : '0',
-                        lines: prop.lines
-                    })
-                }
-            })
-
-            const Positive: object[] = Stats.filter(prop => (prop as any).isPositive == "1");
-            const Negative: object[] = Stats.filter(prop => (prop as any).isPositive == "0");
-            container.stats = Positive.concat(Negative);
+            container.stats = SortProperties(dataJson, 'player');
 
             AllContainers.push(container);
         });

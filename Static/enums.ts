@@ -31,3 +31,8 @@ export enum ArtefactTypes {
     electrophysical = 'core.handbook.category.electrophysical',
     other = 'core.handbook.category.other_arts',
 }
+
+export enum PropertiesTypes {
+    Player = 'player',
+    AttachmentOrBullet = 'attachmentOrBullet'
+}

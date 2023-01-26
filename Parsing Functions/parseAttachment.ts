@@ -6,7 +6,7 @@ import {
     FindLinesInValueByKey,
     FindObjectValueByKey,
     FindValueByKey,
-    SortByGearRanksKeys
+    SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
 
@@ -99,24 +99,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
 
             attachment.suitableFor = GetSuitableWeapons(dataJson);
 
-            const Stats: object[] = [];
-            ItemProperties.AllProperties.attachmentAndBulletProperties.forEach(prop => {
-                const value = FindValueByKey(dataJson, prop.key, 'float', 1);
-                if (Number(value) != 0) {
-                    Stats.push({
-                        key: 'properties' + '.' + 'additional_to_weapons' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1],
-                        value: value,
-                        isPositive: (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
-                            ? '1'
-                            : '0',
-                        lines: prop.lines
-                    })
-                }
-            })
-
-            const Positive: object[] = Stats.filter(prop => (prop as any).isPositive == "1");
-            const Negative: object[] = Stats.filter(prop => (prop as any).isPositive == "0");
-            attachment.stats = Positive.concat(Negative);
+            attachment.stats = SortProperties(dataJson, 'weapon');
 
             SelectedCategoryWeapons.push(attachment);
         });

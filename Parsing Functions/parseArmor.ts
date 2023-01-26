@@ -6,7 +6,7 @@ import {
     FindLinesInValueByKey,
     FindObjectValueByKey,
     FindValueByKey,
-    SortByGearRanksKeys
+    SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
 
@@ -95,24 +95,8 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
                 description: FindLinesByKey(dataJson, itemKey() + 'description'),
             });
 
-            const Stats: object[] = [];
-            ItemProperties.AllProperties.playerProperties.forEach(prop => {
-                const value = FindValueByKey(dataJson, prop.key, 'float', 1);
-                if (Number(value) != 0) {
-                    Stats.push({
-                        key: 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1],
-                        value: value,
-                        isPositive: (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
-                            ? '1'
-                            : '0',
-                        lines: prop.lines
-                    })
-                }
-            })
 
-            const Positive: object[] = Stats.filter(prop => (prop as any).isPositive == "1");
-            const Negative: object[] = Stats.filter(prop => (prop as any).isPositive == "0");
-            armor.stats = Positive.concat(Negative);
+            armor.stats = SortProperties(dataJson, 'player');
 
             SelectedCategoryArmors.push(armor);
         });
