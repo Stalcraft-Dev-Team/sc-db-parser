@@ -37,7 +37,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'melee`s';
+    const resultFolder = RegionalPathToParse + '\\' + 'melee';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

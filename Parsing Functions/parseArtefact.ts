@@ -38,7 +38,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'artefacts';
+    const resultFolder = RegionalPathToParse + '\\' + 'artefact';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

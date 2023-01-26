@@ -39,7 +39,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'armors';
+    const resultFolder = RegionalPathToParse + '\\' + 'armor';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

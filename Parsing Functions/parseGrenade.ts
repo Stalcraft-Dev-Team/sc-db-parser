@@ -37,7 +37,7 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'grenades';
+    const resultFolder = RegionalPathToParse + '\\' + 'grenade';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

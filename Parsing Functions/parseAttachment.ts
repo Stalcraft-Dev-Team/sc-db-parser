@@ -39,7 +39,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'attachments';
+    const resultFolder = RegionalPathToParse + '\\' + 'attachment';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

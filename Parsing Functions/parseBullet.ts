@@ -39,7 +39,7 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'bullets';
+    const resultFolder = RegionalPathToParse + '\\' + 'bullet';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

@@ -38,7 +38,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'weapons';
+    const resultFolder = RegionalPathToParse + '\\' + 'weapon';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }

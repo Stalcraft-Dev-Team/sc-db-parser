@@ -37,7 +37,7 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'devices';
+    const resultFolder = RegionalPathToParse + '\\' + 'device';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }
