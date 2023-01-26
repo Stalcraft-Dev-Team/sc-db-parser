@@ -2,6 +2,7 @@ import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {ArmorSchema, ILines} from "../itemSchemas";
 import {
+    CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
     FindObjectValueByKey,
@@ -102,8 +103,9 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        fs.writeFile(resultFolder + '\\' + `${CategoryName}.json`, JSON.stringify(SortByGearRanksKeys(SelectedCategoryArmors), null, 4), (e) => {
-            if (e) console.error(e);
+        const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
+        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryArmors), null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath);
         });
 
         SelectedCategoryArmors.map(armor => AllArmors.push(armor));

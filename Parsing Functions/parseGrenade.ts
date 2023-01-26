@@ -1,7 +1,13 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {GrenadeSchema} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
+import {
+    CreateSubFoldersAndItems,
+    FindLinesByKey,
+    FindLinesInValueByKey,
+    FindValueByKey,
+    SortByGearRanksKeys
+} from "../Static/functions";
 
 
 export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''): Promise<void> {
@@ -40,7 +46,10 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
     const AllGrenades: GrenadeSchema[] = [];
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
-        fs.writeFileSync(resultFolder + '\\' + 'all grenades.json', JSON.stringify(AllGrenades, null, 4));
+        const CategoryPath = resultFolder + '\\' + `all_grenades.json`;
+        fs.writeFile(CategoryPath, JSON.stringify(AllGrenades, null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath);
+        });
     }).catch(e => {
         console.error(e);
     });

@@ -2,6 +2,7 @@ import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {AttachmentSchema, BulletSchema} from "../itemSchemas";
 import {
+    CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
     FindObjectValueByKey,
@@ -47,7 +48,10 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
     const AllBullets: BulletSchema[] = [];
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
-        fs.writeFileSync(resultFolder + '\\' + 'all bullets.json', JSON.stringify(AllBullets, null, 4));
+        const CategoryPath = resultFolder + '\\' + `all_bullets.json`;
+        fs.writeFile(CategoryPath, JSON.stringify(AllBullets, null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath);
+        });
     }).catch(e => {
         console.error(e);
     });

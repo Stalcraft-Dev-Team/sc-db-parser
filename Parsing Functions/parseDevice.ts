@@ -1,7 +1,13 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {DeviceSchema} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
+import {
+    CreateSubFoldersAndItems,
+    FindLinesByKey,
+    FindLinesInValueByKey,
+    FindValueByKey,
+    SortByGearRanksKeys
+} from "../Static/functions";
 
 
 export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): Promise<void> {
@@ -40,7 +46,10 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
     const AllDevices: DeviceSchema[] = [];
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
-        fs.writeFileSync(resultFolder + '\\' + 'all devices.json', JSON.stringify(SortByGearRanksKeys(AllDevices), null, 4));
+        const CategoryPath = resultFolder + '\\' + `all_devices.json`;
+        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(AllDevices), null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath);
+        });
     }).catch(e => {
         console.error(e);
     });

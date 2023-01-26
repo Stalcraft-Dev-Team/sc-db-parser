@@ -2,6 +2,7 @@ import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {ContainerSchema, ILines} from "../itemSchemas";
 import {
+    CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
     FindValueByKey,
@@ -9,7 +10,7 @@ import {
     SortProperties
 } from "../Static/functions";
 import {ContainerTypes} from "../Static/enums";
-import {ItemProperties} from "../Static/itemProperties-class";
+
 
 
 export const ParseContainer = async function ParseContainer(pathToItemsFolder = ''): Promise<void> {
@@ -48,7 +49,10 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
     const AllContainers: ContainerSchema[] = [];
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
-        fs.writeFileSync(resultFolder + '\\' + 'all containers.json', JSON.stringify( SortByGearRanksKeys(AllContainers), null, 4));
+        const CategoryPath = resultFolder + '\\' + `all_containers.json`;
+        fs.writeFile(CategoryPath, JSON.stringify( SortByGearRanksKeys(AllContainers), null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath);
+        });
     }).catch(e => {
         console.error(e);
     });

@@ -2,6 +2,24 @@ import {GearRanks, PropertiesTypes} from "./enums";
 import {ILines} from "../itemSchemas";
 import {IPropertiesElement, ItemProperties} from "./itemProperties-class";
 import {FindRangeValueByKey} from "../Parsing Functions/parseArtefact";
+import fs from "fs";
+
+export function CreateSubFoldersAndItems(CategoryPath: string) {
+    if (!fs.existsSync(CategoryPath.split('.')[0]))
+        fs.mkdirSync(CategoryPath.split('.')[0], null);
+
+    fs.readFile(CategoryPath, null, (err, data) => {
+        data = JSON.parse(data.toString());
+        data.forEach(item => {
+            const itemAsAny: any = item as any;
+            fs.writeFile(CategoryPath.split('.')[0]+'\\'+itemAsAny.exbo_id+'.json',
+                JSON.stringify(itemAsAny, null, 4), null, (e) => {
+                    if (e)
+                        console.error(e);
+                });
+        });
+    });
+}
 
 export function SortByGearRanksKeys(array: any[]): object[] {
     const SortedItems: object[] = [];

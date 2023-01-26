@@ -1,7 +1,13 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {ArtefactSchema, ILines} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortProperties} from "../Static/functions";
+import {
+    CreateSubFoldersAndItems,
+    FindLinesByKey,
+    FindLinesInValueByKey,
+    FindValueByKey,
+    SortProperties
+} from "../Static/functions";
 import {ArtefactTypes} from "../Static/enums";
 import {ItemProperties} from "../Static/itemProperties-class";
 
@@ -115,8 +121,9 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        fs.writeFile(resultFolder + '\\' + `${CategoryName}.json`, JSON.stringify(SelectedArtefactType, null, 4), (e) => {
-            if (e) console.error(e);
+        const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
+        fs.writeFile(CategoryPath, JSON.stringify(SelectedArtefactType, null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath);
         });
         SelectedArtefactType.map(artefact => AllArtefacts.push(artefact));
     }

@@ -1,7 +1,13 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {WeaponSchema} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
+import {
+    CreateSubFoldersAndItems,
+    FindLinesByKey,
+    FindLinesInValueByKey,
+    FindValueByKey,
+    SortByGearRanksKeys
+} from "../Static/functions";
 
 
 // EXCLUDE DEVICE AND MELEE
@@ -52,7 +58,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
-    fs.writeFileSync(resultFolder + '\\' + 'all weapons.json', JSON.stringify(SortByGearRanksKeys(AllWeapons), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_weapons.json', JSON.stringify(SortByGearRanksKeys(AllWeapons), null, 4));
 
     ////////
 
@@ -177,6 +183,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 },
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
+
             switch (true) {
                 case weapon.endDamage.defaultValue == undefined: {
                     delete (weapon as any).endDamage;
@@ -191,12 +198,14 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                     delete (weapon as any).maxDistance;
                 }
             }
+
             SelectedCategoryWeapons.push(weapon);
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        fs.writeFile(resultFolder + '\\' + `${CategoryName}.json`, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons), null, 4), (e) => {
-            if (e) console.error(e);
+        const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
+        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons), null, 4), (e) => {
+            CreateSubFoldersAndItems(CategoryPath);
         });
         SelectedCategoryWeapons.map(weapon => AllWeapons.push(weapon));
     }

@@ -1,7 +1,13 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {MeleeWeaponSchema} from "../itemSchemas";
-import {FindLinesByKey, FindLinesInValueByKey, FindValueByKey, SortByGearRanksKeys} from "../Static/functions";
+import {
+    CreateSubFoldersAndItems,
+    FindLinesByKey,
+    FindLinesInValueByKey,
+    FindValueByKey,
+    SortByGearRanksKeys
+} from "../Static/functions";
 
 
 export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolder = ''): Promise<void> {
@@ -40,7 +46,10 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
     const AllMeleeWeapons: MeleeWeaponSchema[] = [];
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
-        fs.writeFileSync(resultFolder + '\\' + 'all melee.json', JSON.stringify(SortByGearRanksKeys(AllMeleeWeapons), null, 4));
+        const CategoryPath = resultFolder + '\\' + `all_melee.json`;
+        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(AllMeleeWeapons), null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath);
+        });
     }).catch(e => {
         console.error(e);
     });

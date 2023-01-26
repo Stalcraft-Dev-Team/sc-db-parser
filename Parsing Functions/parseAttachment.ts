@@ -2,6 +2,7 @@ import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {AttachmentSchema} from "../itemSchemas";
 import {
+    CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
     FindObjectValueByKey,
@@ -105,8 +106,9 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        fs.writeFile(resultFolder + '\\' + `${CategoryName}.json`, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons), null, 4), (e) => {
-            if (e) console.error(e);
+        const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
+        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons), null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath);
         });
 
         SelectedCategoryWeapons.map(attachment => AllAttachments.push(attachment));
