@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey,
+    FindValueByKey, GetAndCopyIcons,
     SortByGearRanksKeys
 } from "../Static/functions";
 
@@ -49,6 +49,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
         const CategoryPath = resultFolder + '\\' + `all_melee.json`;
         fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(AllMeleeWeapons), null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
+            GetAndCopyIcons(pathToItemsFolder, server, 'melee');
         });
     }).catch(e => {
         console.error(e);

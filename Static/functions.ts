@@ -3,6 +3,50 @@ import {ILines} from "../itemSchemas";
 import {IPropertiesElement, ItemProperties} from "./itemProperties-class";
 import {FindRangeValueByKey} from "../Parsing Functions/parseArtefact";
 import fs from "fs";
+import Path from "path";
+import {PathToImages} from "./fileds";
+
+const filesObj: any = {};
+export function GetAndCopyIcons(DirectoryToItems: string, Server: string, FolderName: string): void {
+    const DirectoryToIcons = DirectoryToItems.replace('items', 'icons');
+    const funcID: string = '_' + new Date().getMilliseconds();
+    filesObj[funcID] = [] as string[];
+
+    LocalFuncThroughDirectory(DirectoryToIcons, funcID);
+
+    if (!fs.existsSync(PathToImages(Server))) {
+        fs.mkdirSync(PathToImages(Server));
+    }
+
+    if (!fs.existsSync(PathToImages(Server)+FolderName)) {
+        fs.mkdirSync(PathToImages(Server)+FolderName);
+    }
+
+    filesObj[funcID].forEach((iconPath: string) => {
+        const SplittedIP = iconPath.split('.')[0];
+        const fileName: string = SplittedIP.substring(SplittedIP.length-4, SplittedIP.length);
+        fs.readFile(iconPath, (err, data) => {
+            if (err)
+                console.error(err);
+            else {
+                fs.writeFile(PathToImages(Server)+FolderName+'\\'+fileName+'.png', data, (err) => {
+                    if (err) console.error(err);
+                })
+            }
+        })
+    });
+    delete filesObj[funcID];
+}
+
+function LocalFuncThroughDirectory(Directory: string, funcID: string) {
+    fs.readdirSync(Directory).forEach(File => {
+        const Absolute = Path.join(Directory, File);
+        if (fs.statSync(Absolute).isDirectory()) return LocalFuncThroughDirectory(Absolute, funcID);
+        else {
+            return filesObj[funcID].push(Absolute);
+        }
+    });
+}
 
 export function CreateSubFoldersAndItems(CategoryPath: string) {
     if (!fs.existsSync(CategoryPath.split('.')[0]))
@@ -12,7 +56,7 @@ export function CreateSubFoldersAndItems(CategoryPath: string) {
         data = JSON.parse(data.toString());
         data.forEach(item => {
             const itemAsAny: any = item as any;
-            fs.writeFile(CategoryPath.split('.')[0]+'\\'+itemAsAny.exbo_id+'.json',
+            fs.writeFile(CategoryPath.split('.')[0] + '\\' + itemAsAny.exbo_id + '.json',
                 JSON.stringify(itemAsAny, null, 4), null, (e) => {
                     if (e)
                         console.error(e);

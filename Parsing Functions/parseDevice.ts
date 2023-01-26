@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey,
+    FindValueByKey, GetAndCopyIcons,
     SortByGearRanksKeys
 } from "../Static/functions";
 
@@ -50,6 +50,7 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
         fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(AllDevices), null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
         });
+        GetAndCopyIcons(pathToItemsFolder, server, 'device');
     }).catch(e => {
         console.error(e);
     });

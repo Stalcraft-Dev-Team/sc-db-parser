@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey,
+    FindValueByKey, GetAndCopyIcons,
     SortByGearRanksKeys
 } from "../Static/functions";
 
@@ -50,6 +50,7 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
         fs.writeFile(CategoryPath, JSON.stringify(AllGrenades, null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
         });
+        GetAndCopyIcons(pathToItemsFolder, server, 'grenade');
     }).catch(e => {
         console.error(e);
     });

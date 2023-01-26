@@ -6,7 +6,7 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     FindObjectValueByKey,
-    FindValueByKey,
+    FindValueByKey, GetAndCopyIcons,
     SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
@@ -53,6 +53,7 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
         fs.writeFile(CategoryPath, JSON.stringify(AllBullets, null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
         });
+        GetAndCopyIcons(pathToItemsFolder, server, 'bullet');
     }).catch(e => {
         console.error(e);
     });

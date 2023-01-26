@@ -2,7 +2,13 @@ import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {MedicineSchema} from "../itemSchemas";
 import {ItemProperties} from "../Static/itemProperties-class";
-import {CreateSubFoldersAndItems, FindLinesInValueByKey, FindValueByKey, SortProperties} from "../Static/functions";
+import {
+    CreateSubFoldersAndItems,
+    FindLinesInValueByKey,
+    FindValueByKey,
+    GetAndCopyIcons,
+    SortProperties
+} from "../Static/functions";
 
 
 export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''): Promise<object[]> {
@@ -45,6 +51,7 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
         fs.writeFile(CategoryPath, JSON.stringify(AllMedicine, null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
         });
+        GetAndCopyIcons(pathToItemsFolder, server, 'medicine');
     }).catch(e => {
         console.error(e);
     });

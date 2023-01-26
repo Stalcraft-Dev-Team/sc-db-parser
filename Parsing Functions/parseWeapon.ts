@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey,
+    FindValueByKey, GetAndCopyIcons,
     SortByGearRanksKeys
 } from "../Static/functions";
 
@@ -61,6 +61,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
     });
 
     fs.writeFileSync(resultFolder + '\\' + 'all_weapons.json', JSON.stringify(SortByGearRanksKeys(AllWeapons), null, 4));
+    GetAndCopyIcons(pathToItemsFolder, server, 'weapon');
 
     return SortByGearRanksKeys(AllWeapons); /* IMPORTANT */
     ////////

@@ -1,12 +1,11 @@
 import fs from "fs";
-import {PathToParse} from '../Static/fileds';
+import {PathToImages, PathToParse} from '../Static/fileds';
 import {ArmorSchema, ILines} from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindObjectValueByKey,
-    FindValueByKey,
+    FindValueByKey, GetAndCopyIcons,
     SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
@@ -60,6 +59,8 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
     });
 
     fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(SortByGearRanksKeys(AllArmors), null, 4));
+    GetAndCopyIcons(pathToItemsFolder, server, 'armor');
+
     return SortByGearRanksKeys(AllArmors); /* IMPORTANT */
     ////////
 

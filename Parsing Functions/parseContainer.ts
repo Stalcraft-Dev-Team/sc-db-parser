@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey,
+    FindValueByKey, GetAndCopyIcons,
     SortByGearRanksKeys,
     SortProperties
 } from "../Static/functions";
@@ -40,7 +40,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
         fs.mkdirSync(RegionalPathToParse);
     }
 
-    const resultFolder = RegionalPathToParse + '\\' + 'containers';
+    const resultFolder = RegionalPathToParse + '\\' + 'container';
     if (!fs.existsSync(resultFolder)) {
         fs.mkdirSync(resultFolder);
     }
@@ -53,6 +53,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
         fs.writeFile(CategoryPath, JSON.stringify( SortByGearRanksKeys(AllContainers), null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
         });
+        GetAndCopyIcons(pathToItemsFolder, server, 'container');
     }).catch(e => {
         console.error(e);
     });

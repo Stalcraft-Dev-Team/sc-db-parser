@@ -33,10 +33,10 @@ export class ItemProperties {
         let files: string[] = [];
         let AcceptedCategories: string[] = [];
         let BadPropertiesKeys: string[] = [];
-        function ThroughDirectory(Directory: string) {
+        function IP_ThroughDirectory(Directory: string) {
             fs.readdirSync(Directory).forEach(File => {
                 const Absolute = Path.join(Directory, File);
-                if (fs.statSync(Absolute).isDirectory()) return ThroughDirectory(Absolute);
+                if (fs.statSync(Absolute).isDirectory()) return IP_ThroughDirectory(Absolute);
                 else {
                     if (AcceptedCategories.length > 0)
                     AcceptedCategories.forEach(category => {
@@ -61,7 +61,7 @@ export class ItemProperties {
             'stalker.artefact_properties.factor.psycho_accumulation',
             'stalker.artefact_properties.factor.bleeding_accumulation'
         ];
-        ThroughDirectory(IndexDirName + '\\' + PathToClone + '\\' + 'ru' + '\\' + 'items');
+        IP_ThroughDirectory(IndexDirName + '\\' + PathToClone + '\\' + 'ru' + '\\' + 'items');
         files.forEach(file => {
             const data = fs.readFileSync(file);
             const DataJson: object = JSON.parse(data.toString());
@@ -95,7 +95,7 @@ export class ItemProperties {
 
         ];
 
-        ThroughDirectory(IndexDirName + '\\' + PathToClone + '\\' + 'ru' + '\\' + 'items');
+        IP_ThroughDirectory(IndexDirName + '\\' + PathToClone + '\\' + 'ru' + '\\' + 'items');
         files.forEach(file => {
             const data = fs.readFileSync(file);
             const DataJson: object = JSON.parse(data.toString());
