@@ -11,7 +11,7 @@ import {
 
 
 // EXCLUDE DEVICE AND MELEE
-export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): Promise<void> {
+export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseWeapon: incorrect or null path to folder');
     }
@@ -55,11 +55,14 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
 
     const AllWeapons: WeaponSchema[] = [];
     let dataJson: any;
+
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
-    })
+    });
+
     fs.writeFileSync(resultFolder + '\\' + 'all_weapons.json', JSON.stringify(SortByGearRanksKeys(AllWeapons), null, 4));
 
+    return SortByGearRanksKeys(AllWeapons); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

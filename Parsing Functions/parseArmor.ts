@@ -12,7 +12,7 @@ import {
 import {ItemProperties} from "../Static/itemProperties-class";
 
 
-export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Promise<void> {
+export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseArmor: incorrect or null path to folder');
     }
@@ -54,10 +54,13 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
 
     const AllArmors: ArmorSchema[] = [];
     let dataJson: any;
+
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
-    })
-    fs.writeFileSync(resultFolder + '\\' + 'all armors.json', JSON.stringify(SortByGearRanksKeys(AllArmors), null, 4));
+    });
+
+    fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(SortByGearRanksKeys(AllArmors), null, 4));
+    return SortByGearRanksKeys(AllArmors); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

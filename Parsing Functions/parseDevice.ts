@@ -10,7 +10,7 @@ import {
 } from "../Static/functions";
 
 
-export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): Promise<void> {
+export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseDevice: incorrect or null path to folder');
     }
@@ -53,6 +53,8 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
     }).catch(e => {
         console.error(e);
     });
+
+    return SortByGearRanksKeys(AllDevices); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

@@ -12,7 +12,7 @@ import {
 import {ItemProperties} from "../Static/itemProperties-class";
 
 
-export const ParseAttachment = async function ParseAttachment(pathToItemsFolder = ''): Promise<void> {
+export const ParseAttachment = async function ParseAttachment(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseAttachment: incorrect or null path to folder');
     }
@@ -57,8 +57,8 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
-    fs.writeFileSync(resultFolder + '\\' + 'all attachments.json', JSON.stringify(SortByGearRanksKeys(AllAttachments), null, 4));
-
+    fs.writeFileSync(resultFolder + '\\' + 'all_attachments.json', JSON.stringify(SortByGearRanksKeys(AllAttachments), null, 4));
+    return SortByGearRanksKeys(AllAttachments); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

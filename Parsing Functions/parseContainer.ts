@@ -13,7 +13,7 @@ import {ContainerTypes} from "../Static/enums";
 
 
 
-export const ParseContainer = async function ParseContainer(pathToItemsFolder = ''): Promise<void> {
+export const ParseContainer = async function ParseContainer(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseContainer: incorrect or null path to folder');
     }
@@ -56,6 +56,8 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
     }).catch(e => {
         console.error(e);
     });
+
+    return SortByGearRanksKeys(AllContainers); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

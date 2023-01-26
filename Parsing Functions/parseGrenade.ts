@@ -10,7 +10,7 @@ import {
 } from "../Static/functions";
 
 
-export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''): Promise<void> {
+export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseGrenade: incorrect or null path to folder');
     }
@@ -53,6 +53,8 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
     }).catch(e => {
         console.error(e);
     });
+
+    return AllGrenades; /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

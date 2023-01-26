@@ -11,7 +11,7 @@ import {
 import {ArtefactTypes} from "../Static/enums";
 import {ItemProperties} from "../Static/itemProperties-class";
 
-export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''): Promise<void> {
+export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseContainer: incorrect or null path to folder');
     }
@@ -58,7 +58,8 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
 
-    fs.writeFileSync(resultFolder + '\\' + 'all artefacts.json', JSON.stringify(AllArtefacts, null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_artefacts.json', JSON.stringify(AllArtefacts, null, 4));
+    return AllArtefacts; /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

@@ -5,7 +5,7 @@ import {ItemProperties} from "../Static/itemProperties-class";
 import {CreateSubFoldersAndItems, FindLinesInValueByKey, FindValueByKey, SortProperties} from "../Static/functions";
 
 
-export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''): Promise<void> {
+export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseMedicine: incorrect or null path to folder');
     }
@@ -48,6 +48,8 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
     }).catch(e => {
         console.error(e);
     });
+
+    return AllMedicine; /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

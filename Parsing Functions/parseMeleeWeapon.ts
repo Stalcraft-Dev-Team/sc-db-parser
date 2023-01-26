@@ -10,7 +10,7 @@ import {
 } from "../Static/functions";
 
 
-export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolder = ''): Promise<void> {
+export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseMeleeWeapon: incorrect or null path to folder');
     }
@@ -54,6 +54,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
         console.error(e);
     });
 
+    return SortByGearRanksKeys(AllMeleeWeapons); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

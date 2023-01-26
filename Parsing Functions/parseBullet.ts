@@ -12,7 +12,7 @@ import {
 import {ItemProperties} from "../Static/itemProperties-class";
 
 
-export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): Promise<void> {
+export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
         throw new Error('ParseBullet: incorrect or null path to folder');
     }
@@ -47,6 +47,7 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
     ////////
     const AllBullets: BulletSchema[] = [];
     let dataJson: any;
+
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_bullets.json`;
         fs.writeFile(CategoryPath, JSON.stringify(AllBullets, null, 4), () => {
@@ -55,6 +56,8 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
     }).catch(e => {
         console.error(e);
     });
+
+    return AllBullets; /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {
