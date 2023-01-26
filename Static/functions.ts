@@ -42,6 +42,7 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
 
     (ItemProperties.AllProperties as any)[AllPropsKey].forEach((prop: IPropertiesElement) => {
         let value;
+        let valueIsNull: boolean = false;
         let key: string;
         if (AllPropsKey == PropertiesTypes.Player) {
             key = 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1];
@@ -55,14 +56,20 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
             isPositive = (prop.goodIfGreaterThanZero && Number(value.max) > 0) || (!prop.goodIfGreaterThanZero && Number(value.max) < 0)
                 ? '1'
                 : '0'
+            if (Number(value.max) == 0) {
+                valueIsNull = true;
+            }
         } else {
             value = FindValueByKey(dataJson, prop.key, 'float', 1);
             isPositive = (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
                 ? '1'
                 : '0'
+            if (Number(value) == 0) {
+                valueIsNull = true;
+            }
         }
 
-        if (Number(value) != 0) {
+        if (!valueIsNull) {
             Stats.push({
                 key: key,
                 value: value,
