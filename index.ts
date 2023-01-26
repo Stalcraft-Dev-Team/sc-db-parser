@@ -162,7 +162,6 @@ const ListingJSON: object[] = [];
 function PushToListing(data: object[]): void {
     data.forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
-        key: item.key,
         category: item.class,
         name: {
             ru: item.name.ru,
