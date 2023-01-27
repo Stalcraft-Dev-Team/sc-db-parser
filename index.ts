@@ -170,7 +170,7 @@ function PushToListing(data: object[]): void {
     data.forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
         category: UniqueSubCategories.length > 1 ? item.category : item.class,
-        subCategoty: UniqueSubCategories.length > 1 ? item.class : null,
+        subCategory: UniqueSubCategories.length > 1 ? item.class : null,
         name: {
             ru: item.name.ru,
             en: item.name.en
