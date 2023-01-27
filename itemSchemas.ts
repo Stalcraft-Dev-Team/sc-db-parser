@@ -1,64 +1,65 @@
 export interface ICanMutateValue {
     defaultValue: '0',
-    mutatedValue: 'null'
+    mutatedValue: string | null
 }
 
 export interface ILines {
-    ru: string,
-    en: string
+    ru: string | null,
+    en: string | null
 }
 
 export class WeaponSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
-    rank: ILines = { ru: "", en: "" };
-    class: ILines = { ru: "", en: "" };
+    rank: ILines = { ru: null, en: null };
+    category: ILines = { ru: "Оружие", en: "Weapon" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
-    ammoType: ILines = { ru: "", en: "" };
-    startDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    endDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    startDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    endDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    maxDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    ammoCapacity: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    rateOfFire: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    reloadTime: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    tacticalReloadTime: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" }; /* Не все оружия имеют тактическую перезарядку */
-    spread: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    hipSpread: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    verticalRecoil: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    horizontalRecoil: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    drawTime: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
-    aimTime: ICanMutateValue = { defaultValue: "0", mutatedValue: "null" };
+    ammoType: ILines = { ru: null, en: null };
+    startDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    endDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    startDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    endDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    maxDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    ammoCapacity: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    rateOfFire: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    reloadTime: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    tacticalReloadTime: ICanMutateValue = { defaultValue: "0", mutatedValue: null }; /* Не все оружия имеют тактическую перезарядку */
+    spread: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    hipSpread: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    verticalRecoil: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    horizontalRecoil: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    drawTime: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    aimTime: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
     damageModifiers: object = {
         head: '1.25',
         limbs: '0.5',
         mobsDamage: '1',
-        pierce:  { defaultValue: "0", mutatedValue: "null" },
-        bleeding: { defaultValue: "0", mutatedValue: "null" },
-        stoppingPower: { defaultValue: "0", mutatedValue: "null" }
+        pierce:  { defaultValue: "0", mutatedValue: null },
+        bleeding: { defaultValue: "0", mutatedValue: null },
+        stoppingPower: { defaultValue: "0", mutatedValue: null }
     };
     damageFeatures: object = {
         damageIncreasing: {
-            ru: 'null',
-            en: 'null'
+            ru: null,
+            en: null
         },
         executeModifier: {
-            ru: 'null',
-            en: 'null'
+            ru: null,
+            en: null
         },
         uniqueFeature: {
-            ru: 'null',
-            en: 'null'
+            ru: null,
+            en: null
         },
         damageTypes: { /* Огнемет и огниво берут часть от обычного урона, параметры ниже указывают процент урона от обычного */
             burnDamage: '0',
             pureDamage: '0'
         }
     };
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -91,7 +92,7 @@ export class WeaponSchema {
         this.damageFeatures = obj.damageFeatures;
         this.description = obj.description;
 
-        if (obj.damageFeatures.uniqueFeature.en.includes('x0.') > 0) {
+        if (obj.damageFeatures.uniqueFeature.en != null &&obj.damageFeatures.uniqueFeature.en.includes('x0.') > 0) {
             if (obj.damageFeatures.uniqueFeature.en.search('x0.7') > 0)
                 obj.damageModifiers.limbs = '0.7';
             else if (obj.damageFeatures.uniqueFeature.en.search('x0.9') > 0)
@@ -105,17 +106,18 @@ export class WeaponSchema {
 export class AttachmentSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
-    rank: ILines = { ru: "", en: "" };
-    class: ILines = { ru: "", en: "" };
+    rank: ILines = { ru: null, en: null };
+    category: ILines = { ru: "Обвес", en: "Attachment" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
     stats: object[] = [];
     features: object = {
-        zoom: 'null'
+        zoom: null
     }
     suitableFor: object[] = [];
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -135,11 +137,12 @@ export class AttachmentSchema {
 export class BulletSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
-    class: ILines = { ru: "", en: "" };
+    category: ILines = { ru: "Патрон", en: "Bullet" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
-    bulletType: ILines = { ru: "", en: "" };
+    bulletType: ILines = { ru: null, en: null };
     penetration: ILines = {
         ru: 'Низкая пробиваемость',
         en: 'Low penetration'
@@ -155,7 +158,7 @@ export class BulletSchema {
         this.class = obj.class;
         this.weight = obj.weight;
         this.bulletType = obj.bulletType;
-        this.penetration = obj.penetration.en == 'null' ? this.penetration : obj.penetration;
+        this.penetration = obj.penetration.en == null ? this.penetration : obj.penetration;
         this.stats = obj.stats;
     }
 }
@@ -163,10 +166,11 @@ export class BulletSchema {
 export class MeleeWeaponSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
-    rank: ILines = { ru: "", en: "" };
-    class: ILines = { ru: "", en: "" };
+    rank: ILines = { ru: null, en: null };
+    category: ILines = { ru: "Ближний бой", en: "Melee weapon" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
     quickHit: object = {
         minDamage: '0',
@@ -192,7 +196,7 @@ export class MeleeWeaponSchema {
             pureDamage: '0'
         }
     };
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -216,10 +220,11 @@ export class MeleeWeaponSchema {
 export class GrenadeSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
     rank: string = '';
-    class: ILines = { ru: "", en: "" };
+    category: ILines = { ru: "Граната", en: "Grenade" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
     stats: object = {
         maxDamage: '0',
@@ -234,7 +239,7 @@ export class GrenadeSchema {
     features: object = {
 
     }
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -253,24 +258,25 @@ export class GrenadeSchema {
 export class DeviceSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
     rank: string = '';
-    class: ILines = { ru: "", en: "" };
+    category: ILines = { ru: "Устройство", en: "Device" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
     features: object = {
         signalSearcher: {
             canDetectSignals: '0',
             canDetectArtefacts: '0',
-            range: 'null'
+            range: null
         },
         metalDetector: {
-            passiveRange: 'null',
-            activeRange: 'null',
-            scanAngle: 'null'
+            passiveRange: null,
+            activeRange: null,
+            scanAngle: null
         }
     }
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -288,15 +294,16 @@ export class DeviceSchema {
 export class MedicineSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
     rank: string = '';
-    class: ILines = { ru: "", en: "" };
+    category: ILines = { ru: "Медицина", en: "Medicine" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
-    purpose: ILines = { ru: "", en: "" };
+    purpose: ILines = { ru: null, en: null };
     duration: string = '0';
     stats: object[] = [];
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -316,17 +323,18 @@ export class MedicineSchema {
 export class ArmorSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
-    rank: ILines = { ru: "", en: "" };
-    class: ILines = { ru: "", en: "" };
+    rank: ILines = { ru: null, en: null };
+    category: ILines = { ru: "Броня", en: "Armor" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
-    nightVisionGlasses: ILines = { ru: "", en: "" };
-    compatibilityBackpacks: ILines = { ru: "", en: "" };
-    compatibilityContainers: ILines = { ru: "", en: "" };
+    nightVisionGlasses: ILines = { ru: null, en: null };
+    compatibilityBackpacks: ILines = { ru: null, en: null };
+    compatibilityContainers: ILines = { ru: null, en: null };
     stats: object[] = [];
 
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -347,15 +355,16 @@ export class ArmorSchema {
 export class ArtefactSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
     rank: string = '';
-    class: ILines = { ru: "", en: "" };
+    category: ILines = { ru: "Артефакт", en: "Artefact" };
+    class: ILines = { ru: null, en: null };
     weight: string = '0';
     stats: object[] = [];
     additionalStats: object[] = [];
     features: object = {};
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -375,15 +384,16 @@ export class ArtefactSchema {
 export class ContainerSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: "", en: "" };
+    name: ILines = { ru: null, en: null };
     color: string = '';
     rank: string = '';
-    class: ILines = { ru: "", en: "" };
-    containerType: ILines = { ru: "", en: "" };
+    category: ILines = { ru: "Контейнер/Рюкзак", en: "Container/Backpack" };
+    class: ILines = { ru: null, en: null };
+    containerType: ILines = { ru: null, en: null };
     weight: string = '0';
     stats: object[] = [];
     features: object = {};
-    description: ILines = { ru: "", en: "" };
+    description: ILines = { ru: null, en: null };
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;

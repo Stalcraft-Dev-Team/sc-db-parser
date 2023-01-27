@@ -6,7 +6,6 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     FindValueByKey, GetAndCopyIcons,
-    SortByGearRanksKeys
 } from "../Static/functions";
 
 
@@ -92,7 +91,7 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                     range: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_size", 'float', 1),
                     timeUntilDetonation: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.lifetime", 'float', 2),
                     maxFlashTime: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.flash_time", 'float', 2),
-                    hasContactExplosion: (FindLinesByKey(dataJson, "weapon.grenade.frag.stats.explosion_on_collide") as any).en != 'null' ? '1' : '0',
+                    hasContactExplosion: (FindLinesByKey(dataJson, "weapon.grenade.frag.stats.explosion_on_collide") as any).en != null ? '1' : '0',
                     fuzeTime: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_activation_time", 'float', 2),
                 },
                 features: {},

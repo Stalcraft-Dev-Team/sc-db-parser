@@ -106,7 +106,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
 
             for (const [key, value] of Object.entries(ContainerTypes)) {
                 let isIt: ILines = FindLinesByKey(dataJson, value);
-                if (isIt.en != 'null') {
+                if (isIt.en != null) {
                     container.containerType = isIt;
                     break;
                 }

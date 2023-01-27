@@ -101,63 +101,63 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                     defaultValue: DamagesAndDistances.startDamage == undefined
                         ? FindValueByKey(dataJson, 'core.tooltip.stat_name.damage_type.direct', 'int', null)
                         : DamagesAndDistances.startDamage,
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 endDamage: {
                     defaultValue: DamagesAndDistances.endDamage,
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 startDistance: {
                     defaultValue: DamagesAndDistances.damageDecreaseStart,
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 endDistance: {
                     defaultValue: DamagesAndDistances.damageDecreaseEnd,
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 maxDistance: {
                     defaultValue: DamagesAndDistances.maxDistance,
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 ammoCapacity: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 rateOfFire: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.rate_of_fire", "int", null),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 reloadTime: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 tacticalReloadTime: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 spread: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.spread", "float", 2),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 hipSpread: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.hip_spread", "float", 2),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 verticalRecoil: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.recoil", "float", 2),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 horizontalRecoil: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.horizontal_recoil", "float", 2),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 drawTime: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.draw_time", "float", 2),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 aimTime: {
                     defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.aim_switch", "float", 2),
-                    mutatedValue: 'null'
+                    mutatedValue: null
                 },
                 damageModifiers: {
                     head: FindValueByKey(dataJson, "weapon.tooltip.weapon.head_damage_modifier", "float", 2),
@@ -165,15 +165,15 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                     limbs: '0.5',
                     pierce: {
                         defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.piercing", "int", null),
-                        mutatedValue: 'null'
+                        mutatedValue: null
                     },
                     bleeding: {
                         defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.bleeding", "int", null),
-                        mutatedValue: 'null'
+                        mutatedValue: null
                     },
                     stoppingPower: {
                         defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.stopping_power", "int", null),
-                        mutatedValue: 'null'
+                        mutatedValue: null
                     },
                 },
                 damageFeatures: {
@@ -227,8 +227,8 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         }
 
         return {
-            ru: "null",
-            en: "null"
+            ru: null,
+            en: null
         }
     }
 

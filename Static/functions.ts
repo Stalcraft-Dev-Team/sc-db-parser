@@ -73,9 +73,9 @@ export function SortByGearRanksKeys(array: any[]): object[] {
 
 
         array.forEach(item => {
-            if (item.hasOwnProperty('rank') && item.rank.en != 'null' && item.rank.en == gearRanksKey) {
+            if (item.hasOwnProperty('rank') && item.rank.en != null && item.rank.en == gearRanksKey) {
                 ItemStorage.push(item);
-            } else if (item.rank.en == 'null' && ItemWithoutGearRanks.indexOf(item) == -1) {
+            } else if (item.rank.en == null && ItemWithoutGearRanks.indexOf(item) == -1) {
                 ItemWithoutGearRanks.push(item)
             }
         })
@@ -146,8 +146,8 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
 
 export function FindLinesInValueByKey(dataJson: any, searchingKey: string): object {
     const result: object = {
-        ru: "null",
-        en: "null"
+        ru: null,
+        en: null
     }
 
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
@@ -166,8 +166,8 @@ export function FindLinesInValueByKey(dataJson: any, searchingKey: string): obje
 
 export function FindLinesByKey(dataJson: any, searchingKey: string): ILines {
     const result: ILines = {
-        ru: "null",
-        en: "null"
+        ru: null,
+        en: null
     }
 
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
@@ -246,8 +246,7 @@ export function FindValueByKey(dataJson: any, searchingKey: string, type: string
 }
 
 export function FindObjectValueByKey(dataJson: any, searchingKey: string, searchingValue: string): string {
-    let result: any = 'null';
-
+    let result: any = null;
 
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
         if (dataJson.infoBlocks[i].elements != undefined)
@@ -259,11 +258,9 @@ export function FindObjectValueByKey(dataJson: any, searchingKey: string, search
                 }
             }
     }
-    try {
-        if (result[searchingValue] != undefined)
-            result = result[searchingValue];
-    } finally {
 
-    }
+    if (result != null && result[searchingValue] != null)
+        result = result[searchingValue];
+
     return result;
 }

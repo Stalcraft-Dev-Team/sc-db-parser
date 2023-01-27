@@ -118,8 +118,8 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
 
 export function FindLinesForArmorByKey(dataJson: any, searchingKey: string): ILines {
     const result: ILines = {
-        ru: "null",
-        en: "null"
+        ru: null,
+        en: null
     }
 
     if (searchingKey == "stalker.tooltip.armor_artefact.night_vision") {

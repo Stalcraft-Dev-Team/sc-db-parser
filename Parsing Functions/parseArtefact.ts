@@ -113,8 +113,8 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
                     }
                 };
                 // (artefact.features as any).reduceDamage.isPositive = '1';
-                // (artefact.features as any).reloadTime.isPositive = 'null';
-                // (artefact.features as any).costToActivate.isPositive = 'null';
+                // (artefact.features as any).reloadTime.isPositive = null;
+                // (artefact.features as any).costToActivate.isPositive = null;
                 // console.log(artefact.features);
             }
 

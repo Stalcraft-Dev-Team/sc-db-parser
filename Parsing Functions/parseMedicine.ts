@@ -101,8 +101,8 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
 
     function FindLinesByKey(searchingKey: string): object {
         const result: object = {
-            ru: "null",
-            en: "null"
+            ru: null,
+            en: null
         }
 
         for (let i = 0; i < (dataJson.infoBlocks).length; i++) {

@@ -160,9 +160,17 @@ async function StartParse() {
 
 const ListingJSON: object[] = [];
 function PushToListing(data: object[]): void {
+    const UniqueSubCategories: string[] = [];
+    data.forEach((item: any) => {
+        if (UniqueSubCategories.indexOf(item.class.en) == -1) {
+            UniqueSubCategories.push(item.class.en);
+        }
+    });
+
     data.forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
-        category: item.class,
+        category: UniqueSubCategories.length > 1 ? item.category : item.class,
+        subCategoty: UniqueSubCategories.length > 1 ? item.class : null,
         name: {
             ru: item.name.ru,
             en: item.name.en
