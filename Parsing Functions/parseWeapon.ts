@@ -87,6 +87,8 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 return result;
             };
 
+
+
             const DamagesAndDistances: any = GetInfoBlockWithDamagesAndDistances();
             const weapon = new WeaponSchema({
                 exbo_id: fileName,
@@ -97,68 +99,145 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 ammoType: FindLinesInValueByKey(dataJson, "weapon.tooltip.weapon.info.ammo_type"),
-                startDamage: {
-                    defaultValue: DamagesAndDistances.startDamage == undefined
-                        ? FindValueByKey(dataJson, 'core.tooltip.stat_name.damage_type.direct', 'int', null)
-                        : DamagesAndDistances.startDamage,
-                    mutatedValue: null
-                },
-                endDamage: {
-                    defaultValue: DamagesAndDistances.endDamage,
-                    mutatedValue: null
-                },
-                startDistance: {
-                    defaultValue: DamagesAndDistances.damageDecreaseStart,
-                    mutatedValue: null
-                },
-                endDistance: {
-                    defaultValue: DamagesAndDistances.damageDecreaseEnd,
-                    mutatedValue: null
-                },
-                maxDistance: {
-                    defaultValue: DamagesAndDistances.maxDistance,
-                    mutatedValue: null
-                },
-                ammoCapacity: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null),
-                    mutatedValue: null
-                },
-                rateOfFire: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.rate_of_fire", "int", null),
-                    mutatedValue: null
-                },
-                reloadTime: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
-                    mutatedValue: null
-                },
-                tacticalReloadTime: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
-                    mutatedValue: null
-                },
-                spread: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.spread", "float", 2),
-                    mutatedValue: null
-                },
-                hipSpread: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.hip_spread", "float", 2),
-                    mutatedValue: null
-                },
-                verticalRecoil: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.recoil", "float", 2),
-                    mutatedValue: null
-                },
-                horizontalRecoil: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.horizontal_recoil", "float", 2),
-                    mutatedValue: null
-                },
-                drawTime: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.draw_time", "float", 2),
-                    mutatedValue: null
-                },
-                aimTime: {
-                    defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.aim_switch", "float", 2),
-                    mutatedValue: null
-                },
+                stats: [
+                    {
+                        key: null,
+                        defaultValue: DamagesAndDistances.startDamage == undefined
+                            ? FindValueByKey(dataJson, 'core.tooltip.stat_name.damage_type.direct', 'int', null)
+                            : DamagesAndDistances.startDamage.toString(),
+                        mutatedValue: null,
+                        lines: {
+                           ru: 'Урон',
+                           en: 'Damage'
+                        }
+                    },
+                    {
+                        key: null,
+                        defaultValue: DamagesAndDistances.endDamage,
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Мин. урон',
+                            en: 'End damage'
+                        }
+                    },
+                    {
+                        key: null,
+                        defaultValue: DamagesAndDistances.damageDecreaseStart,
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Начало падения урона',
+                            en: 'Damage decrease start'
+                        }
+                    },
+                    {
+                        key: null,
+                        defaultValue: DamagesAndDistances.damageDecreaseEnd,
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Конец падения урона',
+                            en: 'Damage decrease end'
+                        }
+                    },
+                    {
+                        key: null,
+                        defaultValue: DamagesAndDistances.maxDistance,
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Максимальная дистанция',
+                            en: 'Max distance'
+                        }
+                    },
+                    {
+                        key: null,
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Объем магазина',
+                            en: 'Ammo capacity'
+                        }
+                    },
+                    {
+                        key: 'firerate',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.rate_of_fire", "int", null),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Скорострельность',
+                            en: 'Rate of fire'
+                        }
+                    },
+                    {
+                        key: 'time',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Время перезарядки',
+                            en: 'Reload time'
+                        }
+                    },
+                    {
+                        key: 'time',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Время тактической перезарядки',
+                            en: 'Tactical reload time'
+                        }
+                    },
+                    {
+                        key: 'degrees',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.spread", "float", 2),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Разброс',
+                            en: 'Spread'
+                        }
+                    },
+                    {
+                        key: 'degrees',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.hip_spread", "float", 2),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Разброс от бедра',
+                            en: 'Hip spread'
+                        }
+                    },
+                    {
+                        key: 'degrees',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.recoil", "float", 2),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Вертикальная отдача',
+                            en: 'Vertical recoil'
+                        }
+                    },
+                    {
+                        key: 'degrees',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.horizontal_recoil", "float", 2),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Горизонтальная отдача',
+                            en: 'Horizontal recoil'
+                        }
+                    },
+                    {
+                        key: 'time',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.draw_time", "float", 2),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Время доставания',
+                            en: 'Draw time'
+                        }
+                    },
+                    {
+                        key: 'time',
+                        defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.aim_switch", "float", 2),
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Скорость прицеливания',
+                            en: 'Aim switch time'
+                        }
+                    },
+                ],
                 damageModifiers: {
                     head: FindValueByKey(dataJson, "weapon.tooltip.weapon.head_damage_modifier", "float", 2),
                     mobsDamage: FindValueByKey(dataJson, "weapon.tooltip.weapon.mobs_damage_multiplier", "float", 2),
@@ -188,20 +267,25 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
 
-            switch (true) {
-                case weapon.endDamage.defaultValue == undefined: {
-                    delete (weapon as any).endDamage;
-                }
-                case weapon.startDistance.defaultValue == undefined: {
-                    delete (weapon as any).startDistance;
-                }
-                case weapon.endDistance.defaultValue == undefined: {
-                    delete (weapon as any).endDistance;
-                }
-                case weapon.maxDistance.defaultValue == undefined: {
-                    delete (weapon as any).maxDistance;
-                }
+            let allZeroStatsDeleted = false;
+            while (!allZeroStatsDeleted) {
+                let indexToDelete = -1;
+
+                weapon.stats.map((stat: any, index) => {
+                    if (Number(stat.defaultValue) == 0)
+                        indexToDelete = index;
+
+                    if (typeof stat.defaultValue == 'number')
+                        stat.defaultValue = stat.defaultValue.toString();
+                });
+
+                if (indexToDelete == -1)
+                    allZeroStatsDeleted = true;
+                else
+                    delete weapon.stats[indexToDelete];
             }
+
+            weapon.stats = weapon.stats.filter(stat => stat != null);
 
             SelectedCategoryWeapons.push(weapon);
         });

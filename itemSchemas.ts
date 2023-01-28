@@ -18,21 +18,7 @@ export class WeaponSchema {
     class: ILines | null = null;
     weight: string = '0';
     ammoType: ILines | null = null;
-    startDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    endDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    startDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    endDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    maxDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    ammoCapacity: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    rateOfFire: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    reloadTime: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    tacticalReloadTime: ICanMutateValue = { defaultValue: "0", mutatedValue: null }; /* Не все оружия имеют тактическую перезарядку */
-    spread: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    hipSpread: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    verticalRecoil: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    horizontalRecoil: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    drawTime: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
-    aimTime: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
+    stats: object[] = [];
     damageModifiers: object = {
         head: '1.25',
         limbs: '0.5',
@@ -70,21 +56,7 @@ export class WeaponSchema {
         this.class = obj.class;
         this.weight = obj.weight;
         this.ammoType = obj.ammoType;
-        this.startDamage = obj.startDamage;
-        this.endDamage = obj.endDamage;
-        this.startDistance = obj.startDistance;
-        this.endDistance = obj.endDistance;
-        this.maxDistance = obj.maxDistance;
-        this.ammoCapacity = obj.ammoCapacity;
-        this.rateOfFire = obj.rateOfFire;
-        this.reloadTime = obj.reloadTime;
-        this.tacticalReloadTime = Number(obj.tacticalReloadTime.defaultValue) == 0 ? obj.reloadTime : obj.tacticalReloadTime;
-        this.spread = obj.spread;
-        this.hipSpread = obj.hipSpread;
-        this.verticalRecoil = obj.verticalRecoil;
-        this.horizontalRecoil = obj.horizontalRecoil;
-        this.drawTime = obj.drawTime;
-        this.aimTime = obj.aimTime;
+        this.stats = obj.stats;
         if (obj.damageModifiers.head < 1.25) obj.damageModifiers.head = '1.25';
         if (Number.parseFloat(obj.damageModifiers.limbs) < 0.5) obj.damageModifiers.limbs = '0.5';
         if (obj.damageModifiers.mobsDamage < 1) obj.damageModifiers.mobsDamage = '1';
