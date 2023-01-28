@@ -73,9 +73,9 @@ export function SortByGearRanksKeys(array: any[]): object[] {
 
 
         array.forEach(item => {
-            if (item.hasOwnProperty('rank') && item.rank.en != null && item.rank.en == gearRanksKey) {
+            if (item.hasOwnProperty('rank') && item.rank != null && item.rank.en == gearRanksKey) {
                 ItemStorage.push(item);
-            } else if (item.rank.en == null && ItemWithoutGearRanks.indexOf(item) == -1) {
+            } else if (item.rank == null && ItemWithoutGearRanks.indexOf(item) == -1) {
                 ItemWithoutGearRanks.push(item)
             }
         })
@@ -144,11 +144,8 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
     return Stats;
 }
 
-export function FindLinesInValueByKey(dataJson: any, searchingKey: string): object {
-    const result: object = {
-        ru: null,
-        en: null
-    }
+export function FindLinesInValueByKey(dataJson: any, searchingKey: string): ILines | null {
+    const result: ILines | null = null;
 
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
         if (dataJson.infoBlocks[i].elements != undefined)
@@ -164,11 +161,8 @@ export function FindLinesInValueByKey(dataJson: any, searchingKey: string): obje
     return result;
 }
 
-export function FindLinesByKey(dataJson: any, searchingKey: string): ILines {
-    const result: ILines = {
-        ru: null,
-        en: null
-    }
+export function FindLinesByKey(dataJson: any, searchingKey: string): ILines | null {
+    const result: ILines | null = null;
 
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
         if (dataJson.infoBlocks[i].elements != undefined) {

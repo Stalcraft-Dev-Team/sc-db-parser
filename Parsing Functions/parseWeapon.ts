@@ -214,7 +214,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         SelectedCategoryWeapons.map(weapon => AllWeapons.push(weapon));
     }
 
-    function FindFeatureByKey(searchingKey: string): object {
+    function FindFeatureByKey(searchingKey: string): object | null {
         for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
             if (dataJson.infoBlocks[i].elements != undefined)
                 for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
@@ -226,10 +226,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 }
         }
 
-        return {
-            ru: null,
-            en: null
-        }
+        return null;
     }
 
     function GetInfoBlockWithDamagesAndDistances(): object {

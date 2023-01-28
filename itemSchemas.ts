@@ -11,13 +11,13 @@ export interface ILines {
 export class WeaponSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
-    rank: ILines = { ru: null, en: null };
+    rank: ILines | null = null;
     category: ILines = { ru: "Оружие", en: "Weapon" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
-    ammoType: ILines = { ru: null, en: null };
+    ammoType: ILines | null = null;
     startDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
     endDamage: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
     startDistance: ICanMutateValue = { defaultValue: "0", mutatedValue: null };
@@ -59,7 +59,7 @@ export class WeaponSchema {
             pureDamage: '0'
         }
     };
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -92,7 +92,7 @@ export class WeaponSchema {
         this.damageFeatures = obj.damageFeatures;
         this.description = obj.description;
 
-        if (obj.damageFeatures.uniqueFeature.en != null &&obj.damageFeatures.uniqueFeature.en.includes('x0.') > 0) {
+        if (obj.damageFeatures.uniqueFeature != null &&obj.damageFeatures.uniqueFeature.en.includes('x0.') > 0) {
             if (obj.damageFeatures.uniqueFeature.en.search('x0.7') > 0)
                 obj.damageModifiers.limbs = '0.7';
             else if (obj.damageFeatures.uniqueFeature.en.search('x0.9') > 0)
@@ -106,18 +106,18 @@ export class WeaponSchema {
 export class AttachmentSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
-    rank: ILines = { ru: null, en: null };
+    rank: ILines | null = null;
     category: ILines = { ru: "Обвес", en: "Attachment" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
     stats: object[] = [];
     features: object = {
         zoom: null
     }
     suitableFor: object[] = [];
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -137,13 +137,13 @@ export class AttachmentSchema {
 export class BulletSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
     category: ILines = { ru: "Патрон", en: "Bullet" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
-    bulletType: ILines = { ru: null, en: null };
-    penetration: ILines = {
+    bulletType: ILines | null = null;
+    penetration: ILines | null = {
         ru: 'Низкая пробиваемость',
         en: 'Low penetration'
 
@@ -158,7 +158,7 @@ export class BulletSchema {
         this.class = obj.class;
         this.weight = obj.weight;
         this.bulletType = obj.bulletType;
-        this.penetration = obj.penetration.en == null ? this.penetration : obj.penetration;
+        this.penetration = obj.penetration == null ? this.penetration : obj.penetration;
         this.stats = obj.stats;
     }
 }
@@ -166,11 +166,11 @@ export class BulletSchema {
 export class MeleeWeaponSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
-    rank: ILines = { ru: null, en: null };
+    rank: ILines | null = null;
     category: ILines = { ru: "Ближний бой", en: "Melee weapon" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
     quickHit: object = {
         minDamage: '0',
@@ -196,7 +196,7 @@ export class MeleeWeaponSchema {
             pureDamage: '0'
         }
     };
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -220,11 +220,11 @@ export class MeleeWeaponSchema {
 export class GrenadeSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Граната", en: "Grenade" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
     stats: object = {
         maxDamage: '0',
@@ -239,7 +239,7 @@ export class GrenadeSchema {
     features: object = {
 
     }
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -258,11 +258,11 @@ export class GrenadeSchema {
 export class DeviceSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Устройство", en: "Device" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
     features: object = {
         signalSearcher: {
@@ -276,7 +276,7 @@ export class DeviceSchema {
             scanAngle: null
         }
     }
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -294,16 +294,16 @@ export class DeviceSchema {
 export class MedicineSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Медицина", en: "Medicine" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
-    purpose: ILines = { ru: null, en: null };
+    purpose: ILines | null = null;
     duration: string = '0';
     stats: object[] = [];
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -323,18 +323,18 @@ export class MedicineSchema {
 export class ArmorSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
-    rank: ILines = { ru: null, en: null };
+    rank: ILines | null = null;
     category: ILines = { ru: "Броня", en: "Armor" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
-    nightVisionGlasses: ILines = { ru: null, en: null };
-    compatibilityBackpacks: ILines = { ru: null, en: null };
-    compatibilityContainers: ILines = { ru: null, en: null };
+    nightVisionGlasses: ILines | null = null;
+    compatibilityBackpacks: ILines | null = null;
+    compatibilityContainers: ILines | null = null;
     stats: object[] = [];
 
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -355,16 +355,16 @@ export class ArmorSchema {
 export class ArtefactSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Артефакт", en: "Artefact" };
-    class: ILines = { ru: null, en: null };
+    class: ILines | null = null;
     weight: string = '0';
     stats: object[] = [];
     additionalStats: object[] = [];
     features: object = {};
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -384,16 +384,16 @@ export class ArtefactSchema {
 export class ContainerSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines = { ru: null, en: null };
+    name: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Контейнер/Рюкзак", en: "Container/Backpack" };
-    class: ILines = { ru: null, en: null };
-    containerType: ILines = { ru: null, en: null };
+    class: ILines | null = null;
+    containerType: ILines | null = null;
     weight: string = '0';
     stats: object[] = [];
     features: object = {};
-    description: ILines = { ru: null, en: null };
+    description: ILines | null = null;
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;

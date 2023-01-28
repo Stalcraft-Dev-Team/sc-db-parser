@@ -88,8 +88,8 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
                 weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 features: {
                     signalSearcher: {
-                        canDetectSignals: FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_signals').en != null ? '1' : '0',
-                        canDetectArtefacts:  FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_artefacts').en != null ? '1' : '0',
+                        canDetectSignals: FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_signals') != null ? '1' : '0',
+                        canDetectArtefacts:  FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_artefacts') != null ? '1' : '0',
                         range: FindValueByKey(dataJson, 'anomaly.tooltip.signal_detector.info.range', 'int', null)
                     },
                     metalDetector: {

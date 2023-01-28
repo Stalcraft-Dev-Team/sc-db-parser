@@ -99,7 +99,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
 
-            if (artefact.name.en == 'Polyhedron') {
+            if (artefact.name != null && artefact.name.en == 'Polyhedron') {
                 artefact.features = {
                     polyhedron: {
                         triggerDamage: '100',
