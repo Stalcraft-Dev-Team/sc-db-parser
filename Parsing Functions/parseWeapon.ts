@@ -272,10 +272,10 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 let indexToDelete = -1;
 
                 weapon.stats.map((stat: any, index) => {
-                    if (Number(stat.defaultValue) == 0)
+                    if (stat.defaultValue == undefined || Number(stat.defaultValue) == 0)
                         indexToDelete = index;
 
-                    if (typeof stat.defaultValue == 'number')
+                    if (stat.defaultValue != undefined && typeof stat.defaultValue == 'number')
                         stat.defaultValue = stat.defaultValue.toString();
                 });
 
