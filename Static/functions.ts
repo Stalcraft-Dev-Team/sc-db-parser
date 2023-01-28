@@ -104,6 +104,8 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
 
     (ItemProperties.AllProperties as any)[AllPropsKey].forEach((prop: IPropertiesElement) => {
         let value;
+        // @ts-ignore
+        const IsPercentageValue: boolean = (ItemProperties.PercentageTagProperties[AllPropsKey]).filter(key => prop.key == key).length > 0;
         let valueIsNull: boolean = false;
         let key: string;
         if (AllPropsKey == PropertiesTypes.Player) {
@@ -121,6 +123,11 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
             if (Number(value.max) == 0) {
                 valueIsNull = true;
             }
+
+            if (IsPercentageValue) {
+                value.min += '%';
+                value.max += '%';
+            }
         } else {
             value = FindValueByKey(dataJson, prop.key, 'float', 1);
             isPositive = (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
@@ -129,7 +136,13 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
             if (Number(value) == 0) {
                 valueIsNull = true;
             }
+
+            if (IsPercentageValue) {
+                value += '%';
+            }
         }
+
+
 
         if (!valueIsNull) {
             Stats.push({

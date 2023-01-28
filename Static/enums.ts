@@ -3,7 +3,8 @@ export enum GearRanks {
     Newbie = 'Newbie',
     Stalker = 'Stalker',
     Veteran = 'Veteran',
-    Master = 'Master'
+    Master = 'Master',
+    Legend = 'Legend'
 }
 
 export enum RankColors {
@@ -11,7 +12,8 @@ export enum RankColors {
     Newbie = 'RANK_NEWBIE',
     Stalker = 'RANK_STALKER',
     Veteran = 'RANK_VETERAN',
-    Master = 'RANK_MASTER'
+    Master = 'RANK_MASTER',
+    Legend = 'RANK_LEGEND'
 }
 
 export enum ContainerTypes {

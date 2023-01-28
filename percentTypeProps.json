@@ -1,0 +1,40 @@
+{
+    "player": [
+        "stalker.artefact_properties.factor.stamina_bonus",
+        "stalker.artefact_properties.factor.health_bonus",
+        "stalker.artefact_properties.factor.speed_modifier",
+        "stalker.artefact_properties.factor.heal_efficiency",
+        "stalker.artefact_properties.factor.regeneration_bonus",
+        "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+        "stalker.artefact_properties.factor.reaction_to_electroshock",
+        "stalker.artefact_properties.factor.reaction_to_burn",
+        "stalker.artefact_properties.factor.reaction_to_chemical_burn",
+        "stalker.artefact_properties.factor.reaction_to_tear",
+        "stalker.artefact_properties.factor.artefakt_heal",
+        "stalker.artefact_properties.factor.radiation_dmg_factor",
+        "stalker.artefact_properties.factor.biological_dmg_factor",
+        "stalker.artefact_properties.factor.thermal_dmg_factor",
+        "stalker.artefact_properties.factor.psycho_dmg_factor",
+        "stalker.artefact_properties.factor.bleeding_dmg_factor",
+        "stalker.artefact_properties.factor.bleeding_protection"
+    ],
+    "attachmentOrBullet": [
+        "core.tooltip.stat_name.damage_type.default",
+        "weapon.stat_factor.distance",
+        "weapon.stat_factor.damage_distant",
+        "weapon.stat_factor.recoil",
+        "weapon.stat_factor.horizontal_recoil",
+        "weapon.tooltip.bullet.stat_name.damage",
+        "weapon.tooltip.bullet.stat_name.piercing",
+        "weapon.tooltip.bullet.stat_name.bleeding",
+        "weapon.stat_factor.spread",
+        "weapon.tooltip.bullet.stat_name.spread",
+        "weapon.stat_factor.wiggle",
+        "weapon.stat_factor.aim_switch_time",
+        "weapon.stat_factor.hip_spread",
+        "weapon.stat_factor.tick_spread_multiplier_reduction",
+        "weapon.stat_factor.rate_of_fire",
+        "weapon.stat_factor.draw_time",
+        "weapon.stat_factor.reload_time"
+    ]
+}

@@ -5,6 +5,7 @@ import Path from "path";
 import {ILines} from "../itemSchemas";
 import {PropertiesTypes} from "./enums";
 import FileWithSortedProps from "../sortedProps.json";
+import FileWithPercentageTags from "../percentTypeProps.json";
 
 export interface IPropertiesElement {
     key: string,
@@ -23,6 +24,11 @@ export class ItemProperties {
         player: [],
         attachmentOrBullet: []
     };
+
+    public static readonly PercentageTagProperties: object = {
+        player: [] as string[],
+        attachmentOrBullet: [] as string[]
+    }
 
     private static isInitialized: boolean = false;
 
@@ -147,10 +153,25 @@ export class ItemProperties {
 
         if (ItemProperties.AllProperties[PropertiesTypes.AttachmentOrBullet].length == SortedProps[PropertiesTypes.AttachmentOrBullet].length) {
             ItemProperties.AllProperties[PropertiesTypes.AttachmentOrBullet] = SortedProps[PropertiesTypes.AttachmentOrBullet];
-            console.log(`AllProperties - ${PropertiesTypes.AttachmentOrBullet}: successful sorted!`)
+            console.log(`AllProperties - ${PropertiesTypes.AttachmentOrBullet}: successful sorted!`);
         } else {
-            console.error(`AllProperties - ${PropertiesTypes.AttachmentOrBullet}: different arrays length`)
+            console.error(`AllProperties - ${PropertiesTypes.AttachmentOrBullet}: different arrays length`);
         }
+
+
+
+
+        FileWithPercentageTags[PropertiesTypes.Player].forEach(key => {
+            // @ts-ignore
+            this.PercentageTagProperties.player.push(key);
+        });
+
+        FileWithPercentageTags[PropertiesTypes.AttachmentOrBullet].forEach(key => {
+            // @ts-ignore
+            this.PercentageTagProperties.attachmentOrBullet.push(key);
+        });
+
+
 
         ItemProperties.isInitialized = true;
     }
