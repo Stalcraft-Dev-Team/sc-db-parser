@@ -86,18 +86,50 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
-                features: {
-                    signalSearcher: {
-                        canDetectSignals: FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_signals') != null ? '1' : '0',
-                        canDetectArtefacts:  FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_artefacts') != null ? '1' : '0',
-                        range: FindValueByKey(dataJson, 'anomaly.tooltip.signal_detector.info.range', 'int', null)
+                stats: [
+                    {
+                        key: null,
+                        value: null,
+                        lines: FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_signals')
                     },
-                    metalDetector: {
-                        passiveRange: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.passive_scan_radius', 'int', null),
-                        activeRange: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.active_scan_radius', 'int', null),
-                        scanAngle: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.active_scan_angle', 'int', null)
+                    {
+                        key: null,
+                        value: null,
+                        lines: FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_artefacts')
+                    },
+                    {
+                        key: 'meters',
+                        value: FindValueByKey(dataJson, 'anomaly.tooltip.signal_detector.info.range', 'int', null),
+                        lines: {
+                            ru: 'Радиус поиска',
+                            en: 'Search range'
+                        }
+                    },
+                    {
+                        key: 'meters',
+                        value: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.passive_scan_radius', 'int', null),
+                        lines: {
+                            ru: 'Пассивная дистанция',
+                            en: 'Passive scan range'
+                        }
+                    },
+                    {
+                        key: 'meters',
+                        value: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.active_scan_radius', 'int', null),
+                        lines: {
+                            ru: 'Активная дистанция',
+                            en: 'Active scan range'
+                        }
+                    },
+                    {
+                        key: 'degrees',
+                        value: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.active_scan_angle', 'int', null),
+                        lines: {
+                            ru: 'Угол сканирования',
+                            en: 'Scan angle'
+                        }
                     }
-                },
+                ],
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
             AllDevices.push(device);

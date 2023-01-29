@@ -248,19 +248,7 @@ export class GrenadeSchema {
     category: ILines = { ru: "Граната", en: "Grenade" };
     class: ILines | null = null;
     weight: string = '0';
-    stats: object = {
-        maxDamage: '0',
-        minDamage: '0',
-        range: '0',
-        timeUntilDetonation: '0',
-        maxFlashTime: '0', // Если это светошумовая граната
-        hasContactExplosion: '0', // Если это граната/снаряд с детонацией при контакте
-        fuzeTime: '0', // Время, после которого включается взрыв при контакте, если он имеется у гранаты/снаряда
-
-    };
-    features: object = {
-
-    }
+    stats: object[] = [];
     description: ILines | null = null;
 
     constructor(obj: any) {
@@ -271,8 +259,26 @@ export class GrenadeSchema {
         this.rank = obj.rank;
         this.class = obj.class;
         this.weight = obj.weight;
+
+        //////
+        let allZeroStatsDeleted = false;
+        while (!allZeroStatsDeleted) {
+            let indexToDelete = -1;
+
+            (obj.stats as object[]).map((stat: any, index) => {
+                if ((stat.value == null && stat.lines == null) || (stat.value != null && Number(stat.value) == 0 && stat.lines != null))
+                    indexToDelete = index;
+            });
+
+            if (indexToDelete == -1)
+                allZeroStatsDeleted = true;
+            else
+                delete obj.stats[indexToDelete];
+        }
+        obj.stats = obj.stats.filter((stat: any) => stat != null);
         this.stats = obj.stats;
-        this.features = obj.features;
+        //////
+
         this.description = obj.description;
     }
 }
@@ -286,18 +292,7 @@ export class DeviceSchema {
     category: ILines = { ru: "Устройство", en: "Device" };
     class: ILines | null = null;
     weight: string = '0';
-    features: object = {
-        signalSearcher: {
-            canDetectSignals: '0',
-            canDetectArtefacts: '0',
-            range: null
-        },
-        metalDetector: {
-            passiveRange: null,
-            activeRange: null,
-            scanAngle: null
-        }
-    }
+    stats: object[] = [];
     description: ILines | null = null;
 
     constructor(obj: any) {
@@ -308,7 +303,26 @@ export class DeviceSchema {
         this.rank = obj.rank;
         this.class = obj.class;
         this.weight = obj.weight;
-        this.features = obj.features;
+
+        //////
+        let allZeroStatsDeleted = false;
+        while (!allZeroStatsDeleted) {
+            let indexToDelete = -1;
+
+            (obj.stats as object[]).map((stat: any, index) => {
+                if ((stat.value == null && stat.lines == null) || (stat.value != null && Number(stat.value) == 0 && stat.lines != null))
+                    indexToDelete = index;
+            });
+
+            if (indexToDelete == -1)
+                allZeroStatsDeleted = true;
+            else
+                delete obj.stats[indexToDelete];
+        }
+        obj.stats = obj.stats.filter((stat: any) => stat != null);
+        this.stats = obj.stats;
+        //////
+
         this.description = obj.description;
     }
 }

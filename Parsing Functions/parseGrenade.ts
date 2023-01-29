@@ -85,28 +85,63 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
-                stats: {
-                    maxDamage: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_strength", 'int', null),
-                    minDamage: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_strength_min", 'int', null),
-                    range: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_size", 'float', 1),
-                    timeUntilDetonation: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.lifetime", 'float', 2),
-                    maxFlashTime: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.flash_time", 'float', 2),
-                    hasContactExplosion: (FindLinesByKey(dataJson, "weapon.grenade.frag.stats.explosion_on_collide") as any) != null ? '1' : '0',
-                    fuzeTime: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_activation_time", 'float', 2),
-                },
-                features: {},
+                stats: [
+                    {
+                        key: null,
+                        value: null,
+                        lines: FindLinesByKey(dataJson, "weapon.grenade.frag.stats.explosion_on_collide")
+                    },
+                    {
+                        key: 'units',
+                        value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_strength", 'int', null),
+                        lines: {
+                            ru: 'Макс. урон',
+                            en: 'Max damage'
+                        }
+                    },
+                    {
+                        key: 'units',
+                        value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_strength_min", 'int', null),
+                        lines: {
+                            ru: 'Мин. урон',
+                            en: 'Min damage'
+                        }
+                    },
+                    {
+                        key: 'meters',
+                        value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_size", 'float', 1),
+                        lines: {
+                            ru: 'Дистанция взрыва',
+                            en: 'Damage range'
+                        }
+                    },
+                    {
+                        key: 'time',
+                        value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.lifetime", 'float', 2),
+                        lines: {
+                            ru: 'Время до взрыва',
+                            en: 'Time until detonation'
+                        }
+                    },
+                    {
+                        key: 'time',
+                        value: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.flash_time", 'float', 2),
+                        lines: {
+                            ru: 'Макс. время ослепления',
+                            en: 'Max flash time'
+                        }
+                    },
+                    {
+                        key: 'time',
+                        value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_activation_time", 'float', 2),
+                        lines: {
+                            ru: 'Время взрывателя',
+                            en: 'Fuze time'
+                        }
+                    },
+                ],
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
-
-            if (Number((grenade.stats as any).maxFlashTime) != 0) {
-
-                (grenade.stats as any).range =
-                    FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.explosion_size", 'float', 1);
-
-                (grenade.stats as any).timeUntilDetonation =
-                    FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.lifetime", 'float', 1);
-
-            }
 
             AllGrenades.push(grenade);
         });

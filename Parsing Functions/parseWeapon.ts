@@ -234,7 +234,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         mutatedValue: null,
                         lines: {
                             ru: 'Скорость прицеливания',
-                            en: 'Aim switch time'
+                            en: 'Aiming time'
                         }
                     },
                 ],
