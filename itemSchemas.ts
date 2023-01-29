@@ -19,32 +19,9 @@ export class WeaponSchema {
     weight: string = '0';
     ammoType: ILines | null = null;
     stats: object[] = [];
-    damageModifiers: object = {
-        head: '1.25',
-        limbs: '0.5',
-        mobsDamage: '1',
-        pierce:  { defaultValue: "0", mutatedValue: null },
-        bleeding: { defaultValue: "0", mutatedValue: null },
-        stoppingPower: { defaultValue: "0", mutatedValue: null }
-    };
-    damageFeatures: object = {
-        damageIncreasing: {
-            ru: null,
-            en: null
-        },
-        executeModifier: {
-            ru: null,
-            en: null
-        },
-        uniqueFeature: {
-            ru: null,
-            en: null
-        },
-        damageTypes: { /* Огнемет и огниво берут часть от обычного урона, параметры ниже указывают процент урона от обычного */
-            burnDamage: '0',
-            pureDamage: '0'
-        }
-    };
+    features: object = [];
+    damageModifiers: object = [];
+    additionalStats: object = [];
     description: ILines | null = null;
 
     constructor(obj: any) {
@@ -56,22 +33,85 @@ export class WeaponSchema {
         this.class = obj.class;
         this.weight = obj.weight;
         this.ammoType = obj.ammoType;
-        this.stats = obj.stats;
-        if (obj.damageModifiers.head < 1.25) obj.damageModifiers.head = '1.25';
-        if (Number.parseFloat(obj.damageModifiers.limbs) < 0.5) obj.damageModifiers.limbs = '0.5';
-        if (obj.damageModifiers.mobsDamage < 1) obj.damageModifiers.mobsDamage = '1';
-        this.damageModifiers = obj.damageModifiers;
-        this.damageFeatures = obj.damageFeatures;
-        this.description = obj.description;
 
-        if (obj.damageFeatures.uniqueFeature != null &&obj.damageFeatures.uniqueFeature.en.includes('x0.') > 0) {
-            if (obj.damageFeatures.uniqueFeature.en.search('x0.7') > 0)
-                obj.damageModifiers.limbs = '0.7';
-            else if (obj.damageFeatures.uniqueFeature.en.search('x0.9') > 0)
-                obj.damageModifiers.limbs = '0.9';
+        let allZeroStatsDeleted = false;
+        while (!allZeroStatsDeleted) {
+            let indexToDelete = -1;
 
-            this.damageModifiers = obj.damageModifiers;
+            (obj.stats as object[]).map((stat: any, index) => {
+                if (stat.defaultValue == undefined || Number(stat.defaultValue) == 0)
+                    indexToDelete = index;
+
+                if (stat.defaultValue != undefined && typeof stat.defaultValue == 'number')
+                    stat.defaultValue = stat.defaultValue.toString();
+            });
+
+            if (indexToDelete == -1)
+                allZeroStatsDeleted = true;
+            else
+                delete obj.stats[indexToDelete];
         }
+        obj.stats = obj.stats.filter((stat: any) => stat != null);
+        this.stats = obj.stats;
+
+        //////
+        let allNullFeaturesDeleted = false;
+        while (!allNullFeaturesDeleted) {
+            let indexToDelete = -1;
+
+            (obj.features as object[]).map((stat: any, index) => {
+                if ((stat.value == null && stat.lines == null) || (stat.value != null && Number(stat.value) == 0))
+                    indexToDelete = index;
+            });
+
+            if (indexToDelete == -1)
+                allNullFeaturesDeleted = true;
+            else
+                delete obj.features[indexToDelete];
+        }
+        obj.features = obj.features.filter((stat: any) => stat != null);
+        this.features = obj.features;
+        //////
+
+        //////
+        let allNullDamageModifiersDeleted = false;
+        while (!allNullDamageModifiersDeleted) {
+            let indexToDelete = -1;
+
+            (obj.damageModifiers as object[]).map((stat: any, index) => {
+                if ((stat.value == null && stat.lines == null) || (stat.value != null && Number(stat.value) == 0))
+                    indexToDelete = index;
+            });
+
+            if (indexToDelete == -1)
+                allNullDamageModifiersDeleted = true;
+            else
+                delete obj.damageModifiers[indexToDelete];
+        }
+        obj.damageModifiers = obj.damageModifiers.filter((stat: any) => stat != null);
+        this.damageModifiers = obj.damageModifiers;
+        //////
+
+        //////
+        let allNullAdditionalStatsDeleted = false;
+        while (!allNullAdditionalStatsDeleted) {
+            let indexToDelete = -1;
+
+            (obj.additionalStats as object[]).map((stat: any, index) => {
+                if (Number(stat.defaultValue) == 0)
+                    indexToDelete = index;
+            });
+
+            if (indexToDelete == -1)
+                allNullAdditionalStatsDeleted = true;
+            else
+                delete obj.additionalStats[indexToDelete];
+        }
+        obj.additionalStats = obj.additionalStats.filter((stat: any) => stat != null);
+        this.additionalStats = obj.additionalStats;
+        //////
+
+        this.description = obj.description;
     }
 }
 

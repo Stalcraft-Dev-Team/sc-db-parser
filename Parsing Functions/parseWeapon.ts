@@ -238,54 +238,88 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                 ],
-                damageModifiers: {
-                    head: FindValueByKey(dataJson, "weapon.tooltip.weapon.head_damage_modifier", "float", 2),
-                    mobsDamage: FindValueByKey(dataJson, "weapon.tooltip.weapon.mobs_damage_multiplier", "float", 2),
-                    limbs: '0.5',
-                    pierce: {
+                features: [
+                    {
+                        key: 'uniqueFeature',
+                        value: null,
+                        lines: FindLinesByKey(dataJson, itemKey() + 'features')
+                    },
+                    {
+                        key: 'burnDamage',
+                        value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.burn", "float", 2),
+                        lines: {
+                            ru: 'Огненный урон',
+                            en: 'Burn damage'
+                        }
+                    },
+                    {
+                        key: 'pureDamage',
+                        value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.default", "float", 2),
+                        lines: {
+                            ru: 'Чистый урон',
+                            en: 'Pure damage'
+                        }
+                    },
+                ],
+                damageModifiers: [
+                    {
+                        key: 'headMultiplier',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.head_damage_modifier", "float", 2),
+                        lines: {
+                            ru: 'Множитель урона в голову',
+                            en: 'Headshot damage multiplier'
+                        }
+                    },
+                    {
+                        key: 'mutantMultiplier',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.mobs_damage_multiplier", "float", 2),
+                        lines: {
+                            ru: 'Множитель урона по мутантам',
+                            en: 'Mutant damage multiplier'
+                        }
+                    },
+                    {
+                        key: 'damageIncreasing',
+                        value: null,
+                        lines: FindFeatureByKey("weapon.tooltip.weapon.constancy_damage_modifier")
+                    },
+                    {
+                        key: 'executeModifier',
+                        value: null,
+                        lines: FindFeatureByKey("weapon.tooltip.weapon.execute_damage_modifier")
+                    },
+                ],
+                additionalStats: [
+                    {
+                        key: 'pierce',
                         defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.piercing", "int", null),
-                        mutatedValue: null
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Бронебойность',
+                            en: 'Pierce'
+                        }
                     },
-                    bleeding: {
+                    {
+                        key: 'bleeding',
                         defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.bleeding", "int", null),
-                        mutatedValue: null
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Кровотечение',
+                            en: 'Bleeding'
+                        }
                     },
-                    stoppingPower: {
+                    {
+                        key: 'stoppingPower',
                         defaultValue: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.stopping_power", "int", null),
-                        mutatedValue: null
+                        mutatedValue: null,
+                        lines: {
+                            ru: 'Останавливающая сила',
+                            en: 'Stopping power'
+                        }
                     },
-                },
-                damageFeatures: {
-                    damageIncreasing: FindFeatureByKey("weapon.tooltip.weapon.constancy_damage_modifier"),
-                    executeModifier: FindFeatureByKey("weapon.tooltip.weapon.execute_damage_modifier"),
-                    uniqueFeature: FindLinesByKey(dataJson, itemKey() + 'features'),
-                    damageTypes: {
-                        burnDamage: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.burn", "float", 2),
-                        pureDamage: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.default", "float", 2)
-                    }
-                },
+                ],
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
-
-            let allZeroStatsDeleted = false;
-            while (!allZeroStatsDeleted) {
-                let indexToDelete = -1;
-
-                weapon.stats.map((stat: any, index) => {
-                    if (stat.defaultValue == undefined || Number(stat.defaultValue) == 0)
-                        indexToDelete = index;
-
-                    if (stat.defaultValue != undefined && typeof stat.defaultValue == 'number')
-                        stat.defaultValue = stat.defaultValue.toString();
-                });
-
-                if (indexToDelete == -1)
-                    allZeroStatsDeleted = true;
-                else
-                    delete weapon.stats[indexToDelete];
-            }
-
-            weapon.stats = weapon.stats.filter(stat => stat != null);
 
             SelectedCategoryWeapons.push(weapon);
         });
