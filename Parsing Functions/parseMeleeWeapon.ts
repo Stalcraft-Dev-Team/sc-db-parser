@@ -47,8 +47,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_melee.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(AllMeleeWeapons).map(MinimizeItemInfo), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath);
+        fs.writeFile(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllMeleeWeapons)), null, 4), async () => {
+            CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllMeleeWeapons));
             GetAndCopyIcons(pathToItemsFolder, server, 'melee');
         });
     }).catch(e => {
@@ -86,30 +86,112 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
-                quickHit: {
-                    minDamage: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.min.common", "int", null),
-                    maxDamage: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.max.common", "int", null),
-                    distance: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.reach.common", "float", 2)
-                },
-                strongHit: {
-                    minDamage: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.min.strong", "int", null),
-                    maxDamage: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.max.strong", "int", null),
-                    distance: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.reach.strong", "float", 2)
-                },
-                damageModifiers: {
-                    backStabDamage: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.critical_hit_mod", "float", 1),
-                    mobsDamage: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.mutant_damage_mod", "float", 1),
-                    penetration: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.stat_name.piercing", "int", null),
-                    chanceToDeepWound: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.stat_name.bloodlust_chance", "int", null),
-                },
-                damageFeatures: {
-                    damageTypes: {
-                        frostDamage: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.frost", "int", null),
-                        burnDamage: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.burn", "int", null),
-                        chemicalDamage: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.chemical_burn", "int", null),
-                        pureDamage: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.default", "int", null)
+                stats: [
+                    {
+                        key: 'frostDamage',
+                        value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.frost", "int", null),
+                        lines: {
+                            ru: 'Морозный урон',
+                            en: 'Frost damage'
+                        }
+                    },
+                    {
+                        key: 'burnDamage',
+                        value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.burn", "int", null),
+                        lines: {
+                            ru: 'Огненный урон',
+                            en: 'Burn damage'
+                        }
+                    },
+                    {
+                        key: 'chemicalDamage',
+                        value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.chemical_burn", "int", null),
+                        lines: {
+                            ru: 'Химический урон',
+                            en: 'Chemical burn damage'
+                        }
+                    },
+                    {
+                        key: 'pureDamage',
+                        value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.default", "int", null),
+                        lines: {
+                            ru: 'Чистый урон',
+                            en: 'Pure damage'
+                        }
+                    },
+                    {
+                        key: 'units',
+                        value:
+                            FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.min.common", "int", null)
+                            + ' - ' +
+                            FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.max.common", "int", null),
+                        lines: {
+                            ru: 'Урон быстрого удара',
+                            en: 'Quick hit damage'
+                        }
+                    },
+                    {
+                        key: 'meters',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.reach.common", "float", 2),
+                        lines: {
+                            ru: 'Досягаемость (быстр)',
+                            en: 'Reach distance (quick)'
+                        }
+                    },
+                    {
+                        key: 'units',
+                        value:
+                            FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.min.strong", "int", null)
+                            + ' - ' +
+                            FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.max.strong", "int", null),
+                        lines: {
+                            ru: 'Урон сильного удара',
+                            en: 'Strong hit damage'
+                        }
+                    },
+                    {
+                        key: 'meters',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.reach.strong", "float", 2),
+                        lines: {
+                            ru: 'Досягаемость (сильн)',
+                            en: 'Reach distance (strong)'
+                        }
+                    },
+                    {
+                        key: 'percentage',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.stat_name.piercing", "int", null),
+                        lines: {
+                            ru: 'Пробиваемость',
+                            en: 'Penetration'
+                        }
+                    },
+                    {
+                        key: 'percentage',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.stat_name.bloodlust_chance", "int", null),
+                        lines: {
+                            ru: 'Шанс глубокого ранения',
+                            en: 'Chance for a deep wound'
+                        }
                     }
-                },
+                ],
+                damageModifiers: [
+                    {
+                        key: 'x',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.critical_hit_mod", "float", 1),
+                        lines: {
+                            ru: 'Множитель урона в спину',
+                            en: 'BackStab damage multiplier'
+                        }
+                    },
+                    {
+                        key: 'x',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.mutant_damage_mod", "float", 1),
+                        lines: {
+                            ru: 'Множитель урона по мутантам',
+                            en: 'Mutant damage multiplier'
+                        }
+                    }
+                ],
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
             AllMeleeWeapons.push(meleeWeapon);

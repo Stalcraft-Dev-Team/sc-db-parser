@@ -184,30 +184,8 @@ export class MeleeWeaponSchema {
     category: ILines = { ru: "Ближний бой", en: "Melee weapon" };
     class: ILines | null = null;
     weight: string = '0';
-    quickHit: object = {
-        minDamage: '0',
-        maxDamage: '0',
-        distance: '0',
-    };
-    strongHit: object = {
-        minDamage: '0',
-        maxDamage: '0',
-        distance: '0',
-    };
-    damageModifiers: object = {
-        backStabDamage: '1.2',
-        mobsDamage: '1',
-        penetration: '0',
-        chanceToDeepWound: '0',
-    };
-    damageFeatures: object = {
-        damageTypes: {
-            frostDamage: '0',
-            burnDamage: '0',
-            chemicalDamage: '0',
-            pureDamage: '0'
-        }
-    };
+    stats: object[] = [];
+    damageModifiers: object[] = [];
     description: ILines | null = null;
 
     constructor(obj: any) {
@@ -218,13 +196,45 @@ export class MeleeWeaponSchema {
         this.rank = obj.rank;
         this.class = obj.class;
         this.weight = obj.weight;
-        this.quickHit = obj.quickHit;
-        this.strongHit = obj.strongHit;
-        if (Number(obj.damageModifiers.mobsDamage) < 1) {
-            obj.damageModifiers.mobsDamage = '1';
+
+        //////
+        let allZeroStatsDeleted = false;
+        while (!allZeroStatsDeleted) {
+            let indexToDelete = -1;
+
+            (obj.stats as object[]).map((stat: any, index) => {
+                if (Number(stat.value) == 0)
+                    indexToDelete = index;
+            });
+
+            if (indexToDelete == -1)
+                allZeroStatsDeleted = true;
+            else
+                delete obj.stats[indexToDelete];
         }
+        obj.stats = obj.stats.filter((stat: any) => stat != null);
+        this.stats = obj.stats;
+        //////
+
+        //////
+        let allNullDamageModifiersDeleted = false;
+        while (!allNullDamageModifiersDeleted) {
+            let indexToDelete = -1;
+
+            (obj.damageModifiers as object[]).map((stat: any, index) => {
+                if (Number(stat.value) == 0)
+                    indexToDelete = index;
+            });
+
+            if (indexToDelete == -1)
+                allNullDamageModifiersDeleted = true;
+            else
+                delete obj.damageModifiers[indexToDelete];
+        }
+        obj.damageModifiers = obj.damageModifiers.filter((stat: any) => stat != null);
         this.damageModifiers = obj.damageModifiers;
-        this.damageFeatures = obj.damageFeatures;
+        //////
+
         this.description = obj.description;
     }
 }

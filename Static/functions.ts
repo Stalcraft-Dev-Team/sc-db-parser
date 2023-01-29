@@ -7,6 +7,7 @@ import Path from "path";
 import {PathToImages} from "./fileds";
 
 const filesObj: any = {};
+
 export function GetAndCopyIcons(DirectoryToItems: string, Server: string, FolderName: string): void {
     const DirectoryToIcons = DirectoryToItems.replace('items', 'icons');
     const funcID: string = '_' + new Date().getMilliseconds();
@@ -18,18 +19,18 @@ export function GetAndCopyIcons(DirectoryToItems: string, Server: string, Folder
         fs.mkdirSync(PathToImages(Server));
     }
 
-    if (!fs.existsSync(PathToImages(Server)+FolderName)) {
-        fs.mkdirSync(PathToImages(Server)+FolderName);
+    if (!fs.existsSync(PathToImages(Server) + FolderName)) {
+        fs.mkdirSync(PathToImages(Server) + FolderName);
     }
 
     filesObj[funcID].forEach((iconPath: string) => {
         const SplittedIP = iconPath.split('.')[0];
-        const fileName: string = SplittedIP.substring(SplittedIP.length-4, SplittedIP.length);
+        const fileName: string = SplittedIP.substring(SplittedIP.length - 4, SplittedIP.length);
         fs.readFile(iconPath, (err, data) => {
             if (err)
                 console.error(err);
             else {
-                fs.writeFile(PathToImages(Server)+FolderName+'\\'+fileName+'.png', data, (err) => {
+                fs.writeFile(PathToImages(Server) + FolderName + '\\' + fileName + '.png', data, (err) => {
                     if (err) console.error(err);
                 })
             }
@@ -48,20 +49,21 @@ function LocalFuncThroughDirectory(Directory: string, funcID: string) {
     });
 }
 
-export function CreateSubFoldersAndItems(CategoryPath: string) {
+export function CreateSubFoldersAndItems(CategoryPath: string, array: object[] | undefined) {
     if (!fs.existsSync(CategoryPath.split('.')[0]))
         fs.mkdirSync(CategoryPath.split('.')[0], null);
 
-    fs.readFile(CategoryPath, null, (err, data) => {
-        data = JSON.parse(data.toString());
-        data.forEach(item => {
-            const itemAsAny: any = item as any;
-            fs.writeFile(CategoryPath.split('.')[0] + '\\' + itemAsAny.exbo_id + '.json',
-                JSON.stringify(itemAsAny, null, 4), null, (e) => {
-                    if (e)
-                        console.error(e);
-                });
-        });
+    const data: any = array == undefined
+        ? JSON.parse(fs.readFileSync(CategoryPath, null).toString())
+        : array;
+
+    data.forEach((item: any) => {
+        const itemAsAny: any = item as any;
+        fs.writeFile(CategoryPath.split('.')[0] + '\\' + itemAsAny.exbo_id + '.json',
+            JSON.stringify(itemAsAny, null, 4), null, (e) => {
+                if (e)
+                    console.error(e);
+            });
     });
 }
 
@@ -91,14 +93,20 @@ export function SortByGearRanksKeys(array: any[]): object[] {
     return SortedItems;
 }
 
-export function MinimizeItemInfo(item: any): object {
-    return {
-        exbo_id: item.exbo_id,
-        name: item.name,
-        color: item.color,
-        rank: item.rank,
-        class: item.class,
-    }
+export function MinimizeItemInfo(array: any[]): object[] {
+    const MinimizedArray: object[] = [];
+
+    array.forEach(item => {
+        MinimizedArray.push({
+            exbo_id: item.exbo_id,
+            name: item.name,
+            color: item.color,
+            rank: item.rank,
+            class: item.class
+        })
+    });
+
+    return MinimizedArray;
 }
 
 // type must be 'player' or 'weapon'
@@ -151,7 +159,6 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
                 value += '%';
             }
         }
-
 
 
         if (!valueIsNull) {

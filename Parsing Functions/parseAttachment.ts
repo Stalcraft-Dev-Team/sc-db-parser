@@ -57,7 +57,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
-    fs.writeFileSync(resultFolder + '\\' + 'all_attachments.json', JSON.stringify(SortByGearRanksKeys(AllAttachments).map(MinimizeItemInfo), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_attachments.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllAttachments)), null, 4));
     GetAndCopyIcons(pathToItemsFolder, server, 'attachment');
 
     return SortByGearRanksKeys(AllAttachments); /* IMPORTANT */
@@ -110,7 +110,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
         const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
         fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath);
+            CreateSubFoldersAndItems(CategoryPath, undefined);
         });
 
         SelectedCategoryWeapons.map(attachment => AllAttachments.push(attachment));

@@ -50,8 +50,8 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_containers.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(AllContainers).map(MinimizeItemInfo), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath);
+        fs.writeFile(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllContainers)), null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath, undefined);
         });
         GetAndCopyIcons(pathToItemsFolder, server, 'container');
     }).catch(e => {

@@ -46,8 +46,8 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_grenades.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(AllGrenades.map(MinimizeItemInfo), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath);
+        fs.writeFile(CategoryPath, JSON.stringify(MinimizeItemInfo(AllGrenades), null, 4), () => {
+            CreateSubFoldersAndItems(CategoryPath, AllGrenades);
         });
         GetAndCopyIcons(pathToItemsFolder, server, 'grenade');
     }).catch(e => {
