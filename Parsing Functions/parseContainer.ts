@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey, GetAndCopyIcons,
+    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys,
     SortProperties
 } from "../Static/functions";
@@ -50,7 +50,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_containers.json`;
-        fs.writeFile(CategoryPath, JSON.stringify( SortByGearRanksKeys(AllContainers), null, 4), () => {
+        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(AllContainers).map(MinimizeItemInfo), null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
         });
         GetAndCopyIcons(pathToItemsFolder, server, 'container');

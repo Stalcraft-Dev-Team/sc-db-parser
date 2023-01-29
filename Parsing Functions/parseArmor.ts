@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey, GetAndCopyIcons,
+    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
@@ -58,7 +58,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     });
 
-    fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(SortByGearRanksKeys(AllArmors), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(SortByGearRanksKeys(AllArmors).map(MinimizeItemInfo), null, 4));
     GetAndCopyIcons(pathToItemsFolder, server, 'armor');
 
     return SortByGearRanksKeys(AllArmors); /* IMPORTANT */

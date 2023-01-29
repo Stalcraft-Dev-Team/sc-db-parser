@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey, GetAndCopyIcons,
+    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
     SortProperties
 } from "../Static/functions";
 import {ArtefactTypes} from "../Static/enums";
@@ -58,7 +58,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
 
-    fs.writeFileSync(resultFolder + '\\' + 'all_artefacts.json', JSON.stringify(AllArtefacts, null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_artefacts.json', JSON.stringify(AllArtefacts.map(MinimizeItemInfo), null, 4));
     GetAndCopyIcons(pathToItemsFolder, server, 'artefact');
 
     return AllArtefacts; /* IMPORTANT */

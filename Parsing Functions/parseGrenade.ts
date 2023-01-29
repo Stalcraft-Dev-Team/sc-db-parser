@@ -5,7 +5,7 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey, GetAndCopyIcons,
+    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
 } from "../Static/functions";
 
 
@@ -46,7 +46,7 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_grenades.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(AllGrenades, null, 4), () => {
+        fs.writeFile(CategoryPath, JSON.stringify(AllGrenades.map(MinimizeItemInfo), null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
         });
         GetAndCopyIcons(pathToItemsFolder, server, 'grenade');

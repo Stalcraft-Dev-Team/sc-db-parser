@@ -91,6 +91,16 @@ export function SortByGearRanksKeys(array: any[]): object[] {
     return SortedItems;
 }
 
+export function MinimizeItemInfo(item: any): object {
+    return {
+        exbo_id: item.exbo_id,
+        name: item.name,
+        color: item.color,
+        rank: item.rank,
+        class: item.class,
+    }
+}
+
 // type must be 'player' or 'weapon'
 export function SortProperties(dataJson: any, type: string = ''): object[] {
     if (type.toLowerCase() != 'player' && type.toLowerCase() != 'weapon') {

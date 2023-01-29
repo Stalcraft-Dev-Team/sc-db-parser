@@ -6,7 +6,7 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     FindObjectValueByKey,
-    FindValueByKey, GetAndCopyIcons,
+    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
@@ -57,7 +57,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
-    fs.writeFileSync(resultFolder + '\\' + 'all_attachments.json', JSON.stringify(SortByGearRanksKeys(AllAttachments), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_attachments.json', JSON.stringify(SortByGearRanksKeys(AllAttachments).map(MinimizeItemInfo), null, 4));
     GetAndCopyIcons(pathToItemsFolder, server, 'attachment');
 
     return SortByGearRanksKeys(AllAttachments); /* IMPORTANT */

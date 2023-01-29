@@ -1,12 +1,11 @@
 import fs from "fs";
 import {PathToParse} from '../Static/fileds';
 import {MedicineSchema} from "../itemSchemas";
-import {ItemProperties} from "../Static/itemProperties-class";
 import {
     CreateSubFoldersAndItems,
     FindLinesInValueByKey,
     FindValueByKey,
-    GetAndCopyIcons,
+    GetAndCopyIcons, MinimizeItemInfo,
     SortProperties
 } from "../Static/functions";
 
@@ -48,7 +47,7 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_medicine.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(AllMedicine, null, 4), () => {
+        fs.writeFile(CategoryPath, JSON.stringify(AllMedicine.map(MinimizeItemInfo), null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath);
         });
         GetAndCopyIcons(pathToItemsFolder, server, 'medicine');
