@@ -88,7 +88,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                 weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
                 stats: [
                     {
-                        key: 'frostDamage',
+                        key: 'specialDamage',
                         value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.frost", "int", null),
                         lines: {
                             ru: 'Морозный урон',
@@ -96,7 +96,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'burnDamage',
+                        key: 'specialDamage',
                         value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.burn", "int", null),
                         lines: {
                             ru: 'Огненный урон',
@@ -104,7 +104,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'chemicalDamage',
+                        key: 'specialDamage',
                         value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.chemical_burn", "int", null),
                         lines: {
                             ru: 'Химический урон',
@@ -112,7 +112,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'pureDamage',
+                        key: 'specialDamage',
                         value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.default", "int", null),
                         lines: {
                             ru: 'Чистый урон',
