@@ -428,7 +428,6 @@ export class ContainerSchema {
     containerType: ILines | null = null;
     weight: string = '0';
     stats: object[] = [];
-    features: object = {};
     description: ILines | null = null;
 
     constructor(obj: any) {
@@ -441,7 +440,6 @@ export class ContainerSchema {
         this.containerType = obj.containerType;
         this.weight = obj.weight;
         this.stats = obj.stats;
-        this.features = obj.features;
         this.description = obj.description;
     }
 }

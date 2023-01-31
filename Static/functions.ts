@@ -97,13 +97,22 @@ export function MinimizeItemInfo(array: any[]): object[] {
     const MinimizedArray: object[] = [];
 
     array.forEach(item => {
+        const HasPurpose = typeof item.purpose == 'object';
+
         MinimizedArray.push({
             exbo_id: item.exbo_id,
             name: item.name,
             color: item.color,
             rank: item.rank,
-            class: item.class
-        })
+            class: item.class,
+            purpose: HasPurpose ? item.purpose : 'null'
+        });
+        const index: number = MinimizedArray.length - 1;
+        if (!HasPurpose) {
+            const Array = Object.entries(MinimizedArray[index]);
+            const FilteredArray = Array.filter(([key, value]) => value !== 'null');
+            MinimizedArray[index] = Object.fromEntries(FilteredArray);
+        }
     });
 
     return MinimizedArray;
@@ -125,11 +134,9 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
         // @ts-ignore
         const IsPercentageValue: boolean = (ItemProperties.PercentageTagProperties[AllPropsKey]).filter(key => prop.key == key).length > 0;
         let valueIsNull: boolean = false;
-        let key: string;
-        if (AllPropsKey == PropertiesTypes.Player) {
-            key = 'properties' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1];
-        } else {
-            key = 'properties' + '.' + 'weapon' + '.' + (prop.key).split('.')[(prop.key).split('.').length - 1];
+        let key: string | null = null;
+        if (IsPercentageValue) {
+            key = 'percentage';
         }
 
         let isPositive: string = '';
@@ -137,26 +144,19 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
             value = FindRangeValueByKey(dataJson, prop.key, 'float', 1);
             isPositive = (prop.goodIfGreaterThanZero && Number(value.max) > 0) || (!prop.goodIfGreaterThanZero && Number(value.max) < 0)
                 ? '1'
-                : '0'
+                : '0';
+
             if (Number(value.max) == 0) {
                 valueIsNull = true;
-            }
-
-            if (IsPercentageValue) {
-                value.min += '%';
-                value.max += '%';
             }
         } else {
             value = FindValueByKey(dataJson, prop.key, 'float', 1);
             isPositive = (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
                 ? '1'
-                : '0'
+                : '0';
+
             if (Number(value) == 0) {
                 valueIsNull = true;
-            }
-
-            if (IsPercentageValue) {
-                value += '%';
             }
         }
 

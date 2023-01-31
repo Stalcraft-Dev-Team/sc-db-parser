@@ -51,7 +51,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_containers.json`;
         fs.writeFile(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllContainers)), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath, undefined);
+            CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllContainers));
         });
         GetAndCopyIcons(pathToItemsFolder, server, 'container');
     }).catch(e => {
@@ -90,16 +90,32 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 containerType: {},
                 weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
-                stats: [],
-                features: {
-                    canCarryArtefacts: FindValueByKey(dataJson, "stalker.tooltip.backpack.info.size", "int", null)
-                    != '0'
-                        ? '1'
-                        : '0',
-                    innerProtection: FindValueByKey(dataJson, "stalker.tooltip.backpack.stat_name.inner_protection", "int", null),
-                    effectiveness: FindValueByKey(dataJson, "stalker.tooltip.backpack.stat_name.effectiveness", "int", null),
-                    artefactCapacity: FindValueByKey(dataJson, "stalker.tooltip.backpack.info.size", "int", null)
-                },
+                stats: [
+                    {
+                        key: 'percentage',
+                        value: FindValueByKey(dataJson, "stalker.tooltip.backpack.stat_name.inner_protection", "int", null),
+                        lines: {
+                            ru: 'Внутренняя защита',
+                            en: 'Inner protection'
+                        }
+                    },
+                    {
+                        key: 'percentage',
+                        value: FindValueByKey(dataJson, "stalker.tooltip.backpack.stat_name.effectiveness", "int", null),
+                        lines: {
+                            ru: 'Эффективность',
+                            en: 'Effectiveness'
+                        }
+                    },
+                    {
+                        key: null,
+                        value: FindValueByKey(dataJson, "stalker.tooltip.backpack.info.size", "int", null),
+                        lines: {
+                            ru: 'Вместимость артефактов',
+                            en: 'Artefact capacity'
+                        }
+                    },
+                ],
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
 
@@ -112,7 +128,8 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
                 }
             }
 
-            container.stats = SortProperties(dataJson, 'player');
+            container.stats = container.stats.filter((stat: any) => Number(stat.value) != 0);
+            container.stats = container.stats.concat(SortProperties(dataJson, 'player'));
 
             AllContainers.push(container);
         });
