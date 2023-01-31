@@ -93,32 +93,48 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
-                stats: [],
+                stats: [
+                    {
+                        key: 'units',
+                        value: '≥ 100',
+                        lines: {
+                            ru: 'Срабатывает при',
+                            en: 'Triggers when'
+                        }
+                    },
+                    {
+                        key: 'units',
+                        value: FindRangeValueByKey(dataJson, "stalker.tooltip.item.lifesaver_sniper.info.blocking_damage", 'float', 2),
+                        lines: {
+                            ru: 'Снижает урон на',
+                            en: 'Reduces damage by'
+                        }
+                    },
+                    {
+                        key: 'time',
+                        value: FindRangeValueByKey(dataJson, "stalker.tooltip.item.lifesaver.info.recharge", 'float', 1),
+                        lines: {
+                            ru: 'Время перезарядки',
+                            en: 'Reload'
+                        }
+                    },
+                    {
+                        key: 'percentage',
+                        value: FindRangeValueByKey(dataJson, "stalker.tooltip.item.lifesaver.info.cost", 'float', 2),
+                        lines: {
+                            ru: 'Заряда тратится при активации',
+                            en: 'Charge required to activate'
+                        }
+                    },
+                ],
                 additionalStats: [],
-                features: {},
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
 
-            if (artefact.name != null && artefact.name.en == 'Polyhedron') {
-                artefact.features = {
-                    polyhedron: {
-                        triggerDamage: '100',
-                            //FindRangeValueByKey(dataJson, "stalker.tooltip.item.lifesaver_sniper.info.trigger_damage", 'int', null),
-                        reduceDamage:
-                            FindRangeValueByKey(dataJson, "stalker.tooltip.item.lifesaver_sniper.info.blocking_damage", 'float', 2),
-                        reloadTime:
-                            FindRangeValueByKey(dataJson, "stalker.tooltip.item.lifesaver.info.recharge", 'float', 1),
-                        costToActivate:
-                            FindRangeValueByKey(dataJson, "stalker.tooltip.item.lifesaver.info.cost", 'float', 1)
-                    }
-                };
-                // (artefact.features as any).reduceDamage.isPositive = '1';
-                // (artefact.features as any).reloadTime.isPositive = null;
-                // (artefact.features as any).costToActivate.isPositive = null;
-                // console.log(artefact.features);
+            if (artefact.stats.filter((item: any) => item.value.max != undefined && Number(item.value.max) != 0).length == 0) {
+                artefact.stats = [];
             }
-
-            artefact.stats = SortProperties(dataJson, 'player');
+            artefact.stats = artefact.stats.concat(SortProperties(dataJson, 'player'));
 
             SelectedArtefactType.push(artefact);
         });
@@ -128,6 +144,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         fs.writeFile(CategoryPath, JSON.stringify(SelectedArtefactType, null, 4), () => {
             CreateSubFoldersAndItems(CategoryPath, undefined);
         });
+
         SelectedArtefactType.map(artefact => AllArtefacts.push(artefact));
     }
 }
