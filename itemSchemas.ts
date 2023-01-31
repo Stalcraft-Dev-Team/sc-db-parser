@@ -39,11 +39,11 @@ export class WeaponSchema {
             let indexToDelete = -1;
 
             (obj.stats as object[]).map((stat: any, index) => {
-                if (stat.defaultValue == undefined || Number(stat.defaultValue) == 0)
+                if (stat.value == undefined || Number(stat.value) == 0)
                     indexToDelete = index;
 
-                if (stat.defaultValue != undefined && typeof stat.defaultValue == 'number')
-                    stat.defaultValue = stat.defaultValue.toString();
+                if (stat.value != undefined && typeof stat.value == 'number')
+                    stat.value = stat.value.toString();
             });
 
             if (indexToDelete == -1)
@@ -98,7 +98,7 @@ export class WeaponSchema {
             let indexToDelete = -1;
 
             (obj.additionalStats as object[]).map((stat: any, index) => {
-                if (Number(stat.defaultValue) == 0)
+                if (Number(stat.value) == 0)
                     indexToDelete = index;
             });
 
