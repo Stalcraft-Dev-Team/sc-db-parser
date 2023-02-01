@@ -26,8 +26,8 @@ export class ItemProperties {
     };
 
     public static readonly PercentageTagProperties: object = {
-        player: [] as string[],
-        attachmentOrBullet: [] as string[]
+        player: [],
+        attachmentOrBullet: []
     }
 
     private static isInitialized: boolean = false;
@@ -97,8 +97,7 @@ export class ItemProperties {
             'weapon.stat_factor.draw_time',
             'weapon.stat_factor.aim_switch_time',
             'weapon.tooltip.magazine.stat_name.jamming',
-            'weapon.stat_factor.wiggle',
-
+            'weapon.stat_factor.wiggle'
         ];
 
         IP_ThroughDirectory(IndexDirName + '\\' + PathToClone + '\\' + 'ru' + '\\' + 'items');
@@ -128,36 +127,28 @@ export class ItemProperties {
             attachmentOrBullet: []
         }
 
-        // @ts-ignore
-        FileWithSortedProps[PropertiesTypes.Player].forEach(key => {
-            ItemProperties.AllProperties[PropertiesTypes.Player].forEach(prop => {
-                if (prop.key == key)
-                    SortedProps[PropertiesTypes.Player].push(prop);
+
+
+        for (const [key, value] of Object.entries(PropertiesTypes)) {
+            // @ts-ignore
+            FileWithSortedProps[value].forEach(key => {
+                ItemProperties.AllProperties[value].forEach(prop => {
+                    if (prop.key == key)
+                        SortedProps[value].push(prop);
+                })
             })
-        })
 
-        // @ts-ignore
-        FileWithSortedProps[PropertiesTypes.AttachmentOrBullet].forEach(key => {
-            ItemProperties.AllProperties[PropertiesTypes.AttachmentOrBullet].forEach(prop => {
-                if (prop.key == key)
-                    SortedProps[PropertiesTypes.AttachmentOrBullet].push(prop);
-            })
-        })
+            if (ItemProperties.AllProperties[value].length == SortedProps[value].length) {
+                ItemProperties.AllProperties[value] = SortedProps[value];
+                console.log(`AllProperties - ${value}: successful sorted!`);
+            } else {
+                console.error(`AllProperties - ${value}: different arrays length`);
 
-        if (ItemProperties.AllProperties[PropertiesTypes.Player].length == SortedProps[PropertiesTypes.Player].length) {
-            ItemProperties.AllProperties[PropertiesTypes.Player] = SortedProps[PropertiesTypes.Player];
-            console.log(`AllProperties - ${PropertiesTypes.Player}: successful sorted!`)
-        } else {
-            console.error(`AllProperties - ${PropertiesTypes.Player}: different arrays length`)
+                const NotFoundedKeys = ItemProperties.AllProperties[value]
+                    .filter(prop => SortedProps[value].indexOf(prop) == -1);
+                console.error(`Key was not founded: ` + NotFoundedKeys.map(prop => prop.key));
+            }
         }
-
-        if (ItemProperties.AllProperties[PropertiesTypes.AttachmentOrBullet].length == SortedProps[PropertiesTypes.AttachmentOrBullet].length) {
-            ItemProperties.AllProperties[PropertiesTypes.AttachmentOrBullet] = SortedProps[PropertiesTypes.AttachmentOrBullet];
-            console.log(`AllProperties - ${PropertiesTypes.AttachmentOrBullet}: successful sorted!`);
-        } else {
-            console.error(`AllProperties - ${PropertiesTypes.AttachmentOrBullet}: different arrays length`);
-        }
-
 
 
 
