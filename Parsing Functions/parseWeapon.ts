@@ -271,6 +271,14 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
+                        key: 'limbsMultiplier',
+                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.limbs_damage_modifier", "float", 2),
+                        lines: {
+                            ru: 'Множитель урона по конечностям',
+                            en: 'Limbs damage multiplier'
+                        }
+                    },
+                    {
                         key: 'mutantMultiplier',
                         value: FindValueByKey(dataJson, "weapon.tooltip.weapon.mobs_damage_multiplier", "float", 2),
                         lines: {
