@@ -105,6 +105,7 @@ export function MinimizeItemInfo(array: any[]): object[] {
             color: item.color,
             rank: item.rank,
             class: item.class,
+            containerType: item.containerType ?? "null",
             purpose: HasPurpose ? item.purpose : 'null'
         });
         const index: number = MinimizedArray.length - 1;
