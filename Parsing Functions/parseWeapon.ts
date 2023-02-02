@@ -60,7 +60,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     });
 
-    fs.writeFileSync(resultFolder + '\\' + 'all_weapons.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllWeapons)), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_weapons.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllWeapons))));
     GetAndCopyIcons(pathToItemsFolder, server, 'weapon');
 
     return SortByGearRanksKeys(AllWeapons); /* IMPORTANT */
@@ -86,8 +86,6 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
 
                 return result;
             };
-
-
 
             const DamagesAndDistances: any = GetInfoBlockWithDamagesAndDistances();
             const weapon = new WeaponSchema({
@@ -333,10 +331,10 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons), null, 4), (e) => {
-            CreateSubFoldersAndItems(CategoryPath, undefined);
-        });
+        const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
+        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons)));
+        CreateSubFoldersAndItems(CategoryPath, undefined);
+
         SelectedCategoryWeapons.map(weapon => AllWeapons.push(weapon));
     }
 

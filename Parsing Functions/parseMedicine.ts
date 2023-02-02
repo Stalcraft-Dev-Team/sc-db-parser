@@ -47,9 +47,8 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_medicine.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(MinimizeItemInfo(AllMedicine), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath, AllMedicine);
-        });
+        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(AllMedicine)));
+        CreateSubFoldersAndItems(CategoryPath, AllMedicine);
         GetAndCopyIcons(pathToItemsFolder, server, 'medicine');
     }).catch(e => {
         console.error(e);

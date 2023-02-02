@@ -58,7 +58,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
 
-    fs.writeFileSync(resultFolder + '\\' + 'all_artefacts.json', JSON.stringify(MinimizeItemInfo(AllArtefacts), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_artefacts.json', JSON.stringify(MinimizeItemInfo(AllArtefacts)));
     GetAndCopyIcons(pathToItemsFolder, server, 'artefact');
 
     return AllArtefacts; /* IMPORTANT */
@@ -141,9 +141,8 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
         const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(SelectedArtefactType, null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath, undefined);
-        });
+        fs.writeFileSync(CategoryPath, JSON.stringify(SelectedArtefactType));
+        CreateSubFoldersAndItems(CategoryPath, undefined);
 
         SelectedArtefactType.map(artefact => AllArtefacts.push(artefact));
     }

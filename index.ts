@@ -18,8 +18,10 @@ import {ParseArmor} from "./Parsing Functions/parseArmor";
 // CONST'S
 export const IndexDirName: string = __dirname;
 import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
+import Path from "path";
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
+const EnableNiceLookForJSON = false;
 // END CONST'S
 
 function callGit(type = ''): void {
@@ -154,8 +156,8 @@ async function ParseAllData(server = '') {
 }
 
 async function StartParse() {
-    await ParseAllData('ru');
-    await ParseAllData('global');
+    await ParseAllData('ru').then(() => { if (EnableNiceLookForJSON) NiceLookForJSON('ru'); });
+    await ParseAllData('global').then(() => { if (EnableNiceLookForJSON) NiceLookForJSON('global'); })
 }
 
 const ListingJSON: object[] = [];
@@ -183,8 +185,25 @@ PrepareData();
 ItemProperties.Init();
 StartParse()
     .then(() => {
-        console.log("Parsing complete!")
+        console.log("Parsing complete!");
     })
     .catch((e) => {
         console.error(e);
     });
+
+// END PROGRAM
+
+function NiceLookForJSON(server: string): void {
+    ThroughDirectoryGetAllJSON(IndexDirName + '\\' + PathToParse + '\\' + server + '\\');
+}
+
+function ThroughDirectoryGetAllJSON(Directory: string) {
+    fs.readdirSync(Directory).forEach(File => {
+        const Absolute = Path.join(Directory, File);
+        if (fs.statSync(Absolute).isDirectory()) return ThroughDirectoryGetAllJSON(Absolute);
+        else if (Absolute.split('.')[1] == 'json') {
+            const data: any = JSON.stringify(JSON.parse(fs.readFileSync(Absolute).toString()), null, 4);
+            fs.writeFile(Absolute, data, (err) => { if (err)  console.error(err) });
+        }
+    });
+}

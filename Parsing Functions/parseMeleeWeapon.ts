@@ -47,10 +47,9 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_melee.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllMeleeWeapons)), null, 4), async () => {
-            CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllMeleeWeapons));
-            GetAndCopyIcons(pathToItemsFolder, server, 'melee');
-        });
+        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllMeleeWeapons))));
+        CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllMeleeWeapons));
+        GetAndCopyIcons(pathToItemsFolder, server, 'melee');
     }).catch(e => {
         console.error(e);
     });

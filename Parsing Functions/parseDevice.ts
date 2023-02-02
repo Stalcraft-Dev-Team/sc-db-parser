@@ -47,9 +47,8 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_devices.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllDevices)), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllDevices));
-        });
+        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllDevices))));
+        CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllDevices));
         GetAndCopyIcons(pathToItemsFolder, server, 'device');
     }).catch(e => {
         console.error(e);

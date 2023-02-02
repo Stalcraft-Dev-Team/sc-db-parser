@@ -1,5 +1,5 @@
 import fs from "fs";
-import {PathToImages, PathToParse} from '../Static/fileds';
+import {PathToParse} from '../Static/fileds';
 import {ArmorSchema, ILines} from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
@@ -8,7 +8,7 @@ import {
     FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
-import {ItemProperties} from "../Static/itemProperties-class";
+
 
 
 export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Promise<object[]> {
@@ -58,7 +58,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     });
 
-    fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllArmors)), null, 4));
+    fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllArmors))));
     GetAndCopyIcons(pathToItemsFolder, server, 'armor');
 
     return SortByGearRanksKeys(AllArmors); /* IMPORTANT */
@@ -108,9 +108,8 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
         const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryArmors), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath, undefined);
-        });
+        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryArmors)));
+        CreateSubFoldersAndItems(CategoryPath, undefined);
 
         SelectedCategoryArmors.map(armor => AllArmors.push(armor));
     }

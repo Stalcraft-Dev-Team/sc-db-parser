@@ -50,9 +50,8 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
 
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_bullets.json`;
-        fs.writeFile(CategoryPath, JSON.stringify(MinimizeItemInfo(AllBullets), null, 4), () => {
-            CreateSubFoldersAndItems(CategoryPath, AllBullets);
-        });
+        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(AllBullets)));
+        CreateSubFoldersAndItems(CategoryPath, AllBullets);
         GetAndCopyIcons(pathToItemsFolder, server, 'bullet');
     }).catch(e => {
         console.error(e);

@@ -59,11 +59,7 @@ export function CreateSubFoldersAndItems(CategoryPath: string, array: object[] |
 
     data.forEach((item: any) => {
         const itemAsAny: any = item as any;
-        fs.writeFile(CategoryPath.split('.')[0] + '\\' + itemAsAny.exbo_id + '.json',
-            JSON.stringify(itemAsAny, null, 4), null, (e) => {
-                if (e)
-                    console.error(e);
-            });
+        fs.writeFileSync(`${CategoryPath.split('.')[0]}\\${itemAsAny.exbo_id}.json`, JSON.stringify(itemAsAny));
     });
 }
 
@@ -97,8 +93,6 @@ export function MinimizeItemInfo(array: any[]): object[] {
     const MinimizedArray: object[] = [];
 
     array.forEach(item => {
-        const HasPurpose = typeof item.purpose == 'object';
-
         MinimizedArray.push({
             exbo_id: item.exbo_id,
             name: item.name,
@@ -106,12 +100,14 @@ export function MinimizeItemInfo(array: any[]): object[] {
             rank: item.rank,
             class: item.class,
             containerType: item.containerType ?? "null",
-            purpose: HasPurpose ? item.purpose : 'null'
+            purpose: item.purpose ?? "null"
         });
+
         const index: number = MinimizedArray.length - 1;
-        if (!HasPurpose) {
-            const Array = Object.entries(MinimizedArray[index]);
-            const FilteredArray = Array.filter(([key, value]) => value !== 'null');
+
+        const Array = Object.entries(MinimizedArray[index]);
+        const FilteredArray = Array.filter(([key, value]) => value !== "null");
+        if (Array.length != FilteredArray.length) {
             MinimizedArray[index] = Object.fromEntries(FilteredArray);
         }
     });
