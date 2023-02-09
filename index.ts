@@ -22,7 +22,7 @@ import Path from "path";
 import {ParseOther} from "./Parsing Functions/parseOther";
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
-const EnableNiceLookForJSON = true;
+const EnableNiceLookForJSON = false;
 // END CONST'S
 
 function callGit(type = ''): void {
