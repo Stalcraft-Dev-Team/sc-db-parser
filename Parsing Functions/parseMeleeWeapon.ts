@@ -84,7 +84,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
+                weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [
                     {
                         key: 'specialDamage',

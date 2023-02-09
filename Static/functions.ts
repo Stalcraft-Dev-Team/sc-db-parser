@@ -181,6 +181,10 @@ export function FindLinesInValueByKey(dataJson: any, searchingKey: string): ILin
                     if ((key == 'key' || key == 'text') && (value as any).key as string == searchingKey) {
                         return dataJson.infoBlocks[i].elements[j].value.lines;
                     }
+                    if (key == 'formatted' && (value as any).value.en != undefined
+                        && dataJson.infoBlocks[i].elements[j].name.key == searchingKey) {
+                        return (value as any).value;
+                    }
                 }
             }
     }
@@ -196,7 +200,14 @@ export function FindLinesByKey(dataJson: any, searchingKey: string): ILines | nu
             for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
                 for (const [key, value] of Object.entries(dataJson.infoBlocks[i].elements[j])) {
                     if ((key == 'key' || key == 'text') && (value as any).key.includes(searchingKey)) {
-                        return (value as any).lines;
+                        if ((value as any).key == "core.tooltip.origin") {
+                            const OriginInfo = dataJson.infoBlocks[i].elements[j+1].text.lines;
+                            return {
+                                ru: `Получение<br>${OriginInfo.ru}<br><br>`,
+                                en: `Obtained<br>${OriginInfo.en}<br><br>`
+                            }
+                        } else
+                            return (value as any).lines;
                     }
                 }
             }
@@ -209,10 +220,25 @@ export function FindLinesByKey(dataJson: any, searchingKey: string): ILines | nu
         }
     }
 
-    if (searchingKey.split('.')[searchingKey.split('.').length - 1] == 'description') {
+    const searchingKeyLastWord = searchingKey.split('.')[searchingKey.split('.').length - 1];
+    if (searchingKeyLastWord == 'description') {
         for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
             if (dataJson.infoBlocks[i].type == 'text' && dataJson.infoBlocks[i].text.key.includes(searchingKey))
                 return dataJson.infoBlocks[i].text.lines;
+        }
+    }
+
+    if (searchingKeyLastWord == 'durability_decrease') {
+        for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
+            if (dataJson.infoBlocks[i].elements != undefined) {
+                for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
+                    if (dataJson.infoBlocks[i].elements[j].name != undefined && dataJson.infoBlocks[i].elements[j].name.key.includes(searchingKey))
+                        return {
+                            ru: `${dataJson.infoBlocks[i].elements[j].name.lines.ru}: ${dataJson.infoBlocks[i].elements[j].formatted.value.ru}`,
+                            en: `${dataJson.infoBlocks[i].elements[j].name.lines.en}: ${dataJson.infoBlocks[i].elements[j].formatted.value.en}`
+                        };
+                }
+            }
         }
     }
 

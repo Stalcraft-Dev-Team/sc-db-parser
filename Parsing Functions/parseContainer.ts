@@ -88,7 +88,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 containerType: {},
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
+                weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [
                     {
                         key: 'percentage',

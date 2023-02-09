@@ -92,7 +92,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
+                weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 nightVisionGlasses: FindLinesForArmorByKey(dataJson, "stalker.tooltip.armor_artefact.night_vision"),
                 compatibilityBackpacks: FindLinesForArmorByKey(dataJson, "stalker.lore.armor_artefact.info.compatible_backpacks"),
                 compatibilityContainers: FindLinesForArmorByKey(dataJson, "stalker.lore.armor_artefact.info.compatible_containers"),
@@ -107,7 +107,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
+        const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryArmors)));
         CreateSubFoldersAndItems(CategoryPath, undefined);
 

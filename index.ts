@@ -6,22 +6,23 @@ import { ItemProperties } from "./Static/itemProperties-class";
 import { ParseMedicine } from './Parsing Functions/parseMedicine';
 import { ParseWeapon } from './Parsing Functions/parseWeapon';
 import { ParseMeleeWeapon } from './Parsing Functions/parseMeleeWeapon';
-import {ParseAttachment} from "./Parsing Functions/parseAttachment";
-import {ParseBullet} from "./Parsing Functions/parseBullet";
-import {ParseDevice} from "./Parsing Functions/parseDevice";
-import {ParseGrenade} from "./Parsing Functions/parseGrenade";
-import {ParseContainer} from "./Parsing Functions/parseContainer";
-import {ParseArtefact} from "./Parsing Functions/parseArtefact";
-import {ParseArmor} from "./Parsing Functions/parseArmor";
+import { ParseAttachment } from "./Parsing Functions/parseAttachment";
+import { ParseBullet } from "./Parsing Functions/parseBullet";
+import { ParseDevice } from "./Parsing Functions/parseDevice";
+import { ParseGrenade } from "./Parsing Functions/parseGrenade";
+import { ParseContainer } from "./Parsing Functions/parseContainer";
+import { ParseArtefact } from "./Parsing Functions/parseArtefact";
+import { ParseArmor } from "./Parsing Functions/parseArmor";
 // END LIBS
 
 // CONST'S
 export const IndexDirName: string = __dirname;
 import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
 import Path from "path";
+import {ParseOther} from "./Parsing Functions/parseOther";
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
-const EnableNiceLookForJSON = false;
+const EnableNiceLookForJSON = true;
 // END CONST'S
 
 function callGit(type = ''): void {
@@ -150,6 +151,14 @@ async function ParseAllData(server = '') {
         .catch((e) => { console.error(e); })
         .finally(() => {
             console.log (server.toUpperCase()+': ParseDevice: complete!');
+        });
+
+    if (server != 'global')
+    await ParseOther(pathToItemsFolder+'other\\')
+        .then(PushToListing)
+        .catch((e) => { console.error(e); })
+        .finally(() => {
+            console.log (server.toUpperCase()+': ParseOther: complete!');
         });
 
     fs.writeFileSync(__dirname+'\\'+PathToParse+'\\'+server+'\\'+'listing.json', JSON.stringify(ListingJSON, null, 4));

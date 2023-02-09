@@ -153,7 +153,7 @@ export class BulletSchema {
     color: string = '';
     category: ILines = { ru: "Патрон", en: "Bullet" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     bulletType: ILines | null = null;
     penetration: ILines | null = {
         ru: 'Низкая пробиваемость',
@@ -183,7 +183,7 @@ export class MeleeWeaponSchema {
     rank: ILines | null = null;
     category: ILines = { ru: "Ближний бой", en: "Melee weapon" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     stats: object[] = [];
     damageModifiers: object[] = [];
     description: ILines | null = null;
@@ -247,7 +247,7 @@ export class GrenadeSchema {
     rank: string = '';
     category: ILines = { ru: "Граната", en: "Grenade" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     stats: object[] = [];
     description: ILines | null = null;
 
@@ -291,7 +291,7 @@ export class DeviceSchema {
     rank: string = '';
     category: ILines = { ru: "Устройство", en: "Device" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     stats: object[] = [];
     description: ILines | null = null;
 
@@ -335,7 +335,7 @@ export class MedicineSchema {
     rank: string = '';
     category: ILines = { ru: "Медицина", en: "Medicine" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     purpose: ILines | null = null;
     duration: string = '0';
     stats: object[] = [];
@@ -364,7 +364,7 @@ export class ArmorSchema {
     rank: ILines | null = null;
     category: ILines = { ru: "Броня", en: "Armor" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     nightVisionGlasses: ILines | null = null;
     compatibilityBackpacks: ILines | null = null;
     compatibilityContainers: ILines | null = null;
@@ -396,7 +396,7 @@ export class ArtefactSchema {
     rank: string = '';
     category: ILines = { ru: "Артефакт", en: "Artefact" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     stats: object[] = [];
     additionalStats: object[] = [];
     features: object = {};
@@ -426,7 +426,7 @@ export class ContainerSchema {
     category: ILines = { ru: "Контейнер/Рюкзак", en: "Container/Backpack" };
     class: ILines | null = null;
     containerType: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     stats: object[] = [];
     description: ILines | null = null;
 
@@ -444,5 +444,28 @@ export class ContainerSchema {
     }
 }
 
+export class OtherItemSchema {
+    exbo_id: string = '';
+    key: string = '';
+    name: ILines | null = null;
+    color: string = '';
+    rank: string = '';
+    category: ILines = { ru: "Прочее", en: "Other" };
+    class: ILines | null = null;
+    weight: ILines | null = null;
+
+    description: ILines | null = null;
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.key = obj.key;
+        this.name = obj.name;
+        this.color = obj.color;
+        this.rank = obj.rank;
+        this.class = obj.class;
+        this.weight = obj.weight;
+        this.description = obj.description;
+    }
+}
 
 

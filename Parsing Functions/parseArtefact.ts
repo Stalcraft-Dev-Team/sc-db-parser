@@ -92,7 +92,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
                 color: dataJson.color,
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
-                weight: FindValueByKey(dataJson, "core.tooltip.info.weight", "float", 2),
+                weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [
                     {
                         key: 'units',
@@ -140,7 +140,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
-        const CategoryPath = resultFolder + '\\' + `${CategoryName}.json`;
+        const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(SelectedArtefactType));
         CreateSubFoldersAndItems(CategoryPath, undefined);
 
