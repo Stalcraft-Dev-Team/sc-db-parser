@@ -1,3 +1,5 @@
+import exp from "constants";
+
 export interface ICanMutateValue {
     defaultValue: '0',
     mutatedValue: string | null
@@ -468,4 +470,23 @@ export class OtherItemSchema {
     }
 }
 
+export interface IRecipe {
+    money: string,
+    item: object | null,
+    otherItems: object[]
+}
+
+export class ItemRecipes {
+    exbo_id: string = '';
+    settlementTitles: ILines[] = [];
+    settlementRequiredLevel: string = '';
+    recipes: IRecipe[] = [];
+
+    constructor(obj: any) {
+        this.exbo_id = obj.exbo_id;
+        this.settlementTitles = obj.settlementTitles;
+        this.settlementRequiredLevel = obj.settlementRequiredLevel;
+        this.recipes = obj.recipes;
+    }
+}
 

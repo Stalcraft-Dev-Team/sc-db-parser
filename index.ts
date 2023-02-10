@@ -13,13 +13,14 @@ import { ParseGrenade } from "./Parsing Functions/parseGrenade";
 import { ParseContainer } from "./Parsing Functions/parseContainer";
 import { ParseArtefact } from "./Parsing Functions/parseArtefact";
 import { ParseArmor } from "./Parsing Functions/parseArmor";
+import { ParseOther } from "./Parsing Functions/parseOther";
+import { ParseBarterRecipes } from "./Parsing Functions/parseBarterRecipes";
 // END LIBS
 
 // CONST'S
 export const IndexDirName: string = __dirname;
 import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
 import Path from "path";
-import {ParseOther} from "./Parsing Functions/parseOther";
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
 const EnableNiceLookForJSON = false;
@@ -161,7 +162,15 @@ async function ParseAllData(server = '') {
             console.log (server.toUpperCase()+': ParseOther: complete!');
         });
 
-    fs.writeFileSync(__dirname+'\\'+PathToParse+'\\'+server+'\\'+'listing.json', JSON.stringify(ListingJSON, null, 4));
+
+    const PathToListing = __dirname+'\\'+PathToParse+'\\'+server+'\\'+'listing.json';
+    fs.writeFileSync(PathToListing, JSON.stringify(ListingJSON, null, 4));
+
+    if (server == 'ru') {
+        await ParseBarterRecipes(PathToListing)
+            .then(() => { console.log('Parse barter recipes complete!') })
+            .catch((err) => { if (err) console.error(err) });
+    }
 }
 
 async function StartParse() {
@@ -204,6 +213,16 @@ StartParse()
 
 function NiceLookForJSON(server: string): void {
     ThroughDirectoryGetAllJSON(IndexDirName + '\\' + PathToParse + '\\' + server + '\\');
+    if (server == 'ru') {
+        const files = fs.readdirSync(IndexDirName + '\\' + PathToParse + '\\' + 'recipes');
+        files.forEach(file => {
+            const fileJson = JSON.parse(fs.readFileSync(file).toString());
+            fs.writeFile(file, JSON.stringify(fileJson, null, 4), (err) => {
+                if (err)
+                    console.error(err);
+            });
+        })
+    }
 }
 
 function ThroughDirectoryGetAllJSON(Directory: string) {
