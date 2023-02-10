@@ -37,8 +37,8 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
                             if (ItemFromListing != undefined) {
                                 mainItem = {
                                     exbo_id: ItemFromListing.exbo_id,
+                                    name: ItemFromListing.name,
                                     category: ItemFromListing.category,
-                                    subCategory: ItemFromListing.subCategory
                                 }
                             } else {
                                 // Предложение бартера Улья, где требуется странный ящик, пока не будет этого рецепта :)
