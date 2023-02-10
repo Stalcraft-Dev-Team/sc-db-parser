@@ -1,12 +1,12 @@
 import fs from "fs";
-import {PathToParse} from '../Static/fileds';
-import {AttachmentSchema} from "../itemSchemas";
+import { PathToParse } from '../Static/fileds';
+import { AttachmentSchema } from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
     FindObjectValueByKey,
-    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
+    GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
 

@@ -1,4 +1,4 @@
-import {IndexDirName} from "../index";
+import { IndexDirName } from "../index";
 
 export const UrlToSCDB: string = 'https://github.com/EXBO-Studio/stalcraft-database.git';
 export const PathToClone: string = 'Cloned DataBase';

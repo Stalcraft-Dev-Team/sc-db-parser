@@ -1,10 +1,10 @@
-import {GearRanks, PropertiesTypes} from "./enums";
-import {ILines} from "../itemSchemas";
-import {IPropertiesElement, ItemProperties} from "./itemProperties-class";
-import {FindRangeValueByKey} from "../Parsing Functions/parseArtefact";
+import { GearRanks, PropertiesTypes } from "./enums";
+import { ILines } from "../itemSchemas";
+import { IPropertiesElement, ItemProperties } from "./itemProperties-class";
+import { FindRangeValueByKey } from "../Parsing Functions/parseArtefact";
 import fs from "fs";
 import Path from "path";
-import {PathToImages} from "./fileds";
+import { PathToImages } from "./fileds";
 
 const filesObj: any = {};
 

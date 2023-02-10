@@ -1,11 +1,11 @@
 import fs from "fs";
-import {PathToParse} from '../Static/fileds';
-import {ArmorSchema, ILines} from "../itemSchemas";
+import { PathToParse } from '../Static/fileds';
+import { ArmorSchema, ILines } from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
+    GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
 

@@ -1,6 +1,6 @@
 import fs from "fs";
-import {PathToParse} from '../Static/fileds';
-import {ContainerSchema, ILines} from "../itemSchemas";
+import { PathToParse } from '../Static/fileds';
+import { ContainerSchema, ILines } from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,

@@ -1,6 +1,6 @@
 import fs from "fs";
-import {PathToParse} from '../Static/fileds';
-import {WeaponSchema} from "../itemSchemas";
+import { PathToParse } from '../Static/fileds';
+import { WeaponSchema } from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,

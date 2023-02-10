@@ -1,11 +1,11 @@
 import fs from "fs";
-import {PathToParse} from '../Static/fileds';
-import {ILines, MeleeWeaponSchema, OtherItemSchema} from "../itemSchemas";
+import { PathToParse } from '../Static/fileds';
+import { ILines, OtherItemSchema } from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
+    GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys
 } from "../Static/functions";
 

@@ -1,15 +1,13 @@
 import fs from "fs";
-import {PathToParse} from '../Static/fileds';
-import {ArtefactSchema, ILines} from "../itemSchemas";
+import { PathToParse } from '../Static/fileds';
+import { ArtefactSchema } from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
+    GetAndCopyIcons, MinimizeItemInfo,
     SortProperties
 } from "../Static/functions";
-import {ArtefactTypes} from "../Static/enums";
-import {ItemProperties} from "../Static/itemProperties-class";
 
 export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {

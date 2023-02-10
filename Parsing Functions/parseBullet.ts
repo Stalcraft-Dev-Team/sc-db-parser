@@ -1,15 +1,13 @@
 import fs from "fs";
-import {PathToParse} from '../Static/fileds';
-import {AttachmentSchema, BulletSchema} from "../itemSchemas";
+import { PathToParse } from '../Static/fileds';
+import { BulletSchema } from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindObjectValueByKey,
-    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
-    SortByGearRanksKeys, SortProperties
+    GetAndCopyIcons, MinimizeItemInfo,
+    SortProperties
 } from "../Static/functions";
-import {ItemProperties} from "../Static/itemProperties-class";
 
 
 export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): Promise<object[]> {

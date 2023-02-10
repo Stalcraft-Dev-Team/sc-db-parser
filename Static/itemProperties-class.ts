@@ -1,9 +1,9 @@
-import {PathToClone} from "./fileds";
-import {IndexDirName} from "../index";
+import { PathToClone } from "./fileds";
+import { IndexDirName } from "../index";
 import fs from 'fs';
 import Path from "path";
-import {ILines} from "../itemSchemas";
-import {PropertiesTypes} from "./enums";
+import { ILines } from "../itemSchemas";
+import { PropertiesTypes } from "./enums";
 import FileWithSortedProps from "../sortedProps.json";
 import FileWithPercentageTags from "../percentTypeProps.json";
 
