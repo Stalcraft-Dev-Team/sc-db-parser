@@ -157,12 +157,7 @@ export class BulletSchema {
     class: ILines | null = null;
     weight: ILines | null = null;
     bulletType: ILines | null = null;
-    penetration: ILines | null = {
-        ru: 'Низкая пробиваемость',
-        en: 'Low penetration'
-
-    };
-    stats: object[] = [];
+    stats: any[] = [];
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
@@ -172,8 +167,11 @@ export class BulletSchema {
         this.class = obj.class;
         this.weight = obj.weight;
         this.bulletType = obj.bulletType;
-        this.penetration = obj.penetration == null ? this.penetration : obj.penetration;
         this.stats = obj.stats;
+        this.stats[0].lines = this.stats[0].lines ?? {
+            ru: 'Низкая пробиваемость',
+            en: 'Low penetration'
+        };
     }
 }
 
