@@ -85,11 +85,16 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 bulletType: FindLinesByKey(dataJson, "weapon.tooltip.bullet.bullet_type"),
-                penetration: FindLinesByKey(dataJson, "weapon.tooltip.bullet.high_penetration"),
-                stats: [],
+                stats: [
+                    {
+                        key: 'onlyLines',
+                        value: null,
+                        lines: FindLinesByKey(dataJson, "weapon.tooltip.bullet.high_penetration")
+                    }
+                ],
             });
 
-            bullet.stats = SortProperties(dataJson, 'weapon');
+            bullet.stats = bullet.stats.concat(SortProperties(dataJson, 'weapon'));
 
             AllBullets.push(bullet);
         });
