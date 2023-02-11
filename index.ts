@@ -190,11 +190,7 @@ function PushToListing(data: object[]): void {
     data.forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
         category: UniqueSubCategories.length > 1 ? item.category : item.class,
-        subCategory: UniqueSubCategories.length > 1 ? item.class : null,
-        name: {
-            ru: item.name.ru,
-            en: item.name.en
-        }
+        name: item.name
     }))
 }
 
@@ -213,11 +209,13 @@ StartParse()
 
 function NiceLookForJSON(server: string): void {
     ThroughDirectoryGetAllJSON(IndexDirName + '\\' + PathToParse + '\\' + server + '\\');
+
     if (server == 'ru') {
-        const files = fs.readdirSync(IndexDirName + '\\' + PathToParse + '\\' + 'recipes');
+        const PathToRecipes = IndexDirName + '\\' + PathToParse + '\\' + 'recipes';
+        const files = fs.readdirSync(PathToRecipes);
         files.forEach(file => {
-            const fileJson = JSON.parse(fs.readFileSync(file).toString());
-            fs.writeFile(file, JSON.stringify(fileJson, null, 4), (err) => {
+            const fileJson = JSON.parse(fs.readFileSync(`${PathToRecipes}\\${file}`).toString());
+            fs.writeFile(`${PathToRecipes}\\${file}`, JSON.stringify(fileJson, null, 4), (err) => {
                 if (err)
                     console.error(err);
             });

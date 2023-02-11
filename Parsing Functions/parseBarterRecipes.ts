@@ -37,8 +37,8 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
                             if (ItemFromListing != undefined) {
                                 mainItem = {
                                     exbo_id: ItemFromListing.exbo_id,
-                                    name: ItemFromListing.name,
                                     category: ItemFromListing.category,
+                                    lines: ItemFromListing.name,
                                 }
                             } else {
                                 // Предложение бартера Улья, где требуется странный ящик, пока не будет этого рецепта :)
@@ -46,14 +46,31 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
                             }
                         }
 
+                        let otherItemsFromListing = offer.requiredItems.filter((item: any) => item.amount > 1);
+                        ListingJson.forEach((item: any) => {
+                            if (typeof item[0] != 'object')
+                            otherItemsFromListing = otherItemsFromListing.map((otherItem: any) => {
+                                if (otherItem.item != undefined && item.exbo_id == otherItem.item) {
+                                    otherItem = {
+                                        exbo_id: item.exbo_id,
+                                        category: item.category,
+                                        lines: item.name,
+                                        amount: otherItem.amount
+                                    }
+                                }
+                                return otherItem;
+                            });
+                        });
+
                         if (canPushItem) {
                             Item.recipes.push({
                                 money: offer.cost.toString(),
                                 item: mainItem,
-                                otherItems: offer.requiredItems.filter((item: any) => item.amount > 1)
+                                otherItems: otherItemsFromListing
                             });
                         }
                     });
+
                     ParsedItemRecipes.push(Item);
                 }
             });
