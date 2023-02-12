@@ -131,9 +131,9 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
         // @ts-ignore
         const IsPercentageValue: boolean = (ItemProperties.PercentageTagProperties[AllPropsKey]).filter(key => prop.key == key).length > 0;
         let valueIsNull: boolean = false;
-        let key: string | null = null;
+        let unitKey: string | null = null;
         if (IsPercentageValue) {
-            key = 'percentage';
+            unitKey = 'percentage';
         }
 
         let isPositive: string = '';
@@ -160,7 +160,8 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
 
         if (!valueIsNull) {
             Stats.push({
-                key: key,
+                unitKey: unitKey,
+                key: prop.key,
                 value: value,
                 isPositive: isPositive,
                 lines: prop.lines
