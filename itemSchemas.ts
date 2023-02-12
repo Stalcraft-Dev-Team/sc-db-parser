@@ -18,7 +18,7 @@ export class WeaponSchema {
     rank: ILines | null = null;
     category: ILines = { ru: "Оружие", en: "Weapon" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     ammoType: ILines | null = null;
     stats: object[] = [];
     features: object = [];
@@ -125,7 +125,7 @@ export class AttachmentSchema {
     rank: ILines | null = null;
     category: ILines = { ru: "Обвес", en: "Attachment" };
     class: ILines | null = null;
-    weight: string = '0';
+    weight: ILines | null = null;
     stats: object[] = [];
     features: object = {
         zoom: null

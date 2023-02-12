@@ -1,5 +1,6 @@
 // LIBS
 import fs from "fs";
+import fse from "fs-extra";
 const path = require('path');
 import { execSync } from 'child_process';
 import { ItemProperties } from "./Static/itemProperties-class";
@@ -21,9 +22,10 @@ import { ParseBarterRecipes } from "./Parsing Functions/parseBarterRecipes";
 export const IndexDirName: string = __dirname;
 import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
 import Path from "path";
+import {MinimizeItemInfo} from "./Static/functions";
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
-const EnableNiceLookForJSON = false;
+const EnableNiceLookForJSON = true;
 // END CONST'S
 
 function callGit(type = ''): void {
@@ -71,6 +73,8 @@ function PrepareData(): void {
 }
 
 async function ParseAllData(server = '') {
+    ListingJSON = [];
+
     if (!(server === 'ru' || server === 'global')) {
         console.error('ParseAllData: incorrect server name.');
         return;
@@ -154,16 +158,36 @@ async function ParseAllData(server = '') {
             console.log (server.toUpperCase()+': ParseDevice: complete!');
         });
 
-    if (server != 'global')
-    await ParseOther(pathToItemsFolder+'other\\')
-        .then(PushToListing)
-        .catch((e) => { console.error(e); })
-        .finally(() => {
-            console.log (server.toUpperCase()+': ParseOther: complete!');
+
+    const RuPathToOther = IndexDirName+'\\'+PathToParse+'\\'+'ru'+'\\'+'other';
+    const GlobalPathToOther = IndexDirName+'\\'+PathToParse+'\\'+'global'+'\\'+'other';
+    if (server == 'ru') {
+        await ParseOther(pathToItemsFolder+'other\\')
+            .then(PushToListing)
+            .catch((e) => { console.error(e); })
+            .finally(() => {
+
+                console.log (server.toUpperCase()+': ParseOther: complete!');
+            });
+
+        fse.copySync(
+            RuPathToOther,
+            GlobalPathToOther,
+            { overwrite: true }
+        );
+    } else {
+        const OtherItems: object[] = [];
+        fs.readdirSync(`${GlobalPathToOther}\\all_other`).forEach(file => {
+            const dataJson = JSON.parse(fs.readFileSync(`${GlobalPathToOther}\\all_other\\${file}`).toString());
+            if (dataJson.exbo_id !== undefined)
+                OtherItems.push(dataJson);
         });
+        ListingJSON = ListingJSON.concat(MinimizeItemInfo(OtherItems));
+    }
 
 
-    const PathToListing = __dirname+'\\'+PathToParse+'\\'+server+'\\'+'listing.json';
+
+    const PathToListing = IndexDirName+'\\'+PathToParse+'\\'+server+'\\'+'listing.json';
     fs.writeFileSync(PathToListing, JSON.stringify(ListingJSON, null, 4));
 
     if (server == 'ru') {
@@ -178,7 +202,7 @@ async function StartParse() {
     await ParseAllData('global').then(() => { if (EnableNiceLookForJSON) NiceLookForJSON('global'); })
 }
 
-const ListingJSON: object[] = [];
+let ListingJSON: object[] = [];
 function PushToListing(data: object[]): void {
     const UniqueSubCategories: string[] = [];
     data.forEach((item: any) => {
@@ -192,7 +216,7 @@ function PushToListing(data: object[]): void {
         category: UniqueSubCategories.length > 1 ? item.category : item.class,
         name: item.name,
         color: item.color
-    }))
+    }));
 }
 
 // START PROGRAM
@@ -205,9 +229,10 @@ StartParse()
     .catch((e) => {
         console.error(e);
     });
-
 // END PROGRAM
 
+
+// Optional
 function NiceLookForJSON(server: string): void {
     ThroughDirectoryGetAllJSON(IndexDirName + '\\' + PathToParse + '\\' + server + '\\');
 
