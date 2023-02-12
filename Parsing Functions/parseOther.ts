@@ -8,6 +8,7 @@ import {
     GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys
 } from "../Static/functions";
+import {IndexDirName} from "../index";
 
 
 export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Promise<object[]> {
@@ -22,25 +23,19 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
         server = 'global';
     }
 
-    function RPToP(): string {
-        let result: string = '';
-        let dirname: string[] = __dirname.split('\\');
-        for (let i = 0; i < dirname.length - 1; i++) {
-            result += dirname[i] + '\\';
+    let resultFolder: string = '';
+    ["ru", "global"].forEach(_server => {
+        const RegionalPathToParse: string = `${IndexDirName}\\${PathToParse}\\${_server}`;
+        if (!fs.existsSync(RegionalPathToParse)) {
+            fs.mkdirSync(RegionalPathToParse);
         }
-        result += PathToParse + '\\' + server;
-        return result;
-    }
 
-    const RegionalPathToParse: string = RPToP();
-    if (!fs.existsSync(RegionalPathToParse)) {
-        fs.mkdirSync(RegionalPathToParse);
-    }
-
-    const resultFolder = RegionalPathToParse + '\\' + 'other';
-    if (!fs.existsSync(resultFolder)) {
-        fs.mkdirSync(resultFolder);
-    }
+        resultFolder = RegionalPathToParse + '\\' + 'other';
+        if (!fs.existsSync(resultFolder)) {
+            fs.mkdirSync(resultFolder);
+        }
+    });
+    resultFolder = resultFolder.replace('global', 'ru');
 
     ////////
     const AllOtherItems: OtherItemSchema[] = [];
@@ -49,7 +44,9 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
         const CategoryPath = resultFolder + '\\' + `all_other.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllOtherItems))));
         CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllOtherItems));
-        GetAndCopyIcons(pathToItemsFolder, server, 'other');
+        ["ru", "global"].forEach(_server => {
+            GetAndCopyIcons(pathToItemsFolder, _server, 'other');
+        })
     }).catch(e => {
         console.error(e);
     });
