@@ -86,12 +86,14 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [
                     {
-                        key: null,
+                        unitKey: null,
+                        key: "weapon.grenade.frag.stats.explosion_on_collide",
                         value: null,
                         lines: FindLinesByKey(dataJson, "weapon.grenade.frag.stats.explosion_on_collide")
                     },
                     {
-                        key: 'units',
+                        unitKey: 'units',
+                        key: "weapon.grenade.frag.stats.info.explosion_strength",
                         value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_strength", 'int', null),
                         lines: {
                             ru: 'Макс. урон',
@@ -99,7 +101,8 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                         }
                     },
                     {
-                        key: 'units',
+                        unitKey: 'units',
+                        key: "weapon.grenade.frag.stats.info.explosion_strength_min",
                         value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_strength_min", 'int', null),
                         lines: {
                             ru: 'Мин. урон',
@@ -107,7 +110,8 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                         }
                     },
                     {
-                        key: 'meters',
+                        unitKey: 'meters',
+                        key: "weapon.grenade.frag.stats.info.explosion_size",
                         value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_size", 'float', 1),
                         lines: {
                             ru: 'Дистанция взрыва',
@@ -115,7 +119,8 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                         }
                     },
                     {
-                        key: 'time',
+                        unitKey: 'time',
+                        key: "weapon.grenade.frag.stats.info.lifetime",
                         value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.lifetime", 'float', 2),
                         lines: {
                             ru: 'Время до взрыва',
@@ -123,7 +128,8 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                         }
                     },
                     {
-                        key: 'time',
+                        unitKey: 'time',
+                        key: "weapon.grenade.frag.stats.info.flash_time",
                         value: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.flash_time", 'float', 2),
                         lines: {
                             ru: 'Макс. время ослепления',
@@ -131,7 +137,8 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                         }
                     },
                     {
-                        key: 'time',
+                        unitKey: 'time',
+                        key: "weapon.grenade.frag.stats.info.explosion_activation_time",
                         value: FindValueByKey(dataJson, "weapon.grenade.frag.stats.info.explosion_activation_time", 'float', 2),
                         lines: {
                             ru: 'Время взрывателя',

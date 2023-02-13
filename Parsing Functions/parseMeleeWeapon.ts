@@ -87,7 +87,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [
                     {
-                        key: 'specialDamage',
+                        unitKey: 'specialDamage',
+                        key: "core.tooltip.stat_name.damage_type.frost",
                         value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.frost", "int", null),
                         lines: {
                             ru: 'Морозный урон',
@@ -95,7 +96,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'specialDamage',
+                        unitKey: 'specialDamage',
+                        key: "core.tooltip.stat_name.damage_type.burn",
                         value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.burn", "int", null),
                         lines: {
                             ru: 'Огненный урон',
@@ -103,7 +105,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'specialDamage',
+                        unitKey: 'specialDamage',
+                        key: "core.tooltip.stat_name.damage_type.chemical_burn",
                         value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.chemical_burn", "int", null),
                         lines: {
                             ru: 'Химический урон',
@@ -111,7 +114,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'specialDamage',
+                        unitKey: 'specialDamage',
+                        key: "core.tooltip.stat_name.damage_type.default",
                         value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.default", "int", null),
                         lines: {
                             ru: 'Чистый урон',
@@ -119,7 +123,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'units',
+                        unitKey: 'units',
+                        key: null,
                         value:
                             FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.min.common", "int", null)
                             + ' - ' +
@@ -130,7 +135,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'meters',
+                        unitKey: 'meters',
+                        key: "weapon.tooltip.melee_weapon.info.reach.common",
                         value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.reach.common", "float", 2),
                         lines: {
                             ru: 'Досягаемость (быстр)',
@@ -138,7 +144,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'units',
+                        unitKey: 'units',
+                        key: null,
                         value:
                             FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.damage.min.strong", "int", null)
                             + ' - ' +
@@ -149,7 +156,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'meters',
+                        unitKey: 'meters',
+                        key: "weapon.tooltip.melee_weapon.info.reach.strong",
                         value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.info.reach.strong", "float", 2),
                         lines: {
                             ru: 'Досягаемость (сильн)',
@@ -157,7 +165,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'percentage',
+                        unitKey: 'percentage',
+                        key: "weapon.tooltip.melee_weapon.stat_name.piercing",
                         value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.stat_name.piercing", "int", null),
                         lines: {
                             ru: 'Пробиваемость',
@@ -165,7 +174,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'percentage',
+                        unitKey: 'percentage',
+                        key: "weapon.tooltip.melee_weapon.stat_name.bloodlust_chance",
                         value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.stat_name.bloodlust_chance", "int", null),
                         lines: {
                             ru: 'Шанс глубокого ранения',
@@ -175,7 +185,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                 ],
                 damageModifiers: [
                     {
-                        key: 'x',
+                        unitKey: 'x',
+                        key: "weapon.tooltip.melee_weapon.critical_hit_mod",
                         value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.critical_hit_mod", "float", 1),
                         lines: {
                             ru: 'Множитель урона в спину',
@@ -183,7 +194,8 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
                         }
                     },
                     {
-                        key: 'x',
+                        unitKey: 'x',
+                        key: "weapon.tooltip.melee_weapon.mutant_damage_mod",
                         value: FindValueByKey(dataJson, "weapon.tooltip.melee_weapon.mutant_damage_mod", "float", 1),
                         lines: {
                             ru: 'Множитель урона по мутантам',

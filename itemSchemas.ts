@@ -168,6 +168,7 @@ export class BulletSchema {
         this.weight = obj.weight;
         this.bulletType = obj.bulletType;
         this.stats = obj.stats;
+        this.stats[0].key = this.stats[0].lines == null ? "weapon.tooltip.bullet.low_penetration" : "weapon.tooltip.bullet.high_penetration";
         this.stats[0].lines = this.stats[0].lines ?? {
             ru: 'Низкая пробиваемость',
             en: 'Low penetration'

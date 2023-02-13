@@ -87,7 +87,8 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
                 bulletType: FindLinesByKey(dataJson, "weapon.tooltip.bullet.bullet_type"),
                 stats: [
                     {
-                        key: 'onlyLines',
+                        unitKey: null,
+                        key: null,
                         value: null,
                         lines: FindLinesByKey(dataJson, "weapon.tooltip.bullet.high_penetration")
                     }

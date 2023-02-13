@@ -87,42 +87,48 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [
                     {
-                        key: null,
+                        unitKey: null,
+                        key: "anomaly.tooltip.signal_detector.can_detect_signals",
                         value: null,
-                        lines: FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_signals')
+                        lines: FindLinesByKey(dataJson, "anomaly.tooltip.signal_detector.can_detect_signals")
                     },
                     {
-                        key: null,
+                        unitKey: null,
+                        key: "anomaly.tooltip.signal_detector.can_detect_artefacts",
                         value: null,
-                        lines: FindLinesByKey(dataJson, 'anomaly.tooltip.signal_detector.can_detect_artefacts')
+                        lines: FindLinesByKey(dataJson, "anomaly.tooltip.signal_detector.can_detect_artefacts")
                     },
                     {
-                        key: 'meters',
-                        value: FindValueByKey(dataJson, 'anomaly.tooltip.signal_detector.info.range', 'int', null),
+                        unitKey: 'meters',
+                        key: "anomaly.tooltip.signal_detector.info.range",
+                        value: FindValueByKey(dataJson, "anomaly.tooltip.signal_detector.info.range", 'int', null),
                         lines: {
                             ru: 'Радиус поиска',
                             en: 'Search range'
                         }
                     },
                     {
-                        key: 'meters',
-                        value: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.passive_scan_radius', 'int', null),
+                        unitKey: 'meters',
+                        key: "stalker.gauge_meter_stat.metal_detector.info.passive_scan_radius",
+                        value: FindValueByKey(dataJson, "stalker.gauge_meter_stat.metal_detector.info.passive_scan_radius", 'int', null),
                         lines: {
                             ru: 'Пассивная дистанция',
                             en: 'Passive scan range'
                         }
                     },
                     {
-                        key: 'meters',
-                        value: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.active_scan_radius', 'int', null),
+                        unitKey: 'meters',
+                        key: "stalker.gauge_meter_stat.metal_detector.info.active_scan_radius",
+                        value: FindValueByKey(dataJson, "stalker.gauge_meter_stat.metal_detector.info.active_scan_radius", 'int', null),
                         lines: {
                             ru: 'Активная дистанция',
                             en: 'Active scan range'
                         }
                     },
                     {
-                        key: 'degrees',
-                        value: FindValueByKey(dataJson, 'stalker.gauge_meter_stat.metal_detector.info.active_scan_angle', 'int', null),
+                        unitKey: 'degrees',
+                        key: "stalker.gauge_meter_stat.metal_detector.info.active_scan_angle",
+                        value: FindValueByKey(dataJson, "stalker.gauge_meter_stat.metal_detector.info.active_scan_angle", 'int', null),
                         lines: {
                             ru: 'Угол сканирования',
                             en: 'Scan angle'
