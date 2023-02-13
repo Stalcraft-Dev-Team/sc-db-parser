@@ -279,7 +279,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 ],
                 damageModifiers: [
                     {
-                        unitKey: 'headMultiplier',
+                        unitKey: 'x',
                         key: null,
                         value: FindValueByKey(dataJson, "weapon.tooltip.weapon.head_damage_modifier", "float", 2),
                         lines: {
@@ -288,7 +288,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
-                        unitKey: 'limbsMultiplier',
+                        unitKey: 'x',
                         key: null,
                         value: FindValueByKey(dataJson, "weapon.tooltip.weapon.limbs_damage_modifier", "float", 2),
                         lines: {
@@ -297,7 +297,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
-                        unitKey: 'mutantMultiplier',
+                        unitKey: 'x',
                         key: null,
                         value: FindValueByKey(dataJson, "weapon.tooltip.weapon.mobs_damage_multiplier", "float", 2),
                         lines: {
@@ -306,13 +306,13 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
-                        unitKey: 'damageIncreasing',
+                        unitKey: null,
                         key: null,
                         value: null,
                         lines: FindFeatureByKey("weapon.tooltip.weapon.constancy_damage_modifier")
                     },
                     {
-                        unitKey: 'executeModifier',
+                        unitKey: null,
                         key: null,
                         value: null,
                         lines: FindFeatureByKey("weapon.tooltip.weapon.execute_damage_modifier")
