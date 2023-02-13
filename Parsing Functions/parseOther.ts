@@ -40,16 +40,16 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
     ////////
     const AllOtherItems: OtherItemSchema[] = [];
     let dataJson: any;
-    parseItemsInFolder(pathToItemsFolder).then(() => {
-        const CategoryPath = resultFolder + '\\' + `all_other.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllOtherItems))));
-        CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllOtherItems));
-        ["ru", "global"].forEach(_server => {
-            GetAndCopyIcons(pathToItemsFolder, _server, 'other');
-        })
-    }).catch(e => {
-        console.error(e);
-    });
+
+    await parseItemsInFolder(pathToItemsFolder);
+    await parseItemsInFolder(pathToItemsFolder.replace('other', 'misc'));
+
+    const CategoryPath = resultFolder + '\\' + `all_other.json`;
+    fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllOtherItems))));
+    CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllOtherItems));
+    ["ru", "global"].forEach(_server => {
+        GetAndCopyIcons(pathToItemsFolder, _server, 'other');
+    })
 
     return SortByGearRanksKeys(AllOtherItems); /* IMPORTANT */
     ////////
