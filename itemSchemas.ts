@@ -425,7 +425,6 @@ export class ContainerSchema {
     rank: string = '';
     category: ILines = { ru: "Контейнер/Рюкзак", en: "Container/Backpack" };
     class: ILines | null = null;
-    containerType: ILines | null = null;
     weight: ILines | null = null;
     stats: object[] = [];
     description: ILines | null = null;
@@ -437,7 +436,6 @@ export class ContainerSchema {
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
-        this.containerType = obj.containerType;
         this.weight = obj.weight;
         this.stats = obj.stats;
         this.description = obj.description;

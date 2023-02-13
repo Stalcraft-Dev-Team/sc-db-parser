@@ -85,9 +85,8 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
                 key: dataJson.name.key,
                 name: dataJson.name.lines,
                 color: dataJson.color,
-                class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
+                class: {},
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
-                containerType: {},
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [
                     {
@@ -122,7 +121,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
             for (const [key, value] of Object.entries(ContainerTypes)) {
                 let isIt: ILines | null = FindLinesByKey(dataJson, value);
                 if (isIt != null) {
-                    container.containerType = isIt;
+                    container.class = isIt;
                     break;
                 }
             }
