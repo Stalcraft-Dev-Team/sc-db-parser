@@ -9,11 +9,17 @@ import { PathToImages } from "./fileds";
 const filesObj: any = {};
 
 export function GetAndCopyIcons(DirectoryToItems: string, Server: string, FolderName: string): void {
-    const DirectoryToIcons = DirectoryToItems.replace('items', 'icons');
+    const DirectoryToIcons = DirectoryToItems.replace('\\items\\', '\\icons\\');
     const funcID: string = '_' + new Date().getMilliseconds();
     filesObj[funcID] = [] as string[];
 
-    LocalFuncThroughDirectory(DirectoryToIcons, funcID);
+    if (FolderName == 'other') {
+        ["other", "misc"].forEach(fName => {
+            LocalFuncThroughDirectory(DirectoryToIcons.replace('\\other\\', `\\${fName}\\`), funcID);
+        });
+    } else {
+        LocalFuncThroughDirectory(DirectoryToIcons, funcID);
+    }
 
     if (!fs.existsSync(PathToImages(Server))) {
         fs.mkdirSync(PathToImages(Server));
