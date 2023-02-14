@@ -87,7 +87,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
 
             const armor = new ArmorSchema({
                 exbo_id: fileName,
-                name: dataJson.name.lines,
+                lines: dataJson.name.lines,
                 key: dataJson.name.key,
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),

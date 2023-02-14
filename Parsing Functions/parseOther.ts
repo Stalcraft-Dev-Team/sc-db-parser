@@ -78,7 +78,7 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
             const otherItem = new OtherItemSchema({
                 exbo_id: fileName,
                 key: dataJson.name.key,
-                name: dataJson.name.lines,
+                lines: dataJson.name.lines,
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),

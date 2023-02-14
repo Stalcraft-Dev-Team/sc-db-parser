@@ -80,7 +80,7 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
             const device = new DeviceSchema({
                 exbo_id: fileName,
                 key: dataJson.name.key,
-                name: dataJson.name.lines,
+                lines: dataJson.name.lines,
                 color: dataJson.color,
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),

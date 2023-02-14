@@ -80,7 +80,7 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
             const bullet = new BulletSchema({
                 exbo_id: fileName,
                 key: dataJson.name.key,
-                name: dataJson.name.lines,
+                lines: dataJson.name.lines,
                 color: dataJson.color,
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),

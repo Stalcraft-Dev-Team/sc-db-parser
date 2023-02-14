@@ -101,7 +101,7 @@ export function MinimizeItemInfo(array: any[]): object[] {
     array.forEach(item => {
         MinimizedArray.push({
             exbo_id: item.exbo_id,
-            name: item.name,
+            lines: item.lines,
             color: item.color,
             rank: item.rank,
             class: item.class,

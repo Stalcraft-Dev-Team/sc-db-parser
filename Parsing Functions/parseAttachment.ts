@@ -86,7 +86,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
 
             const attachment = new AttachmentSchema({
                 exbo_id: fileName,
-                name: dataJson.name.lines,
+                lines: dataJson.name.lines,
                 key: dataJson.name.key,
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),

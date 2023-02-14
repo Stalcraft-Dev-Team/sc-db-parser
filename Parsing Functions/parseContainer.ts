@@ -83,7 +83,7 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
             const container = new ContainerSchema({
                 exbo_id: fileName,
                 key: dataJson.name.key,
-                name: dataJson.name.lines,
+                lines: dataJson.name.lines,
                 color: dataJson.color,
                 class: {},
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),

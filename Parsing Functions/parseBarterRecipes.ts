@@ -81,6 +81,31 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
             fs.mkdirSync(PathToResultFolder);
         }
 
+        for (const i_key in ParsedItemRecipes) {
+            for (const j_key in ParsedItemRecipes) {
+
+                if (i_key == j_key)
+                    continue;
+
+                const MatchedRecipes = ParsedItemRecipes[j_key].recipes
+                    .filter((recipe: any) => recipe.item != null && recipe.item.exbo_id == ParsedItemRecipes[i_key].exbo_id);
+
+                MatchedRecipes.forEach((recipe: any) => {
+                    if (ParsedItemRecipes[i_key].useInto
+                        .filter((item: any) => item.exbo_id == recipe.item.exbo_id)
+                        .length == 0) {
+                        const jKeyItem = ListingJson.filter((item: any) => item.exbo_id == ParsedItemRecipes[j_key].exbo_id)[0];
+                        ParsedItemRecipes[i_key].useInto.push({
+                            exbo_id: jKeyItem.exbo_id,
+                            category: jKeyItem.category,
+                            lines: jKeyItem.lines
+                        });
+                    }
+                });
+
+            }
+        }
+
         fs.writeFileSync(PathToResultFolder+`all_recipes.json`, JSON.stringify(ParsedItemRecipes));
 
         ParsedItemRecipes.forEach(item => {

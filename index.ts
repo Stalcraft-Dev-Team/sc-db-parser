@@ -1,7 +1,7 @@
 // LIBS
-import fs from "fs";
-import fse from "fs-extra";
-const path = require('path');
+import fs from 'fs';
+import fse from 'fs-extra';
+import path from 'path';
 import { execSync } from 'child_process';
 import { ItemProperties } from "./Static/itemProperties-class";
 import { ParseMedicine } from './Parsing Functions/parseMedicine';
@@ -15,7 +15,7 @@ import { ParseContainer } from "./Parsing Functions/parseContainer";
 import { ParseArtefact } from "./Parsing Functions/parseArtefact";
 import { ParseArmor } from "./Parsing Functions/parseArmor";
 import { ParseOther } from "./Parsing Functions/parseOther";
-import { ParseBarterRecipes } from "./Parsing Functions/parseBarterRecipes";
+import { ParseBarterRecipes } from './Parsing Functions/parseBarterRecipes';
 // END LIBS
 
 // CONST'S
@@ -166,7 +166,6 @@ async function ParseAllData(server = '') {
             .then(PushToListing)
             .catch((e) => { console.error(e); })
             .finally(() => {
-
                 console.log (server.toUpperCase()+': ParseOther: complete!');
             });
 
@@ -214,7 +213,7 @@ function PushToListing(data: object[]): void {
     data.forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
         category: UniqueSubCategories.length > 1 ? item.category : item.class,
-        name: item.name,
+        lines: item.lines,
         color: item.color
     }));
 }

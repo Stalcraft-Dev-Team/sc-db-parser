@@ -13,7 +13,7 @@ export interface ILines {
 export class WeaponSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: ILines | null = null;
     category: ILines = { ru: "Оружие", en: "Weapon" };
@@ -29,7 +29,7 @@ export class WeaponSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -120,7 +120,7 @@ export class WeaponSchema {
 export class AttachmentSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: ILines | null = null;
     category: ILines = { ru: "Обвес", en: "Attachment" };
@@ -136,7 +136,7 @@ export class AttachmentSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -151,7 +151,7 @@ export class AttachmentSchema {
 export class BulletSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     category: ILines = { ru: "Патрон", en: "Bullet" };
     class: ILines | null = null;
@@ -162,7 +162,7 @@ export class BulletSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.class = obj.class;
         this.weight = obj.weight;
@@ -179,7 +179,7 @@ export class BulletSchema {
 export class MeleeWeaponSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: ILines | null = null;
     category: ILines = { ru: "Ближний бой", en: "Melee weapon" };
@@ -192,7 +192,7 @@ export class MeleeWeaponSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -243,7 +243,7 @@ export class MeleeWeaponSchema {
 export class GrenadeSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Граната", en: "Grenade" };
@@ -255,7 +255,7 @@ export class GrenadeSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -287,7 +287,7 @@ export class GrenadeSchema {
 export class DeviceSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Устройство", en: "Device" };
@@ -299,7 +299,7 @@ export class DeviceSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -331,7 +331,7 @@ export class DeviceSchema {
 export class MedicineSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Медицина", en: "Medicine" };
@@ -345,7 +345,7 @@ export class MedicineSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -360,7 +360,7 @@ export class MedicineSchema {
 export class ArmorSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: ILines | null = null;
     category: ILines = { ru: "Броня", en: "Armor" };
@@ -376,7 +376,7 @@ export class ArmorSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -392,7 +392,7 @@ export class ArmorSchema {
 export class ArtefactSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Артефакт", en: "Artefact" };
@@ -406,7 +406,7 @@ export class ArtefactSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -421,7 +421,7 @@ export class ArtefactSchema {
 export class ContainerSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Контейнер/Рюкзак", en: "Container/Backpack" };
@@ -433,7 +433,7 @@ export class ContainerSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -446,7 +446,7 @@ export class ContainerSchema {
 export class OtherItemSchema {
     exbo_id: string = '';
     key: string = '';
-    name: ILines | null = null;
+    lines: ILines | null = null;
     color: string = '';
     rank: string = '';
     category: ILines = { ru: "Прочее", en: "Other" };
@@ -458,7 +458,7 @@ export class OtherItemSchema {
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;
         this.key = obj.key;
-        this.name = obj.name;
+        this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
         this.class = obj.class;
@@ -478,6 +478,7 @@ export class ItemRecipes {
     settlementTitles: ILines[] = [];
     settlementRequiredLevel: string = '';
     recipes: IRecipe[] = [];
+    useInto: object[] = [];
 
     constructor(obj: any) {
         this.exbo_id = obj.exbo_id;

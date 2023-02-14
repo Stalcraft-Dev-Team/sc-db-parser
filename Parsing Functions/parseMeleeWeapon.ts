@@ -80,7 +80,7 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
             const meleeWeapon = new MeleeWeaponSchema({
                 exbo_id: fileName,
                 key: dataJson.name.key,
-                name: dataJson.name.lines,
+                lines: dataJson.name.lines,
                 color: dataJson.color,
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
