@@ -7,6 +7,7 @@ import { PropertiesTypes } from "./enums";
 import FileWithSortedProps from "../sortedProps.json";
 import FileWithPercentageTags from "../percentTypeProps.json";
 
+
 export interface IPropertiesElement {
     key: string,
     goodIfGreaterThanZero: boolean,

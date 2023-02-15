@@ -8,6 +8,8 @@ import {
     GetAndCopyIcons, MinimizeItemInfo,
     SortProperties
 } from "../Static/functions";
+import {ItemProperties} from "../Static/itemProperties-class";
+import FileWithArtefactAdditionalStats from "../artefacts.json";
 
 export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
@@ -134,6 +136,13 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
             }
             artefact.stats = artefact.stats.concat(SortProperties(dataJson, 'player'));
 
+            FileWithArtefactAdditionalStats.forEach((_artefact: any) => {
+                const ArtefactKey = _artefact.key.split('.')[1];
+                if (artefact.key.includes(ArtefactKey)) {
+                    artefact.additionalStats = SortAdditionalProperties(_artefact.additionalStats);
+                }
+            })
+
             SelectedArtefactType.push(artefact);
         });
 
@@ -193,6 +202,39 @@ export function FindRangeValueByKey(dataJson: any, searchingKey: string, type: s
             console.error("WHAT THE HELL???");
         }
     }
+
+    return result;
+}
+
+function SortAdditionalProperties(array: any): object[] {
+    const result: object[] = [];
+
+    array.forEach((prop: any) => {
+        const PropInfo = ItemProperties.AllProperties.player
+            .filter((_prop: any) => {
+                const _propKey = _prop.key.split('.')[_prop.key.split('.').length-1];
+
+                let propKey = prop.key.split('.')[prop.key.split('.').length-1];
+                if (propKey == 'psycho_protection_short')
+                    propKey = 'psycho_protection';
+
+                return _propKey == propKey;
+            })[0];
+
+        // @ts-ignore
+        const IsPercentage: boolean = ItemProperties.PercentageTagProperties.player
+            .filter((_key: string) => _key == PropInfo.key)[0] != undefined;
+        result.push({
+            unitKey: IsPercentage ? 'percentage' : null,
+            key: PropInfo.key,
+            value: {
+                min: prop.valueMin.toString(),
+                max: prop.valueMax.toString()
+            },
+            isPositive: prop.isPositive,
+            lines: PropInfo.lines
+        });
+    })
 
     return result;
 }
