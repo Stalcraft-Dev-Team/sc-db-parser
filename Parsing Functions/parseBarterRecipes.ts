@@ -54,7 +54,7 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
                                     otherItem = {
                                         exbo_id: item.exbo_id,
                                         category: item.category,
-                                        lines: item.name,
+                                        lines: item.lines,
                                         amount: otherItem.amount
                                     }
                                 }
