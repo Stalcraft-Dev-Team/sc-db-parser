@@ -1,6 +1,6 @@
 import fs from "fs";
 import { PathToParse } from '../Static/fileds';
-import { ArmorSchema, ILines } from "../itemSchemas";
+import {ArmorSchema, ILines, WeaponSchema} from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
@@ -56,7 +56,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
     let dataJson: any;
 
     subFolders.map(async folder => {
-        await parseItemsInFolder(pathToItemsFolder + folder + '\\');
+        await parseItemsInFolder(pathToItemsFolder + folder);
     });
 
     fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllArmors))));
@@ -76,9 +76,9 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
 
         files.map((file) => {
             const fileName: string = file.split('.')[0];
-            file = folderPath + file;
-            const data: Buffer = fs.readFileSync(file);
+            file = folderPath + '\\' + file;
 
+            const data: Buffer = fs.readFileSync(file);
             dataJson = JSON.parse(data.toString());
 
             const itemKey = () => {
@@ -108,7 +108,9 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
 
             // если не null значит мы парсим глобал
             if (RuListing !== null) {
-                RuListing.forEach((item: ArmorSchema) => {
+                const CurrentCategoryFolder = folderPath.split('\\')[folderPath.split('\\').length-1];
+                const CategoryListing = JSON.parse(fs.readFileSync(PathToRuListing.replace('all_armors.json', `${CurrentCategoryFolder}.json`)).toString());
+                CategoryListing.forEach((item: ArmorSchema) => {
                     if (item.lines?.en.includes(<string>armor.lines?.en)) {
                         switch (true) {
                             case item.lines?.en.includes('Damaged'): {
@@ -129,7 +131,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
             SelectedCategoryArmors.push(armor);
         });
 
-        const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
+        const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 1];
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryArmors)));
         CreateSubFoldersAndItems(CategoryPath, undefined);

@@ -58,7 +58,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
     let dataJson: any;
 
     subFolders.map(async folder => {
-        await parseItemsInFolder(pathToItemsFolder + folder + '\\');
+        await parseItemsInFolder(pathToItemsFolder + folder);
     });
 
     fs.writeFileSync(resultFolder + '\\' + 'all_weapons.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllWeapons))));
@@ -78,8 +78,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
 
         files.map((file) => {
             const fileName: string = file.split('.')[0];
-            file = folderPath + file
-
+            file = folderPath + '\\' + file;
 
             const data: Buffer = fs.readFileSync(file);
             dataJson = JSON.parse(data.toString());
@@ -362,7 +361,9 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
 
             // если не null значит мы парсим глобал
             if (RuListing !== null) {
-                RuListing.forEach((item: WeaponSchema) => {
+                const CurrentCategoryFolder = folderPath.split('\\')[folderPath.split('\\').length-1];
+                const CategoryListing = JSON.parse(fs.readFileSync(PathToRuListing.replace('all_weapons.json', `${CurrentCategoryFolder}.json`)).toString());
+                CategoryListing.forEach((item: WeaponSchema) => {
                     if (item.lines?.en.includes(<string>weapon.lines?.en)) {
                         switch (true) {
                             case item.lines?.en.includes('Damaged'): {
@@ -381,7 +382,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
             SelectedCategoryWeapons.push(weapon);
         });
 
-        const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
+        const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 1];
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons)));
         CreateSubFoldersAndItems(CategoryPath, undefined);
