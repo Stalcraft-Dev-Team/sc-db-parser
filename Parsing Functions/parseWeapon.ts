@@ -1,6 +1,6 @@
 import fs from "fs";
 import { PathToParse } from '../Static/fileds';
-import { WeaponSchema } from "../itemSchemas";
+import {ArmorSchema, WeaponSchema} from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
@@ -8,6 +8,7 @@ import {
     FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys
 } from "../Static/functions";
+import {IndexDirName} from "../index";
 
 
 // EXCLUDE DEVICE AND MELEE
@@ -70,9 +71,15 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         const SelectedCategoryWeapons: WeaponSchema[] = [];
         const files: string[] = fs.readdirSync(folderPath);
 
+        const PathToRuListing = IndexDirName+'\\'+PathToParse+'\\'+'ru'+'\\'+'weapon'+'\\'+'all_weapons.json';
+        const RuListing = server == 'global'
+            ? JSON.parse(fs.readFileSync(PathToRuListing).toString())
+            : null;
+
         files.map((file) => {
             const fileName: string = file.split('.')[0];
-            file = folderPath + file;
+            file = folderPath + file
+
 
             const data: Buffer = fs.readFileSync(file);
             dataJson = JSON.parse(data.toString());
@@ -352,6 +359,24 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 ],
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
+
+            // если не null значит мы парсим глобал
+            if (RuListing !== null) {
+                RuListing.forEach((item: WeaponSchema) => {
+                    if (item.lines?.en.includes(<string>weapon.lines?.en)) {
+                        switch (true) {
+                            case item.lines?.en.includes('Damaged'): {
+                                SelectedCategoryWeapons.push(item);
+                                break;
+                            }
+                            case item.lines?.en.includes('Worn'): {
+                                SelectedCategoryWeapons.push(item);
+                                break;
+                            }
+                        }
+                    }
+                });
+            }
 
             SelectedCategoryWeapons.push(weapon);
         });

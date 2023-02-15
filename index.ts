@@ -197,8 +197,17 @@ async function ParseAllData(server = '') {
 }
 
 async function StartParse() {
-    await ParseAllData('ru').then(() => { if (EnableNiceLookForJSON) NiceLookForJSON('ru'); });
-    await ParseAllData('global').then(() => { if (EnableNiceLookForJSON) NiceLookForJSON('global'); })
+    let ruComplete: boolean = false;
+    await ParseAllData('ru').then(() => {
+        if (EnableNiceLookForJSON) NiceLookForJSON('ru');
+        ruComplete = true;
+    });
+    const checker = setInterval(() => {
+        if (ruComplete) {
+            ParseAllData('global').then(() => { if (EnableNiceLookForJSON) NiceLookForJSON('global'); });
+            clearInterval(checker);
+        }
+    }, 50);
 }
 
 let ListingJSON: object[] = [];

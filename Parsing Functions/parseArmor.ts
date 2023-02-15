@@ -8,6 +8,7 @@ import {
     GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanksKeys, SortProperties
 } from "../Static/functions";
+import {IndexDirName} from "../index";
 
 
 
@@ -59,14 +60,19 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
     });
 
     fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllArmors))));
-    GetAndCopyIcons(pathToItemsFolder, server, 'armor');
 
+    GetAndCopyIcons(pathToItemsFolder, server, 'armor');
     return SortByGearRanksKeys(AllArmors); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {
         const SelectedCategoryArmors: ArmorSchema[] = [];
         const files: string[] = fs.readdirSync(folderPath);
+
+        const PathToRuListing = IndexDirName+'\\'+PathToParse+'\\'+'ru'+'\\'+'armor'+'\\'+'all_armors.json';
+        const RuListing = server == 'global'
+            ? JSON.parse(fs.readFileSync(PathToRuListing).toString())
+            : null;
 
         files.map((file) => {
             const fileName: string = file.split('.')[0];
@@ -100,6 +106,23 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
                 description: FindLinesByKey(dataJson, itemKey() + 'description'),
             });
 
+            // если не null значит мы парсим глобал
+            if (RuListing !== null) {
+                RuListing.forEach((item: ArmorSchema) => {
+                    if (item.lines?.en.includes(<string>armor.lines?.en)) {
+                        switch (true) {
+                            case item.lines?.en.includes('Damaged'): {
+                                SelectedCategoryArmors.push(item);
+                                break;
+                            }
+                            case item.lines?.en.includes('Worn'): {
+                                SelectedCategoryArmors.push(item);
+                                break;
+                            }
+                        }
+                    }
+                });
+            }
 
             armor.stats = SortProperties(dataJson, 'player');
 
