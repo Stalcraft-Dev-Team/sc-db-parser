@@ -6,8 +6,8 @@ export interface ICanMutateValue {
 }
 
 export interface ILines {
-    ru: string | null,
-    en: string | null
+    ru: string,
+    en: string
 }
 
 export class WeaponSchema {
@@ -449,10 +449,11 @@ export class OtherItemSchema {
     lines: ILines | null = null;
     color: string = '';
     rank: string = '';
-    category: ILines = { ru: "Прочее", en: "Other" };
+    category: ILines | null = { ru: "Прочее", en: "Other" };
     class: ILines | null = null;
     weight: ILines | null = null;
-
+    useCategory: ILines | null = null;
+    suitableFor: object[] | null = null;
     description: ILines | null = null;
 
     constructor(obj: any) {
@@ -463,6 +464,8 @@ export class OtherItemSchema {
         this.rank = obj.rank;
         this.class = obj.class;
         this.weight = obj.weight;
+        this.useCategory = obj.useCategory ?? null;
+        this.suitableFor = obj.suitableFor ?? null;
         this.description = obj.description;
     }
 }
@@ -487,4 +490,3 @@ export class ItemRecipes {
         this.recipes = obj.recipes;
     }
 }
-
