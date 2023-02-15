@@ -100,6 +100,12 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
                 suitableFor: []
             });
 
+            if (attachment.description != null) {
+                attachment.description.ru = attachment.description.ru.replace('@', '<br>');
+                attachment.description.en = attachment.description.en.replace('@', '<br>');
+            }
+
+
             attachment.suitableFor = GetSuitableWeapons(dataJson);
 
             attachment.stats = SortProperties(dataJson, 'weapon');
@@ -114,27 +120,26 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
 
         SelectedCategoryWeapons.map(attachment => AllAttachments.push(attachment));
     }
-
-    function GetSuitableWeapons(dataJson: any): object[] {
-        let result: object[] = [];
-
-        for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
-            if (dataJson.infoBlocks[i].title.key == 'weapon.lore.attachment.all_suitable_targets') {
-                result = dataJson.infoBlocks[i].elements as object[];
-            }
-        }
-        let resultDump: object[] = [];
-        result.forEach(item => {
-            resultDump.push({
-                key: (item as any).name.key,
-                lines: {
-                    ru: (item as any).name.lines.ru,
-                    en: (item as any).name.lines.en
-                }
-            });
-        })
-
-        return resultDump;
-    }
 }
 
+function GetSuitableWeapons(dataJson: any): object[] {
+    let result: object[] = [];
+
+    for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
+        if (dataJson.infoBlocks[i].title.key == 'weapon.lore.attachment.all_suitable_targets') {
+            result = dataJson.infoBlocks[i].elements as object[];
+        }
+    }
+    let resultDump: object[] = [];
+    result.forEach(item => {
+        resultDump.push({
+            key: (item as any).name.key,
+            lines: {
+                ru: (item as any).name.lines.ru,
+                en: (item as any).name.lines.en
+            }
+        });
+    })
+
+    return resultDump;
+}
