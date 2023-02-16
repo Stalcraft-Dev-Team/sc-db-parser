@@ -105,7 +105,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 ammoType: FindLinesInValueByKey(dataJson, "weapon.tooltip.weapon.info.ammo_type"),
                 stats: [
                     {
-                        unitKey: null,
+                        unitKey: 'units',
                         key: 'core.tooltip.stat_name.damage_type.direct',
                         value: DamagesAndDistances.startDamage == undefined
                             ? FindValueByKey(dataJson, 'core.tooltip.stat_name.damage_type.direct', 'int', null)
@@ -117,7 +117,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
-                        unitKey: null,
+                        unitKey: 'units',
                         key: 'core.tooltip.stat_name.damage_type.endDamage',
                         value: DamagesAndDistances.endDamage,
                         mutatedValue: null,
@@ -127,7 +127,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
-                        unitKey: null,
+                        unitKey: 'meters',
                         key: 'core.tooltip.stat_name.damage_type.damageDecreaseStart',
                         value: DamagesAndDistances.damageDecreaseStart,
                         mutatedValue: null,
@@ -137,7 +137,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
-                        unitKey: null,
+                        unitKey: 'meters',
                         key: 'core.tooltip.stat_name.damage_type.damageDecreaseEnd',
                         value: DamagesAndDistances.damageDecreaseEnd,
                         mutatedValue: null,
@@ -147,7 +147,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
-                        unitKey: null,
+                        unitKey: 'meters',
                         key: 'core.tooltip.stat_name.damage_type.maxDistance',
                         value: DamagesAndDistances.maxDistance,
                         mutatedValue: null,
@@ -157,7 +157,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         }
                     },
                     {
-                        unitKey: null,
+                        unitKey: 'units',
                         key: "weapon.tooltip.weapon.info.clip_size",
                         value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null),
                         mutatedValue: null,
