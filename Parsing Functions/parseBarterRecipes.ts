@@ -41,7 +41,6 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
                                     lines: ItemFromListing.lines,
                                 }
                             } else {
-                                // Предложение бартера Улья, где требуется странный ящик, пока не будет этого рецепта :)
                                 canPushItem = false
                             }
                         }
