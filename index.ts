@@ -168,13 +168,13 @@ async function ParseAllData(server = '') {
             .finally(() => {
                 console.log (server.toUpperCase()+': ParseOther: complete!');
             });
-
+    } else {
         fse.copySync(
             RuPathToOther,
             GlobalPathToOther,
             { overwrite: true }
         );
-    } else {
+
         const OtherItems: object[] = [];
         fs.readdirSync(`${GlobalPathToOther}\\all_other`).forEach(file => {
             const dataJson = JSON.parse(fs.readFileSync(`${GlobalPathToOther}\\all_other\\${file}`).toString());
@@ -212,16 +212,10 @@ async function StartParse() {
 
 let ListingJSON: object[] = [];
 function PushToListing(data: object[]): void {
-    // const UniqueSubCategories: string[] = [];
-    // data.forEach((item: any) => {
-    //     if (UniqueSubCategories.indexOf(item.class.en) == -1) {
-    //         UniqueSubCategories.push(item.class.en);
-    //     }
-    // });
-
     data.forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
         category: item.category,
+        class: item.class,
         lines: item.lines,
         color: item.color
     }));

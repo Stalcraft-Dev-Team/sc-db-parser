@@ -102,9 +102,10 @@ export function MinimizeItemInfo(array: any[]): object[] {
         MinimizedArray.push({
             exbo_id: item.exbo_id,
             lines: item.lines,
+            category: item.category,
+            class: item.class,
             color: item.color,
             rank: item.rank,
-            class: item.class,
             purpose: item.purpose ?? "null"
         });
 

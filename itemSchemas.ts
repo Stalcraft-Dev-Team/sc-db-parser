@@ -462,6 +462,7 @@ export class OtherItemSchema {
         this.lines = obj.lines;
         this.color = obj.color;
         this.rank = obj.rank;
+        this.category = { ru: "Прочее", en: "Other" };
         this.class = obj.class;
         this.weight = obj.weight;
         this.useCategory = obj.useCategory ?? null;
