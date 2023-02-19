@@ -19,9 +19,9 @@ import { ParseBarterRecipes } from './Parsing Functions/parseBarterRecipes';
 // END LIBS
 
 // CONST'S
+import RejectedOthersJson from "./rejectedOthers.json";
 export const IndexDirName: string = __dirname;
 import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
-import Path from "path";
 import {MinimizeItemInfo} from "./Static/functions";
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
@@ -184,7 +184,18 @@ async function ParseAllData(server = '') {
         ListingJSON = ListingJSON.concat(MinimizeItemInfo(OtherItems));
     }
 
-
+    // Удаление дубликатов и неиспользуемых предметов
+    for (let i = ListingJSON.length-1; i >= 0; i--) {
+        for (let j = 0; j < ListingJSON.length; j++) {
+            if (i !== j
+                && ListingJSON[i] != null && ListingJSON[j] != null
+                && ListingJSON[i].exbo_id == ListingJSON[j].exbo_id) {
+                ListingJSON[i] = null;
+            }
+        }
+    }
+    ListingJSON = ListingJSON.filter((item: any) => item !== null && RejectedOthersJson.indexOf(item.exbo_id) === -1);
+    //
 
     const PathToListing = IndexDirName+'\\'+PathToParse+'\\'+server+'\\'+'listing.json';
     fs.writeFileSync(PathToListing, JSON.stringify(ListingJSON, null, 4));
@@ -210,7 +221,7 @@ async function StartParse() {
     }, 50);
 }
 
-let ListingJSON: object[] = [];
+let ListingJSON: any[] = [];
 function PushToListing(data: object[]): void {
     data.forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
@@ -253,7 +264,7 @@ function NiceLookForJSON(server: string): void {
 
 function ThroughDirectoryGetAllJSON(Directory: string) {
     fs.readdirSync(Directory).forEach(File => {
-        const Absolute = Path.join(Directory, File);
+        const Absolute = path.join(Directory, File);
         if (fs.statSync(Absolute).isDirectory()) return ThroughDirectoryGetAllJSON(Absolute);
         else if (Absolute.split('.')[1] == 'json') {
             const data: any = JSON.stringify(JSON.parse(fs.readFileSync(Absolute).toString()), null, 4);
