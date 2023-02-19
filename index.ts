@@ -22,7 +22,7 @@ import { ParseBarterRecipes } from './Parsing Functions/parseBarterRecipes';
 import RejectedOthersJson from "./rejectedOthers.json";
 export const IndexDirName: string = __dirname;
 import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
-import {MinimizeItemInfo} from "./Static/functions";
+import {DeleteDublicatesAndRejectedItems, MinimizeItemInfo} from "./Static/functions";
 const PathToDB: string = __dirname+'\\'+PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
 const EnableNiceLookForJSON = true;
@@ -159,6 +159,8 @@ async function ParseAllData(server = '') {
         });
 
 
+
+    // Копирование категории "Прочее" с RU в GLOBAL
     const RuPathToOther = IndexDirName+'\\'+PathToParse+'\\'+'ru'+'\\'+'other';
     const GlobalPathToOther = IndexDirName+'\\'+PathToParse+'\\'+'global'+'\\'+'other';
     if (server == 'ru') {
@@ -183,18 +185,6 @@ async function ParseAllData(server = '') {
         });
         ListingJSON = ListingJSON.concat(MinimizeItemInfo(OtherItems));
     }
-
-    // Удаление дубликатов и неиспользуемых предметов
-    for (let i = ListingJSON.length-1; i >= 0; i--) {
-        for (let j = 0; j < ListingJSON.length; j++) {
-            if (i !== j
-                && ListingJSON[i] != null && ListingJSON[j] != null
-                && ListingJSON[i].exbo_id == ListingJSON[j].exbo_id) {
-                ListingJSON[i] = null;
-            }
-        }
-    }
-    ListingJSON = ListingJSON.filter((item: any) => item !== null && RejectedOthersJson.indexOf(item.exbo_id) === -1);
     //
 
     const PathToListing = IndexDirName+'\\'+PathToParse+'\\'+server+'\\'+'listing.json';
@@ -221,9 +211,10 @@ async function StartParse() {
     }, 50);
 }
 
-let ListingJSON: any[] = [];
-function PushToListing(data: object[]): void {
-    data.forEach((item: any) => ListingJSON.push({
+let ListingJSON: object[] = [];
+function PushToListing(data: any[]): void {
+
+    DeleteDublicatesAndRejectedItems(data).forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
         category: item.category,
         class: item.class,

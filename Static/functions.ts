@@ -5,6 +5,7 @@ import { FindRangeValueByKey } from "../Parsing Functions/parseArtefact";
 import fs from "fs";
 import Path from "path";
 import { PathToImages } from "./fileds";
+import RejectedOthersJson from "../rejectedOthers.json";
 
 const filesObj: any = {};
 
@@ -77,9 +78,9 @@ export function SortByGearRanksKeys(array: any[]): object[] {
 
 
         array.forEach(item => {
-            if (item.hasOwnProperty('rank') && item.rank != null && item.rank.en == gearRanksKey) {
+            if (item && item.rank != null && item.rank.en == gearRanksKey) {
                 ItemStorage.push(item);
-            } else if (item.rank == null && ItemWithoutGearRanks.indexOf(item) == -1) {
+            } else if (item && item.rank == null && ItemWithoutGearRanks.indexOf(item) == -1) {
                 ItemWithoutGearRanks.push(item)
             }
         })
@@ -119,6 +120,20 @@ export function MinimizeItemInfo(array: any[]): object[] {
     });
 
     return MinimizedArray;
+}
+
+export function DeleteDublicatesAndRejectedItems(array: any[]): any[] {
+    for (let i = array.length-1; i >= 0; i--) {
+        for (let j = 0; j < array.length; j++) {
+            if (i !== j
+                && array[i] !== null && array[j] !== null
+                && array[i].exbo_id === array[j].exbo_id) {
+                array[i] = null;
+            }
+        }
+    }
+
+    return array.filter((item: any) => item !== null && RejectedOthersJson.indexOf(item.exbo_id) === -1);
 }
 
 // type must be 'player' or 'weapon'

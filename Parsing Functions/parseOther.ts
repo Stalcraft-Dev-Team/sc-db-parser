@@ -2,7 +2,7 @@ import fs from "fs";
 import { PathToParse } from '../Static/fileds';
 import { ILines, OtherItemSchema } from "../itemSchemas";
 import {
-    CreateSubFoldersAndItems,
+    CreateSubFoldersAndItems, DeleteDublicatesAndRejectedItems,
     FindLinesByKey,
     FindLinesInValueByKey,
     GetAndCopyIcons, MinimizeItemInfo,
@@ -38,13 +38,14 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
     resultFolder = resultFolder.replace('global', 'ru');
 
     ////////
-    const AllOtherItems: OtherItemSchema[] = [];
+    let AllOtherItems: OtherItemSchema[] = [];
     let dataJson: any;
 
     await parseItemsInFolder(pathToItemsFolder);
     await parseItemsInFolder(pathToItemsFolder.replace('other', 'misc'));
 
     const CategoryPath = resultFolder + '\\' + `all_other.json`;
+    AllOtherItems = DeleteDublicatesAndRejectedItems(AllOtherItems) as OtherItemSchema[]; // Временное решение
     fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllOtherItems))));
     CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllOtherItems));
     ["ru", "global"].forEach(_server => {

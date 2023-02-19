@@ -2,7 +2,7 @@ import fs from "fs";
 import { PathToParse } from '../Static/fileds';
 import {ArmorSchema, WeaponSchema} from "../itemSchemas";
 import {
-    CreateSubFoldersAndItems,
+    CreateSubFoldersAndItems, DeleteDublicatesAndRejectedItems,
     FindLinesByKey,
     FindLinesInValueByKey,
     FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
@@ -384,7 +384,9 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 1];
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons)));
+        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(
+            DeleteDublicatesAndRejectedItems(SelectedCategoryWeapons) // Временное решение
+        )));
         CreateSubFoldersAndItems(CategoryPath, undefined);
 
         SelectedCategoryWeapons.map(weapon => AllWeapons.push(weapon));
