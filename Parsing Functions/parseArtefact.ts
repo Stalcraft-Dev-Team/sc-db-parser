@@ -10,6 +10,8 @@ import {
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
 import FileWithArtefactAdditionalStats from "../artefacts.json";
+import SortedArtefacts from "../sortedArtefactsID.json";
+import {log} from "util";
 
 export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
@@ -58,7 +60,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
 
-    fs.writeFileSync(resultFolder + '\\' + 'all_artefacts.json', JSON.stringify(MinimizeItemInfo(AllArtefacts)));
+    fs.writeFileSync(resultFolder + '\\' + 'all_artefacts.json', JSON.stringify(MinimizeItemInfo(SortArtefactsLikeInGame(AllArtefacts))));
     GetAndCopyIcons(pathToItemsFolder, server, 'artefact');
 
     return AllArtefacts; /* IMPORTANT */
@@ -148,7 +150,8 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(SelectedArtefactType));
+
+        fs.writeFileSync(CategoryPath, JSON.stringify(SortArtefactsLikeInGame(SelectedArtefactType)));
         CreateSubFoldersAndItems(CategoryPath, undefined);
 
         SelectedArtefactType.map(artefact => AllArtefacts.push(artefact));
@@ -204,6 +207,19 @@ export function FindRangeValueByKey(dataJson: any, searchingKey: string, type: s
     }
 
     return result;
+}
+
+function SortArtefactsLikeInGame(array: any[]): any[] {
+    const SortedArray: any[] = [];
+
+    SortedArtefacts.forEach((id: string) => {
+        array.forEach((item: any) => {
+            if (id === item.exbo_id)
+                SortedArray.push(item);
+        });
+    });
+
+    return SortedArray;
 }
 
 function SortAdditionalProperties(array: any): object[] {

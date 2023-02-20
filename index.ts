@@ -19,7 +19,6 @@ import { ParseBarterRecipes } from './Parsing Functions/parseBarterRecipes';
 // END LIBS
 
 // CONST'S
-import RejectedOthersJson from "./rejectedOthers.json";
 export const IndexDirName: string = __dirname;
 import { UrlToSCDB, PathToClone, PathToParse } from "./Static/fileds";
 import {DeleteDublicatesAndRejectedItems, MinimizeItemInfo} from "./Static/functions";
@@ -170,13 +169,13 @@ async function ParseAllData(server = '') {
             .finally(() => {
                 console.log (server.toUpperCase()+': ParseOther: complete!');
             });
-    } else {
+
         fse.copySync(
             RuPathToOther,
             GlobalPathToOther,
             { overwrite: true }
         );
-
+    } else {
         const OtherItems: object[] = [];
         fs.readdirSync(`${GlobalPathToOther}\\all_other`).forEach(file => {
             const dataJson = JSON.parse(fs.readFileSync(`${GlobalPathToOther}\\all_other\\${file}`).toString());
