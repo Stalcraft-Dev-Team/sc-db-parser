@@ -23,19 +23,25 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
         server = 'global';
     }
 
-    let resultFolder: string = '';
-    ["ru", "global"].forEach(_server => {
-        const RegionalPathToParse: string = `${IndexDirName}\\${PathToParse}\\${_server}`;
-        if (!fs.existsSync(RegionalPathToParse)) {
-            fs.mkdirSync(RegionalPathToParse);
+    function RPToP(): string {
+        let result: string = '';
+        let dirname: string[] = __dirname.split('\\');
+        for (let i = 0; i < dirname.length - 1; i++) {
+            result += dirname[i] + '\\';
         }
+        result += PathToParse + '\\' + server;
+        return result;
+    }
 
-        resultFolder = RegionalPathToParse + '\\' + 'other';
-        if (!fs.existsSync(resultFolder)) {
-            fs.mkdirSync(resultFolder);
-        }
-    });
-    resultFolder = resultFolder.replace('global', 'ru');
+    const RegionalPathToParse: string = RPToP();
+    if (!fs.existsSync(RegionalPathToParse)) {
+        fs.mkdirSync(RegionalPathToParse);
+    }
+
+    const resultFolder = RegionalPathToParse + '\\' + 'other';
+    if (!fs.existsSync(resultFolder)) {
+        fs.mkdirSync(resultFolder);
+    }
 
     ////////
     let AllOtherItems: OtherItemSchema[] = [];
@@ -48,9 +54,7 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
     AllOtherItems = DeleteDublicatesAndRejectedItems(AllOtherItems) as OtherItemSchema[]; // Временное решение
     fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanks(AllOtherItems))));
     CreateSubFoldersAndItems(CategoryPath, SortByGearRanks(AllOtherItems));
-    ["ru", "global"].forEach(_server => {
-        GetAndCopyIcons(pathToItemsFolder, _server, 'other');
-    })
+    GetAndCopyIcons(pathToItemsFolder, server, 'other');
 
     return SortByGearRanks(AllOtherItems); /* IMPORTANT */
     ////////
