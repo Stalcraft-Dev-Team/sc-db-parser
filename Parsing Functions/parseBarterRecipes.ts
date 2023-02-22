@@ -109,6 +109,9 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
 
         fs.writeFileSync(PathToResultFolder+`all_recipes.json`, JSON.stringify(ParsedItemRecipes));
 
+        if (!fs.existsSync(PathToResultFolder+'all_recipes')) {
+            fs.mkdirSync(PathToResultFolder+'all_recipes');
+        }
         ParsedItemRecipes.forEach(item => {
             fs.writeFileSync(PathToResultFolder+'all_recipes'+'\\'+`${item.exbo_id}.json`, JSON.stringify(item));
         });

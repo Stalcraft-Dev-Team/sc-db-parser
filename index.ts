@@ -168,7 +168,7 @@ async function ParseAllData(server = '') {
     fs.writeFileSync(PathToListing, JSON.stringify(ListingJSON, null, 4));
 
     await ParseBarterRecipes(PathToListing, server)
-        .then(() => { console.log('Parse barter recipes complete!') })
+        .then(() => { console.log(server.toUpperCase()+': ParseBarterRecipes complete!') })
         .catch((err) => { if (err) console.error(err) });
 
 }
