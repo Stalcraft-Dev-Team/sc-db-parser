@@ -132,7 +132,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
 
-            if (artefact.stats.filter((item: any) => item.value.max != undefined && Number(item.value.max) != 0).length == 0) {
+            if (artefact.stats.filter((item: any) => typeof item.value !== 'string' && Number(item.value.max) !== 0).length === 0) {
                 artefact.stats = [];
             }
             artefact.stats = artefact.stats.concat(SortProperties(dataJson, 'player'));
@@ -143,7 +143,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
                 if (artefact.key.search(ArtefactKey) !== -1) {
                     artefact.additionalStats = SortAdditionalProperties(_artefact.additionalStats);
                 }
-            })
+            });
 
             SelectedArtefactType.push(artefact);
         });
@@ -161,7 +161,8 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
 export function FindRangeValueByKey(dataJson: any, searchingKey: string, type: string | null, roundValueIfFloat: number | null): any {
     let result: any = {
         min: '0',
-        max: '0'
+        max: '0',
+        lines: null
     };
 
     const returnType: string =
@@ -177,7 +178,8 @@ export function FindRangeValueByKey(dataJson: any, searchingKey: string, type: s
                         if (dataJson.infoBlocks[i].elements[j].min != null && dataJson.infoBlocks[i].elements[j].max != null) {
                             result = {
                                 min: dataJson.infoBlocks[i].elements[j].min,
-                                max: dataJson.infoBlocks[i].elements[j].max
+                                max: dataJson.infoBlocks[i].elements[j].max,
+                                lines: dataJson.infoBlocks[i].elements[j].formatted.value
                             }
                         }
                     }
@@ -187,18 +189,15 @@ export function FindRangeValueByKey(dataJson: any, searchingKey: string, type: s
 
     switch (returnType) {
         case 'integer': {
-            result = {
-                min: Number.parseInt(result.min).toString(),
-                max: Number.parseInt(result.max).toString()
-            }
+            result.min = Number.parseInt(result.min).toString();
+            result.max = Number.parseInt(result.max).toString();
             break;
         }
         case 'float': {
-            if (typeof roundValueIfFloat == 'number' && roundValueIfFloat > 0)
-                result = {
-                    min: Number(result.min).toFixed(roundValueIfFloat),
-                    max: Number(result.max).toFixed(roundValueIfFloat)
-                }
+            if (typeof roundValueIfFloat == 'number' && roundValueIfFloat > 0) {
+                result.min = Number(result.min).toFixed(roundValueIfFloat);
+                result.max = Number(result.max).toFixed(roundValueIfFloat);
+            }
             break;
         }
         default: {
@@ -206,20 +205,22 @@ export function FindRangeValueByKey(dataJson: any, searchingKey: string, type: s
         }
     }
 
+    delete result.lines;
     return result;
 }
 
 function SortArtefactsLikeInGame(array: any[]): any[] {
-    const SortedArray: any[] = [];
-
-    SortedArtefacts.forEach((id: string) => {
-        array.forEach((item: any) => {
-            if (id === item.exbo_id)
-                SortedArray.push(item);
-        });
-    });
-
-    return SortedArray;
+    return array;
+    // const SortedArray: any[] = [];
+    //
+    // SortedArtefacts.forEach((id: string) => {
+    //     array.forEach((item: any) => {
+    //         if (id === item.exbo_id)
+    //             SortedArray.push(item);
+    //     });
+    // });
+    //
+    // return SortedArray;
 }
 
 function SortAdditionalProperties(array: any): object[] {

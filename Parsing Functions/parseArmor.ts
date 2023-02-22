@@ -1,12 +1,12 @@
 import fs from "fs";
 import { PathToParse } from '../Static/fileds';
-import {ArmorSchema, ILines, WeaponSchema} from "../itemSchemas";
+import {ArmorSchema, ILines} from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
     GetAndCopyIcons, MinimizeItemInfo,
-    SortByGearRanksKeys, SortProperties
+    SortByGearRanks, SortByGearRanksAndCondition, SortProperties
 } from "../Static/functions";
 import {IndexDirName} from "../index";
 
@@ -59,20 +59,15 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
         await parseItemsInFolder(pathToItemsFolder + folder);
     });
 
-    fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllArmors))));
+    fs.writeFileSync(resultFolder + '\\' + 'all_armors.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksAndCondition(AllArmors))));
 
     GetAndCopyIcons(pathToItemsFolder, server, 'armor');
-    return SortByGearRanksKeys(AllArmors); /* IMPORTANT */
+    return SortByGearRanksAndCondition(AllArmors); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {
         const SelectedCategoryArmors: ArmorSchema[] = [];
         const files: string[] = fs.readdirSync(folderPath);
-
-        const PathToRuListing = IndexDirName+'\\'+PathToParse+'\\'+'ru'+'\\'+'armor'+'\\'+'all_armors.json';
-        const RuListing = server == 'global'
-            ? JSON.parse(fs.readFileSync(PathToRuListing).toString())
-            : null;
 
         files.map((file) => {
             const fileName: string = file.split('.')[0];
@@ -106,26 +101,6 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
                 description: FindLinesByKey(dataJson, itemKey() + 'description'),
             });
 
-            // если не null значит мы парсим глобал
-            if (RuListing !== null) {
-                const CurrentCategoryFolder = folderPath.split('\\')[folderPath.split('\\').length-1];
-                const CategoryListing = JSON.parse(fs.readFileSync(PathToRuListing.replace('all_armors.json', `${CurrentCategoryFolder}.json`)).toString());
-                CategoryListing.forEach((item: ArmorSchema) => {
-                    if (item.lines?.en.includes(<string>armor.lines?.en)) {
-                        switch (true) {
-                            case item.lines?.en.includes('Damaged'): {
-                                SelectedCategoryArmors.push(item);
-                                break;
-                            }
-                            case item.lines?.en.includes('Worn'): {
-                                SelectedCategoryArmors.push(item);
-                                break;
-                            }
-                        }
-                    }
-                });
-            }
-
             armor.stats = SortProperties(dataJson, 'player');
 
             SelectedCategoryArmors.push(armor);
@@ -133,7 +108,7 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 1];
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryArmors)));
+        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanks(SelectedCategoryArmors)));
         CreateSubFoldersAndItems(CategoryPath, undefined);
 
         SelectedCategoryArmors.map(armor => AllArmors.push(armor));

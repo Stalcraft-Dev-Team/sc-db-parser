@@ -70,12 +70,93 @@ export function CreateSubFoldersAndItems(CategoryPath: string, array: object[] |
     });
 }
 
-export function SortByGearRanksKeys(array: any[]): object[] {
-    const SortedItems: object[] = [];
+export function SortByGearRanksAndCondition(array: any[]): object[] {
+    return SortByGearRanks(array); // Пока не сделаю фичу снизу будет так
+    // const SortedItems: any[] = [];
+    // const ItemWithoutGearRanks: object[] = [];
+    // for (let gearRanksKey in GearRanks) {
+    //     const ItemStorage: object[] = [];
+    //
+    //     array.forEach(item => {
+    //         if (item && item.rank != null && item.rank.en == gearRanksKey) {
+    //             ItemStorage.push(item);
+    //         } else if (item && item.rank == null && ItemWithoutGearRanks.indexOf(item) == -1) {
+    //             ItemWithoutGearRanks.push(item)
+    //         }
+    //     })
+    //     ItemStorage.forEach(item => {
+    //         SortedItems.push(item);
+    //     });
+    // }
+    //
+    // const ConditionFixSortedItems: any[] = [];
+    // const Category = SortedItems[0]?.category.en || null;
+    // if (Category === 'Armor' || Category === 'Weapon') {
+    //     // const RankSortedArrays: object = {
+    //     //     Picklock: [],
+    //     //     Newbie: [],
+    //     //     Stalker: [],
+    //     //     Veteran: [],
+    //     //     Master: [],
+    //     //     Legend: []
+    //     // }
+    //
+    //     SortedItems.forEach((item, i) => {
+    //         if (item != undefined && ConditionFixSortedItems.indexOf(item) === -1) {
+    //             let itemName = item.lines.ru.toLowerCase();
+    //             let allItemConditions: any[];
+    //
+    //             switch (true) {
+    //                 case itemName.includes('поврежденный') || itemName.includes('поврежденная'): {
+    //                     itemName = itemName.replace('поврежденный ', '');
+    //                     itemName = itemName.replace('поврежденная ', '');
+    //                     allItemConditions = SortedItems.filter(item => item.lines.ru.toLowerCase().includes(itemName));
+    //                     break;
+    //                 }
+    //                 case itemName.includes('поношенный') || itemName.includes('поношенная'): {
+    //                     itemName = itemName.replace('поношенный ', '');
+    //                     itemName = itemName.replace('поношенная ', '');
+    //                     allItemConditions = SortedItems.filter(item => item.lines.ru.toLowerCase().includes(itemName));
+    //                     break;
+    //                 }
+    //                 default: {
+    //                     allItemConditions = SortedItems.filter(item => item.lines.ru.toLowerCase().includes(itemName));
+    //                 }
+    //             }
+    //
+    //             if (allItemConditions.length > 1) {
+    //                 const Orders: String[][] = [
+    //                     ['поврежденный', 'поврежденная'],
+    //                     ['поношенный', 'поношенная'],
+    //                     ['', '']
+    //                 ];
+    //
+    //                 allItemConditions = allItemConditions.map((item, _index) => {
+    //                     console.log(_index === 3 ? allItemConditions : null)
+    //                     return allItemConditions.filter(_item =>
+    //                         _item.lines.ru.toLowerCase().includes(Orders[_index][0])
+    //                         || _item.lines.ru.toLowerCase().includes(Orders[_index][1]))[0];
+    //                 });
+    //                 allItemConditions.forEach(item => ConditionFixSortedItems.push(item));
+    //             } else {
+    //                 ConditionFixSortedItems[i] = item;
+    //             }
+    //         }
+    //     })
+    // }
+    //
+    // if (ConditionFixSortedItems.length > 0) {
+    //     return ConditionFixSortedItems.concat(ItemWithoutGearRanks);
+    // } else {
+    //     return SortedItems.concat(ItemWithoutGearRanks);
+    // }
+}
+
+export function SortByGearRanks(array: any[]): object[] {
+    const SortedItems: any[] = [];
     const ItemWithoutGearRanks: object[] = [];
     for (let gearRanksKey in GearRanks) {
         const ItemStorage: object[] = [];
-
 
         array.forEach(item => {
             if (item && item.rank != null && item.rank.en == gearRanksKey) {
@@ -89,11 +170,8 @@ export function SortByGearRanksKeys(array: any[]): object[] {
         });
     }
 
-    ItemWithoutGearRanks.forEach(item => {
-        SortedItems.push(item);
-    });
 
-    return SortedItems;
+    return SortedItems.concat(ItemWithoutGearRanks);
 }
 
 export function MinimizeItemInfo(array: any[]): object[] {

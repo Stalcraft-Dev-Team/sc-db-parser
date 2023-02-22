@@ -6,7 +6,7 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
-    SortByGearRanksKeys
+    SortByGearRanks
 } from "../Static/functions";
 
 
@@ -47,14 +47,14 @@ export const ParseMeleeWeapon = async function ParseMeleeWeapon(pathToItemsFolde
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_melee.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllMeleeWeapons))));
-        CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllMeleeWeapons));
+        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanks(AllMeleeWeapons))));
+        CreateSubFoldersAndItems(CategoryPath, SortByGearRanks(AllMeleeWeapons));
         GetAndCopyIcons(pathToItemsFolder, server, 'melee');
     }).catch(e => {
         console.error(e);
     });
 
-    return SortByGearRanksKeys(AllMeleeWeapons); /* IMPORTANT */
+    return SortByGearRanks(AllMeleeWeapons); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

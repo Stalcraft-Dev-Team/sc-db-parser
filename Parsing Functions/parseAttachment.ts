@@ -7,7 +7,7 @@ import {
     FindLinesInValueByKey,
     FindObjectValueByKey,
     GetAndCopyIcons, MinimizeItemInfo,
-    SortByGearRanksKeys, SortProperties
+    SortByGearRanks, SortProperties
 } from "../Static/functions";
 
 
@@ -57,10 +57,10 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
     subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
     })
-    fs.writeFileSync(resultFolder + '\\' + 'all_attachments.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllAttachments))));
+    fs.writeFileSync(resultFolder + '\\' + 'all_attachments.json', JSON.stringify(MinimizeItemInfo(SortByGearRanks(AllAttachments))));
     GetAndCopyIcons(pathToItemsFolder, server, 'attachment');
 
-    return SortByGearRanksKeys(AllAttachments); /* IMPORTANT */
+    return SortByGearRanks(AllAttachments); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {
@@ -115,7 +115,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(SelectedCategoryWeapons)));
+        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanks(SelectedCategoryWeapons)));
         CreateSubFoldersAndItems(CategoryPath, undefined);
 
         SelectedCategoryWeapons.map(attachment => AllAttachments.push(attachment));

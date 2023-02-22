@@ -6,7 +6,7 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     GetAndCopyIcons, MinimizeItemInfo,
-    SortByGearRanksKeys
+    SortByGearRanks
 } from "../Static/functions";
 import {IndexDirName} from "../index";
 
@@ -46,13 +46,13 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
 
     const CategoryPath = resultFolder + '\\' + `all_other.json`;
     AllOtherItems = DeleteDublicatesAndRejectedItems(AllOtherItems) as OtherItemSchema[]; // Временное решение
-    fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllOtherItems))));
-    CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllOtherItems));
+    fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanks(AllOtherItems))));
+    CreateSubFoldersAndItems(CategoryPath, SortByGearRanks(AllOtherItems));
     ["ru", "global"].forEach(_server => {
         GetAndCopyIcons(pathToItemsFolder, _server, 'other');
     })
 
-    return SortByGearRanksKeys(AllOtherItems); /* IMPORTANT */
+    return SortByGearRanks(AllOtherItems); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

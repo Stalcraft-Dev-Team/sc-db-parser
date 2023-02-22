@@ -3,9 +3,9 @@ import {PathToClone, PathToParse} from "../Static/fileds";
 import { ILines, ItemRecipes } from "../itemSchemas";
 import { IndexDirName } from "../index";
 
-export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListing: string): Promise<void> {
+export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListing: string, server: string): Promise<void> {
     const ListingJson = JSON.parse(fs.readFileSync(PathToListing).toString());
-    const Recipes = JSON.parse(fs.readFileSync(IndexDirName+'\\'+PathToClone+'\\'+`ru`+'\\'+'barter_recipes.json').toString());
+    const Recipes = JSON.parse(fs.readFileSync(IndexDirName+'\\'+PathToClone+'\\'+server+'\\'+'barter_recipes.json').toString());
     const ParsedItemRecipes: ItemRecipes[] = [];
 
     if (Recipes) {
@@ -75,11 +75,12 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
             });
         });
 
-        const PathToResultFolder = IndexDirName+'\\'+PathToParse+'\\'+'recipes'+'\\';
+        const PathToResultFolder = IndexDirName+'\\'+PathToParse+'\\'+server+'\\'+'recipes'+'\\';
         if (!fs.existsSync(PathToResultFolder)) {
             fs.mkdirSync(PathToResultFolder);
         }
 
+        // used into
         for (const i_key in ParsedItemRecipes) {
             for (const j_key in ParsedItemRecipes) {
 
@@ -104,6 +105,7 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
 
             }
         }
+        //
 
         fs.writeFileSync(PathToResultFolder+`all_recipes.json`, JSON.stringify(ParsedItemRecipes));
 

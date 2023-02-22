@@ -6,9 +6,8 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
-    SortByGearRanksKeys
+    SortByGearRanks, SortByGearRanksAndCondition
 } from "../Static/functions";
-import {IndexDirName} from "../index";
 
 
 // EXCLUDE DEVICE AND MELEE
@@ -61,20 +60,15 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         await parseItemsInFolder(pathToItemsFolder + folder);
     });
 
-    fs.writeFileSync(resultFolder + '\\' + 'all_weapons.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllWeapons))));
+    fs.writeFileSync(resultFolder + '\\' + 'all_weapons.json', JSON.stringify(MinimizeItemInfo(SortByGearRanksAndCondition(AllWeapons))));
     GetAndCopyIcons(pathToItemsFolder, server, 'weapon');
 
-    return SortByGearRanksKeys(AllWeapons); /* IMPORTANT */
+    return SortByGearRanksAndCondition(AllWeapons); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {
         const SelectedCategoryWeapons: WeaponSchema[] = [];
         const files: string[] = fs.readdirSync(folderPath);
-
-        const PathToRuListing = IndexDirName+'\\'+PathToParse+'\\'+'ru'+'\\'+'weapon'+'\\'+'all_weapons.json';
-        const RuListing = server == 'global'
-            ? JSON.parse(fs.readFileSync(PathToRuListing).toString())
-            : null;
 
         files.map((file) => {
             const fileName: string = file.split('.')[0];
@@ -359,32 +353,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 description: FindLinesByKey(dataJson, itemKey() + 'description')
             });
 
-            // если не null значит мы парсим глобал
-            if (RuListing !== null) {
-                const CurrentCategoryFolder = folderPath.split('\\')[folderPath.split('\\').length-1];
-                const CategoryListing = JSON.parse(fs.readFileSync(PathToRuListing.replace('all_weapons.json', `${CurrentCategoryFolder}.json`)).toString());
-                CategoryListing.forEach((item: WeaponSchema) => {
-                    if (item.lines?.en.includes(<string>weapon.lines?.en)) {
-                        switch (true) {
-                            case item.lines?.en.includes('Damaged'): {
-                                SelectedCategoryWeapons.push(item);
-                                break;
-                            }
-                            case item.lines?.en.includes('Worn'): {
-                                SelectedCategoryWeapons.push(item);
-                                break;
-                            }
-                        }
-                    }
-                });
-            }
-
             SelectedCategoryWeapons.push(weapon);
         });
 
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 1];
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanksKeys(
+        fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanks(
             DeleteDublicatesAndRejectedItems(SelectedCategoryWeapons) // Временное решение
         )));
         CreateSubFoldersAndItems(CategoryPath, undefined);

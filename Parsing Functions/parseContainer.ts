@@ -6,7 +6,7 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
-    SortByGearRanksKeys,
+    SortByGearRanks,
     SortProperties
 } from "../Static/functions";
 import {ContainerTypes} from "../Static/enums";
@@ -50,14 +50,14 @@ export const ParseContainer = async function ParseContainer(pathToItemsFolder = 
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_containers.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllContainers))));
-        CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllContainers));
+        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanks(AllContainers))));
+        CreateSubFoldersAndItems(CategoryPath, SortByGearRanks(AllContainers));
         GetAndCopyIcons(pathToItemsFolder, server, 'container');
     }).catch(e => {
         console.error(e);
     });
 
-    return SortByGearRanksKeys(AllContainers); /* IMPORTANT */
+    return SortByGearRanks(AllContainers); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

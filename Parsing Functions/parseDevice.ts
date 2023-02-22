@@ -6,7 +6,7 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
-    SortByGearRanksKeys
+    SortByGearRanks
 } from "../Static/functions";
 
 
@@ -47,14 +47,14 @@ export const ParseDevice = async function ParseDevice(pathToItemsFolder = ''): P
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_devices.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanksKeys(AllDevices))));
-        CreateSubFoldersAndItems(CategoryPath, SortByGearRanksKeys(AllDevices));
+        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(SortByGearRanks(AllDevices))));
+        CreateSubFoldersAndItems(CategoryPath, SortByGearRanks(AllDevices));
         GetAndCopyIcons(pathToItemsFolder, server, 'device');
     }).catch(e => {
         console.error(e);
     });
 
-    return SortByGearRanksKeys(AllDevices); /* IMPORTANT */
+    return SortByGearRanks(AllDevices); /* IMPORTANT */
     ////////
 
     async function parseItemsInFolder(folderPath: string) {

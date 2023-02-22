@@ -98,7 +98,8 @@ export class ItemProperties {
             'weapon.stat_factor.draw_time',
             'weapon.stat_factor.aim_switch_time',
             'weapon.tooltip.magazine.stat_name.jamming',
-            'weapon.stat_factor.wiggle'
+            'weapon.stat_factor.wiggle',
+            'weapon.stat_factor.recoil_gain'
         ];
 
         IP_ThroughDirectory(IndexDirName + '\\' + PathToClone + '\\' + 'ru' + '\\' + 'items');

@@ -157,43 +157,20 @@ async function ParseAllData(server = '') {
             console.log (server.toUpperCase()+': ParseDevice: complete!');
         });
 
-
-
-    // Копирование категории "Прочее" с RU в GLOBAL
-    const RuPathToOther = IndexDirName+'\\'+PathToParse+'\\'+'ru'+'\\'+'other';
-    const GlobalPathToOther = IndexDirName+'\\'+PathToParse+'\\'+'global'+'\\'+'other';
-    if (server == 'ru') {
-        await ParseOther(pathToItemsFolder+'other\\')
-            .then(PushToListing)
-            .catch((e) => { console.error(e); })
-            .finally(() => {
-                console.log (server.toUpperCase()+': ParseOther: complete!');
-            });
-
-        fse.copySync(
-            RuPathToOther,
-            GlobalPathToOther,
-            { overwrite: true }
-        );
-    } else {
-        const OtherItems: object[] = [];
-        fs.readdirSync(`${GlobalPathToOther}\\all_other`).forEach(file => {
-            const dataJson = JSON.parse(fs.readFileSync(`${GlobalPathToOther}\\all_other\\${file}`).toString());
-            if (dataJson.exbo_id !== undefined)
-                OtherItems.push(dataJson);
+    await ParseOther(pathToItemsFolder+'other\\')
+        .then(PushToListing)
+        .catch((e) => { console.error(e); })
+        .finally(() => {
+            console.log (server.toUpperCase()+': ParseOther: complete!');
         });
-        ListingJSON = ListingJSON.concat(MinimizeItemInfo(OtherItems));
-    }
-    //
 
     const PathToListing = IndexDirName+'\\'+PathToParse+'\\'+server+'\\'+'listing.json';
     fs.writeFileSync(PathToListing, JSON.stringify(ListingJSON, null, 4));
 
-    if (server == 'ru') {
-        await ParseBarterRecipes(PathToListing)
-            .then(() => { console.log('Parse barter recipes complete!') })
-            .catch((err) => { if (err) console.error(err) });
-    }
+    await ParseBarterRecipes(PathToListing, server)
+        .then(() => { console.log('Parse barter recipes complete!') })
+        .catch((err) => { if (err) console.error(err) });
+
 }
 
 async function StartParse() {
@@ -212,7 +189,6 @@ async function StartParse() {
 
 let ListingJSON: object[] = [];
 function PushToListing(data: any[]): void {
-
     DeleteDublicatesAndRejectedItems(data).forEach((item: any) => ListingJSON.push({
         exbo_id: item.exbo_id,
         category: item.category,
@@ -238,18 +214,6 @@ StartParse()
 // Optional
 function NiceLookForJSON(server: string): void {
     ThroughDirectoryGetAllJSON(IndexDirName + '\\' + PathToParse + '\\' + server + '\\');
-
-    if (server == 'ru') {
-        const PathToRecipes = IndexDirName + '\\' + PathToParse + '\\' + 'recipes';
-        const files = fs.readdirSync(PathToRecipes);
-        files.forEach(file => {
-            const fileJson = JSON.parse(fs.readFileSync(`${PathToRecipes}\\${file}`).toString());
-            fs.writeFile(`${PathToRecipes}\\${file}`, JSON.stringify(fileJson, null, 4), (err) => {
-                if (err)
-                    console.error(err);
-            });
-        })
-    }
 }
 
 function ThroughDirectoryGetAllJSON(Directory: string) {
