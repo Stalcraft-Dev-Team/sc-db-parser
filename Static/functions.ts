@@ -31,8 +31,8 @@ export function GetAndCopyIcons(DirectoryToItems: string, Server: string, Folder
     }
 
     filesObj[funcID].forEach((iconPath: string) => {
-        const SplittedIP = iconPath.split('.')[0];
-        const fileName: string = SplittedIP.substring(SplittedIP.length - 4, SplittedIP.length);
+        const SplittedIP = (iconPath.split('.')[0]).split('\\');
+        const fileName: string = SplittedIP[SplittedIP.length-1];
         fs.readFile(iconPath, (err, data) => {
             if (err)
                 console.error(err);
