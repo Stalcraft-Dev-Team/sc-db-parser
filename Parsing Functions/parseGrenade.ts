@@ -5,9 +5,9 @@ import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
     FindLinesInValueByKey,
-    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo,
+    FindValueByKey, GetAndCopyIcons, MinimizeItemInfo, SortSomethingLikeInGame,
 } from "../Static/functions";
-
+import SortedGrenades from "../SortedSomething/grenades.json";
 
 export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
@@ -46,7 +46,11 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_grenades.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(AllGrenades)));
+        fs.writeFileSync(CategoryPath, JSON.stringify(
+            MinimizeItemInfo(
+                SortSomethingLikeInGame(AllGrenades, SortedGrenades)
+            )
+        ));
         CreateSubFoldersAndItems(CategoryPath, AllGrenades);
         GetAndCopyIcons(pathToItemsFolder, server, 'grenade');
     }).catch(e => {

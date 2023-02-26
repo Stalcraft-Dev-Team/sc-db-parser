@@ -4,7 +4,7 @@ import fs from 'fs';
 import Path from "path";
 import { ILines } from "../itemSchemas";
 import { PropertiesTypes } from "./enums";
-import FileWithSortedProps from "../sortedProps.json";
+import FileWithSortedProps from "../SortedSomething/sortedProps.json";
 import FileWithPercentageTags from "../percentTypeProps.json";
 
 

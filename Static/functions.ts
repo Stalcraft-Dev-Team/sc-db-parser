@@ -9,6 +9,31 @@ import RejectedOthersJson from "../rejectedOthers.json";
 
 const filesObj: any = {};
 
+export function SortSomethingLikeInGame(array: any[], sortedIDs: string[]): object[] {
+    const SortedArray: object[] = [];
+    sortedIDs.forEach(id => {
+        array.forEach(item => {
+            if (item.exbo_id !== null && item.exbo_id === id) {
+                SortedArray.push(item);
+            }
+        });
+    });
+
+    // DEBUG
+    if (SortedArray.length !== array.length) {
+        try {
+            throw new Error(`Incorrect arrays lengths!\nUnsorted array length = ${array.length}; SortedArray length = ${SortedArray.length}\nReturn unsorted array.`);
+        } catch (e) {
+            console.error(e);
+        }
+    }
+
+    if (SortedArray.length === array.length)
+        return SortedArray;
+    else
+        return array;
+}
+
 export function GetAndCopyIcons(DirectoryToItems: string, Server: string, FolderName: string): void {
     const DirectoryToIcons = DirectoryToItems.replace('\\items\\', '\\icons\\');
     const funcID: string = '_' + new Date().getMilliseconds();

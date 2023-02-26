@@ -6,9 +6,9 @@ import {
     FindLinesByKey,
     FindLinesInValueByKey,
     GetAndCopyIcons, MinimizeItemInfo,
-    SortProperties
+    SortProperties, SortSomethingLikeInGame
 } from "../Static/functions";
-
+import SortedBullets from "../SortedSomething/ammo.json"
 
 export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
@@ -48,7 +48,11 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
 
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_bullets.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(AllBullets)));
+        fs.writeFileSync(CategoryPath, JSON.stringify(
+            MinimizeItemInfo(
+                SortSomethingLikeInGame(AllBullets, SortedBullets)
+            )
+        ));
         CreateSubFoldersAndItems(CategoryPath, AllBullets);
         GetAndCopyIcons(pathToItemsFolder, server, 'bullet');
     }).catch(e => {

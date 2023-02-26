@@ -6,9 +6,9 @@ import {
     FindLinesInValueByKey,
     FindValueByKey,
     GetAndCopyIcons, MinimizeItemInfo,
-    SortProperties
+    SortProperties, SortSomethingLikeInGame
 } from "../Static/functions";
-
+import SortedMedicine from "../SortedSomething/medicine.json";
 
 export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
@@ -47,7 +47,11 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
     let dataJson: any;
     parseItemsInFolder(pathToItemsFolder).then(() => {
         const CategoryPath = resultFolder + '\\' + `all_medicine.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(MinimizeItemInfo(AllMedicine)));
+        fs.writeFileSync(CategoryPath, JSON.stringify(
+            MinimizeItemInfo(
+                SortSomethingLikeInGame(AllMedicine, SortedMedicine)
+            )
+        ));
         CreateSubFoldersAndItems(CategoryPath, AllMedicine);
         GetAndCopyIcons(pathToItemsFolder, server, 'medicine');
     }).catch(e => {
