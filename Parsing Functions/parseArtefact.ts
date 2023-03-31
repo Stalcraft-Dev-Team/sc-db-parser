@@ -143,7 +143,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
             artefact.stats = artefact.stats.concat(SortProperties(dataJson, 'player'));
 
             FileWithArtefactAdditionalStats.forEach((_artefact: any) => {
-                const ArtefactKey = (_artefact.key.split('.')[1]).split('_')[1];
+                const ArtefactKey = _artefact.key.split('.')[1];
 
                 if (artefact.key.search(ArtefactKey) !== -1) {
                     artefact.additionalStats = SortAdditionalProperties(_artefact.additionalStats);
@@ -227,7 +227,6 @@ function SortAdditionalProperties(array: any): object[] {
                 let propKey = prop.key.split('.')[prop.key.split('.').length-1];
                 if (propKey == 'psycho_protection_short')
                     propKey = 'psycho_protection';
-
 
                 return _propKey == propKey;
             })[0];

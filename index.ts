@@ -195,6 +195,10 @@ ItemProperties.Init();
 StartParse()
     .then(() => {
         console.log("Parsing complete!");
+        if (EnableNiceLookForJSON) {
+            NiceLookForJSON('ru');
+            NiceLookForJSON('global');
+        }
     })
     .catch((e) => {
         console.error(e);
