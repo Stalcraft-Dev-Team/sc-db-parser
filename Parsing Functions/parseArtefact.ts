@@ -143,7 +143,13 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
             artefact.stats = artefact.stats.concat(SortProperties(dataJson, 'player'));
 
             FileWithArtefactAdditionalStats.forEach((_artefact: any) => {
-                const ArtefactKey = _artefact.key.split('.')[1];
+                let ArtefactKey = _artefact.key.split('.')[1];
+                if (ArtefactKey.includes("carousel")) {
+                    ArtefactKey = ArtefactKey.replace("carousel", "karousel")
+                }
+                if (ArtefactKey.includes("krovkamnya")) {
+                    ArtefactKey = ArtefactKey.replace("krovkamnya", "bloodstone")
+                }
 
                 if (artefact.key.search(ArtefactKey) !== -1) {
                     artefact.additionalStats = SortAdditionalProperties(_artefact.additionalStats);
