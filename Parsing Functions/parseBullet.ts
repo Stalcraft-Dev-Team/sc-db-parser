@@ -50,7 +50,7 @@ export const ParseBullet = async function ParseBullet(pathToItemsFolder = ''): P
         const CategoryPath = resultFolder + '\\' + `all_bullets.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(
             MinimizeItemInfo(
-                SortSomethingLikeInGame(AllBullets, SortedBullets)
+                SortSomethingLikeInGame(AllBullets, SortedBullets, 'Bullets')
             )
         ));
         CreateSubFoldersAndItems(CategoryPath, AllBullets);

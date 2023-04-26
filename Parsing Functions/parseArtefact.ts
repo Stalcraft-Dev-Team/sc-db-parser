@@ -1,6 +1,6 @@
 import fs from "fs";
-import { PathToParse } from '../Static/fileds';
-import { ArtefactSchema } from "../itemSchemas";
+import {PathToParse} from '../Static/fileds';
+import {ArtefactSchema} from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
@@ -61,13 +61,14 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
 
     fs.writeFileSync(resultFolder + '\\' + 'all_artefacts.json', JSON.stringify(
         MinimizeItemInfo(
-            SortSomethingLikeInGame(AllArtefacts, SortedArtefacts)
+            SortSomethingLikeInGame(AllArtefacts, SortedArtefacts, 'AllArtefacts')
         )
     ));
 
     GetAndCopyIcons(pathToItemsFolder, server, 'artefact');
 
     return AllArtefacts; /* IMPORTANT */
+
     ////////
 
     async function parseItemsInFolder(folderPath: string) {
@@ -157,7 +158,7 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
 
         fs.writeFileSync(CategoryPath, JSON.stringify(
-            SortSomethingLikeInGame(SelectedArtefactType, SortedArtefacts)
+            SortSomethingLikeInGame(SelectedArtefactType, SortedArtefacts, CategoryName)
         ));
         CreateSubFoldersAndItems(CategoryPath, undefined);
 
@@ -216,15 +217,15 @@ export function FindRangeValueByKey(dataJson: any, searchingKey: string, type: s
     return result;
 }
 
-function SortAdditionalProperties(array: any): object[] {
+function SortAdditionalProperties(array: any[]): object[] {
     const result: object[] = [];
 
     array.forEach((prop: any) => {
+
         const PropInfo = ItemProperties.AllProperties.player
             .filter((_prop: any) => {
-                const _propKey = _prop.key.split('.')[_prop.key.split('.').length-1];
-
-                let propKey = prop.key.split('.')[prop.key.split('.').length-1];
+                const _propKey = _prop.key.split('.')[_prop.key.split('.').length - 1];
+                let propKey = prop.key.split('.')[prop.key.split('.').length - 1];
                 if (propKey == 'psycho_protection_short')
                     propKey = 'psycho_protection';
 
@@ -233,17 +234,20 @@ function SortAdditionalProperties(array: any): object[] {
 
         // @ts-ignore
         const IsPercentage: boolean = ItemProperties.PercentageTagProperties.player
-            .filter((_key: string) => _key == PropInfo.key)[0] != undefined;
-        result.push({
-            unitKey: IsPercentage ? 'percentage' : null,
-            key: PropInfo.key,
-            value: {
-                min: prop.valueMin.toString(),
-                max: prop.valueMax.toString()
-            },
-            isPositive: prop.isPositive,
-            lines: PropInfo.lines
-        });
+            .filter((_key: string) => _key === PropInfo?.key)[0] !== undefined;
+
+        if (PropInfo !== undefined && PropInfo.key !== undefined) {
+            result.push({
+                unitKey: IsPercentage ? 'percentage' : null,
+                key: PropInfo.key,
+                value: {
+                    min: prop.valueMin.toString(),
+                    max: prop.valueMax.toString()
+                },
+                isPositive: prop.isPositive,
+                lines: PropInfo.lines
+            });
+        }
     })
 
     return result;

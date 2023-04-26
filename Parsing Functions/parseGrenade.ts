@@ -48,7 +48,7 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
         const CategoryPath = resultFolder + '\\' + `all_grenades.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(
             MinimizeItemInfo(
-                SortSomethingLikeInGame(AllGrenades, SortedGrenades)
+                SortSomethingLikeInGame(AllGrenades, SortedGrenades, 'Grenades')
             )
         ));
         CreateSubFoldersAndItems(CategoryPath, AllGrenades);

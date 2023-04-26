@@ -49,7 +49,7 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
         const CategoryPath = resultFolder + '\\' + `all_medicine.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(
             MinimizeItemInfo(
-                SortSomethingLikeInGame(AllMedicine, SortedMedicine)
+                SortSomethingLikeInGame(AllMedicine, SortedMedicine, 'Medicine')
             )
         ));
         CreateSubFoldersAndItems(CategoryPath, AllMedicine);

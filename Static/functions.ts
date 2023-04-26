@@ -1,31 +1,34 @@
-import { GearRanks, PropertiesTypes } from "./enums";
-import { ILines } from "../itemSchemas";
-import { IPropertiesElement, ItemProperties } from "./itemProperties-class";
-import { FindRangeValueByKey } from "../Parsing Functions/parseArtefact";
+import {GearRanks, PropertiesTypes} from "./enums";
+import {ILines} from "../itemSchemas";
+import {IPropertiesElement, ItemProperties} from "./itemProperties-class";
+import {FindRangeValueByKey} from "../Parsing Functions/parseArtefact";
 import fs from "fs";
 import Path from "path";
-import { PathToImages } from "./fileds";
+import {PathToImages} from "./fileds";
 import RejectedOthersJson from "../rejectedOthers.json";
+import {SaveErrorLog} from '../errorLogger';
 
 const filesObj: any = {};
 
-export function SortSomethingLikeInGame(array: any[], sortedIDs: string[]): object[] {
+export function SortSomethingLikeInGame(array: any[], sortedIDs: string[], categoryName: string): object[] {
     const SortedArray: object[] = [];
+    const NotFoundedIDs: string[] = [];
     sortedIDs.forEach(id => {
         array.forEach(item => {
             if (item.exbo_id !== null && item.exbo_id === id) {
                 SortedArray.push(item);
+            } else if (sortedIDs.length > 0) {
+                NotFoundedIDs.push(`item with ID ${item.exbo_id} not founded`);
             }
         });
     });
 
     // DEBUG
     if (SortedArray.length !== array.length) {
-        try {
-            throw new Error(`Incorrect arrays lengths!\nUnsorted array length = ${array.length}; SortedArray length = ${SortedArray.length}\nReturn unsorted array.`);
-        } catch (e) {
-            console.error(e);
-        }
+        SaveErrorLog(categoryName, NotFoundedIDs)
+            .finally(() => {
+                console.error(`Incorrect arrays lengths!\nUnsorted array length = ${array.length}; SortedArray length = ${SortedArray.length}\nReturn unsorted array.`);
+            });
     }
 
     if (SortedArray.length === array.length)
@@ -57,7 +60,7 @@ export function GetAndCopyIcons(DirectoryToItems: string, Server: string, Folder
 
     filesObj[funcID].forEach((iconPath: string) => {
         const SplittedIP = (iconPath.split('.')[0]).split('\\');
-        const fileName: string = SplittedIP[SplittedIP.length-1];
+        const fileName: string = SplittedIP[SplittedIP.length - 1];
         fs.readFile(iconPath, (err, data) => {
             if (err)
                 console.error(err);
@@ -226,7 +229,7 @@ export function MinimizeItemInfo(array: any[]): object[] {
 }
 
 export function DeleteDublicatesAndRejectedItems(array: any[]): any[] {
-    for (let i = array.length-1; i >= 0; i--) {
+    for (let i = array.length - 1; i >= 0; i--) {
         for (let j = 0; j < array.length; j++) {
             if (i !== j
                 && array[i] !== null && array[j] !== null
@@ -326,7 +329,7 @@ export function FindLinesByKey(dataJson: any, searchingKey: string): ILines | nu
                 for (const [key, value] of Object.entries(dataJson.infoBlocks[i].elements[j])) {
                     if ((key == 'key' || key == 'text') && (value as any).key.includes(searchingKey)) {
                         if ((value as any).key == "core.tooltip.origin") {
-                            const OriginInfo = dataJson.infoBlocks[i].elements[j+1].text.lines;
+                            const OriginInfo = dataJson.infoBlocks[i].elements[j + 1].text.lines;
                             return {
                                 ru: `Получение<br>${OriginInfo.ru}<br><br>`,
                                 en: `Obtained<br>${OriginInfo.en}<br><br>`

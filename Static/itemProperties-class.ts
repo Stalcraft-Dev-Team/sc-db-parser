@@ -66,8 +66,11 @@ export class ItemProperties {
             'stalker.artefact_properties.factor.biological_accumulation',
             'stalker.artefact_properties.factor.thermal_accumulation',
             'stalker.artefact_properties.factor.psycho_accumulation',
-            'stalker.artefact_properties.factor.bleeding_accumulation'
+            'stalker.artefact_properties.factor.bleeding_accumulation',
+            'stalker.artefact_properties.factor.frost_accumulation',
+            'stalker.artefact_properties.factor.toxic_accumulation'
         ];
+
         IP_ThroughDirectory(IndexDirName + '\\' + PathToClone + '\\' + 'ru' + '\\' + 'items');
         files.forEach(file => {
             const data = fs.readFileSync(file);
@@ -132,6 +135,30 @@ export class ItemProperties {
 
 
         for (const [key, value] of Object.entries(PropertiesTypes)) {
+
+            if (FileWithSortedProps[value].length !== ItemProperties.AllProperties[value].length) {
+                const biggerArray: any[] = FileWithSortedProps[value].length > ItemProperties.AllProperties[value].length
+                    ? FileWithSortedProps[value]
+                    : ItemProperties.AllProperties[value];
+
+                const smallerArray: any[] = FileWithSortedProps[value].length > ItemProperties.AllProperties[value].length
+                    ? ItemProperties.AllProperties[value]
+                    : FileWithSortedProps[value];
+
+                const difference: any[] = biggerArray.filter(bItem =>
+                   smallerArray.filter(sItem => {
+                       const bKey: string = bItem?.key !== undefined ? bItem.key : bItem;
+                       const sKey: string = sItem?.key !== undefined ? sItem.key : sItem;
+
+                       return bKey === sKey;
+                   }).length === 0
+                );
+
+                const errorMessage: string =
+                    `${value}: FileWithSortedProps (${FileWithSortedProps[value].length}) and ItemProperties.AllProperties (${ItemProperties.AllProperties[value].length}) lengths not equal!\n`;
+                throw new Error(errorMessage + difference);
+            }
+
             // @ts-ignore
             FileWithSortedProps[value].forEach(key => {
                 ItemProperties.AllProperties[value].forEach(prop => {
