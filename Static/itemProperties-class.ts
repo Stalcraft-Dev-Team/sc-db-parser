@@ -96,6 +96,7 @@ export class ItemProperties {
             'weapon.stat_factor.recoil',
             'weapon.stat_factor.horizontal_recoil',
             'weapon.stat_factor.spread',
+            'weapon.tooltip.bullet.stat_name.spread',
             'weapon.stat_factor.hip_spread',
             'weapon.stat_factor.reload_time',
             'weapon.stat_factor.draw_time',
