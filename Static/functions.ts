@@ -243,7 +243,7 @@ export function DeleteDublicatesAndRejectedItems(array: any[]): any[] {
 }
 
 // type must be 'player' or 'weapon'
-export function SortProperties(dataJson: any, type: string = ''): object[] {
+export function SortProperties(dataJson: any, type: string = '', isAdditionalPropsArray: boolean = false): object[] {
     if (type.toLowerCase() != 'player' && type.toLowerCase() != 'weapon') {
         throw new Error('Incorrect type.');
     } else {
@@ -252,6 +252,28 @@ export function SortProperties(dataJson: any, type: string = ''): object[] {
     const AllPropsKey = type == 'player' ? PropertiesTypes.Player : PropertiesTypes.AttachmentOrBullet;
 
     const Stats: object[] = [];
+
+    if (isAdditionalPropsArray) {
+        (ItemProperties.AllProperties as any)[PropertiesTypes.Player].forEach((prop: IPropertiesElement) => {
+            for (let additProp of dataJson) {
+
+                if (additProp.key === prop.key) {
+
+                    additProp.value = {
+                        min: String(additProp.value.min),
+                        max: String(additProp.value.max)
+                    }
+                    additProp.isPositive = String(additProp.isPositive);
+                    Stats.push(additProp);
+                    break;
+
+                }
+
+            }
+        });
+
+        return Stats;
+    }
 
     (ItemProperties.AllProperties as any)[AllPropsKey].forEach((prop: IPropertiesElement) => {
         let value;

@@ -9,7 +9,7 @@ import {
     SortProperties, SortSomethingLikeInGame
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
-import FileWithArtefactAdditionalStats from "../artefacts.json";
+import FileWithArtefactAdditionalStats from "../artefactsAdditionalProps.json";
 import SortedArtefacts from "../SortedSomething/artefacts.json";
 
 export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''): Promise<object[]> {
@@ -143,19 +143,12 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
             }
             artefact.stats = artefact.stats.concat(SortProperties(dataJson, 'player'));
 
-            FileWithArtefactAdditionalStats.forEach((_artefact: any) => {
-                let ArtefactKey = _artefact.key.split('.')[1];
-                if (ArtefactKey.includes("carousel")) {
-                    ArtefactKey = ArtefactKey.replace("carousel", "karousel")
-                }
-                if (ArtefactKey.includes("krovkamnya")) {
-                    ArtefactKey = ArtefactKey.replace("krovkamnya", "bloodstone")
-                }
-
-                if (artefact.key.search(ArtefactKey) !== -1) {
-                    artefact.additionalStats = SortAdditionalProperties(_artefact.additionalStats);
-                }
-            });
+            const artWithAdditionalStats = FileWithArtefactAdditionalStats.filter(artAP => artAP.name === artefact.lines?.ru)[0]
+            if (artWithAdditionalStats?.additionalStats === undefined) {
+                // на бритву не завезли допов чета
+            } else {
+                artefact.additionalStats = SortProperties(artWithAdditionalStats.additionalStats, 'player', true);
+            }
 
             SelectedArtefactType.push(artefact);
         });

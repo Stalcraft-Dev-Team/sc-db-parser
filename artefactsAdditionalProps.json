@@ -1,0 +1,3328 @@
+[
+    {
+        "name": null,
+        "additionalStats": []
+    },
+    {
+        "name": "Частотный кристалл",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -0.6,
+                    "max": -1.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_electroshock",
+                "value": {
+                    "min": 1,
+                    "max": 2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на электричество",
+                    "en": "Reaction to electricity"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.3,
+                    "max": 0.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Бенгальский огонь",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.25,
+                    "max": 0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.85,
+                    "max": 3.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.85,
+                    "max": 1.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Вспышка",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 2.7,
+                    "max": 5.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 1.25,
+                    "max": 2.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Батарейка",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_electroshock",
+                "value": {
+                    "min": 0.5,
+                    "max": 1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на электричество",
+                    "en": "Reaction to electricity"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.55,
+                    "max": 1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 5.7,
+                    "max": 11.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Снежинка",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.5,
+                    "max": 1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 5.2,
+                    "max": 10.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Пустышка",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.45,
+                    "max": -0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_burn",
+                "value": {
+                    "min": 0.9,
+                    "max": 1.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на ожог",
+                    "en": "Reaction to burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.35,
+                    "max": 0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Дезинтегратор",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -0.9,
+                    "max": -1.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_electroshock",
+                "value": {
+                    "min": 0.45,
+                    "max": 0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на электричество",
+                    "en": "Reaction to electricity"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.psycho_dmg_factor",
+                "value": {
+                    "min": 3.1,
+                    "max": 6.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление пси-излучению",
+                    "en": "Psy-emission resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Лунный свет",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -0.9,
+                    "max": -1.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_electroshock",
+                "value": {
+                    "min": 1.3,
+                    "max": 2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на электричество",
+                    "en": "Reaction to electricity"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Гелий",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.5,
+                    "max": 1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.8,
+                    "max": 1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 1.15,
+                    "max": 2.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Трансформатор",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -1.1,
+                    "max": -2.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 1.3,
+                    "max": 2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.psycho_dmg_factor",
+                "value": {
+                    "min": 3.5,
+                    "max": 7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление пси-излучению",
+                    "en": "Psy-emission resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Кристалл",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.2,
+                    "max": -0.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_burn",
+                "value": {
+                    "min": 0.7,
+                    "max": 1.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на ожог",
+                    "en": "Reaction to burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.3,
+                    "max": 2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Огненный шар",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.35,
+                    "max": -0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.35,
+                    "max": 0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.thermal_dmg_factor",
+                "value": {
+                    "min": 2.7,
+                    "max": 5.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление температуре",
+                    "en": "Thermal resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Капля",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.2,
+                    "max": -0.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.7,
+                    "max": 1.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 0.9,
+                    "max": 1.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Волчьи слезы",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.25,
+                    "max": -0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 0.9,
+                    "max": 1.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.thermal_dmg_factor",
+                "value": {
+                    "min": 2.35,
+                    "max": 4.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление температуре",
+                    "en": "Thermal resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Мамины бусы",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 8.1,
+                    "max": 16.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.health_bonus",
+                "value": {
+                    "min": 0.25,
+                    "max": 0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Живучесть",
+                    "en": "Vitality"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 2.3,
+                    "max": 4.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Глаз",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bleeding_accumulation",
+                "value": {
+                    "min": -0.24,
+                    "max": -0.48
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Кровотечение",
+                    "en": "Bleeding"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 1.55,
+                    "max": 3.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.explosion_dmg_factor",
+                "value": {
+                    "min": 0.95,
+                    "max": 1.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от взрыва",
+                    "en": "Explosion protection"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Пламя",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bleeding_accumulation",
+                "value": {
+                    "min": -0.09,
+                    "max": -0.18
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Кровотечение",
+                    "en": "Bleeding"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.5,
+                    "max": 1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 3.85,
+                    "max": 7.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Солнце",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_burn",
+                "value": {
+                    "min": 0.45,
+                    "max": 0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на ожог",
+                    "en": "Reaction to burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 1.6,
+                    "max": 3.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.health_bonus",
+                "value": {
+                    "min": 0.35,
+                    "max": 0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Живучесть",
+                    "en": "Vitality"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Радиатор",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.55,
+                    "max": -1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.thermal_dmg_factor",
+                "value": {
+                    "min": 3.5,
+                    "max": 7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление температуре",
+                    "en": "Thermal resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Кровь камня",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bleeding_accumulation",
+                "value": {
+                    "min": -0.08,
+                    "max": -0.16
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Кровотечение",
+                    "en": "Bleeding"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.6,
+                    "max": 1.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.health_bonus",
+                "value": {
+                    "min": 0.15,
+                    "max": 0.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Живучесть",
+                    "en": "Vitality"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Ломоть мяса",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_chemical_burn",
+                "value": {
+                    "min": 1.25,
+                    "max": 2.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на хим. ожог",
+                    "en": "Reaction to chemical burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 1,
+                    "max": 2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Желчь камня",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.25,
+                    "max": -0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.3,
+                    "max": 0.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.biological_dmg_factor",
+                "value": {
+                    "min": 2.35,
+                    "max": 4.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление биозаражению",
+                    "en": "Bioinfection resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Болотный гнилец",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.35,
+                    "max": -0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_chemical_burn",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на хим. ожог",
+                    "en": "Reaction to chemical burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.biological_dmg_factor",
+                "value": {
+                    "min": 2.7,
+                    "max": 5.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление биозаражению",
+                    "en": "Bioinfection resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Душа",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.45,
+                    "max": 0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.45,
+                    "max": 0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 3.4,
+                    "max": 6.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Пружина",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.6,
+                    "max": 1.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 4.9,
+                    "max": 9.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 1.45,
+                    "max": 2.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Остов",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.8,
+                    "max": -1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 1.3,
+                    "max": 2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.55,
+                    "max": 1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Кислый кристалл",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.2,
+                    "max": -0.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_chemical_burn",
+                "value": {
+                    "min": 1,
+                    "max": 2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на хим. ожог",
+                    "en": "Reaction to chemical burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.2,
+                    "max": 0.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Кисель",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.25,
+                    "max": -0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.25,
+                    "max": 0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.radiation_dmg_factor",
+                "value": {
+                    "min": 2.35,
+                    "max": 4.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление радиации",
+                    "en": "Radiation resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Слизь",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bleeding_accumulation",
+                "value": {
+                    "min": -0.055,
+                    "max": -0.11
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Кровотечение",
+                    "en": "Bleeding"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.bleeding_protection",
+                "value": {
+                    "min": 2.3,
+                    "max": 4.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от кровотечения",
+                    "en": "Bleeding protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.3,
+                    "max": 0.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Слизняк",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bleeding_accumulation",
+                "value": {
+                    "min": -0.07,
+                    "max": -0.14
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Кровотечение",
+                    "en": "Bleeding"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.bleeding_protection",
+                "value": {
+                    "min": 2.85,
+                    "max": 5.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от кровотечения",
+                    "en": "Bleeding protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Слюда",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bleeding_accumulation",
+                "value": {
+                    "min": -0.22,
+                    "max": -0.44
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Кровотечение",
+                    "en": "Bleeding"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.3,
+                    "max": 0.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Светляк",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 1.4,
+                    "max": 2.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.health_bonus",
+                "value": {
+                    "min": 0.35,
+                    "max": 0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Живучесть",
+                    "en": "Vitality"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Улитка",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.5,
+                    "max": -1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.75,
+                    "max": 3.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.biological_dmg_factor",
+                "value": {
+                    "min": 3.1,
+                    "max": 6.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление биозаражению",
+                    "en": "Bioinfection resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Пузырь",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.55,
+                    "max": -1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.45,
+                    "max": 0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.radiation_dmg_factor",
+                "value": {
+                    "min": 3.5,
+                    "max": 7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление радиации",
+                    "en": "Radiation resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Пленка",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.45,
+                    "max": -0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_chemical_burn",
+                "value": {
+                    "min": 1.3,
+                    "max": 2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на хим. ожог",
+                    "en": "Reaction to chemical burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.3,
+                    "max": 0.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Многогранник",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.8,
+                    "max": -1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 1.1,
+                    "max": 2.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.95,
+                    "max": 3.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Колючка",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.25,
+                    "max": -0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.3,
+                    "max": 2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.radiation_dmg_factor",
+                "value": {
+                    "min": 2.35,
+                    "max": 4.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление радиации",
+                    "en": "Radiation resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Кристальная колючка",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.35,
+                    "max": -0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.55,
+                    "max": 3.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.radiation_dmg_factor",
+                "value": {
+                    "min": 2.7,
+                    "max": 5.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление радиации",
+                    "en": "Radiation resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Морской еж",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.55,
+                    "max": -1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.95,
+                    "max": 3.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.biological_dmg_factor",
+                "value": {
+                    "min": 3.5,
+                    "max": 7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление биозаражению",
+                    "en": "Bioinfection resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Колобок",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.45,
+                    "max": -0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.9,
+                    "max": 1.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.75,
+                    "max": 3.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Стальной колобок",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 1.95,
+                    "max": 3.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.45,
+                    "max": 0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 7.3,
+                    "max": 14.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Каменный цветок",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 1.05,
+                    "max": 2.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.explosion_dmg_factor",
+                "value": {
+                    "min": 0.65,
+                    "max": 1.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от взрыва",
+                    "en": "Explosion protection"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 2.6,
+                    "max": 5.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Медуза",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -0.3,
+                    "max": -0.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 0.9,
+                    "max": 1.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 1.3,
+                    "max": 2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Темная медуза",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 1.75,
+                    "max": 3.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.explosion_dmg_factor",
+                "value": {
+                    "min": 1.1,
+                    "max": 2.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от взрыва",
+                    "en": "Explosion protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 1.45,
+                    "max": 2.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Жильник",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -0.65,
+                    "max": -1.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 1.05,
+                    "max": 2.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 1.05,
+                    "max": 2.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Ночная звезда",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -0.65,
+                    "max": -1.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 1.05,
+                    "max": 2.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.psycho_dmg_factor",
+                "value": {
+                    "min": 2.7,
+                    "max": 5.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление пси-излучению",
+                    "en": "Psy-emission resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Протомедуза",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.5,
+                    "max": -1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.radiation_dmg_factor",
+                "value": {
+                    "min": 3.1,
+                    "max": 6.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление радиации",
+                    "en": "Radiation resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Браслет",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.75,
+                    "max": 1.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 8.1,
+                    "max": 16.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.6,
+                    "max": 1.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Выверт",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.tear_dmg_factor",
+                "value": {
+                    "min": 0.9,
+                    "max": 1.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от разрыва",
+                    "en": "Melee protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.35,
+                    "max": 0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.6,
+                    "max": 1.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Грави",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bleeding_accumulation",
+                "value": {
+                    "min": -0.205,
+                    "max": -0.41
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Кровотечение",
+                    "en": "Bleeding"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.tear_dmg_factor",
+                "value": {
+                    "min": 1.1,
+                    "max": 2.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от разрыва",
+                    "en": "Melee protection"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 1.55,
+                    "max": 3.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Золотая рыбка",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 1.1,
+                    "max": 2.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.explosion_dmg_factor",
+                "value": {
+                    "min": 2.85,
+                    "max": 5.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от взрыва",
+                    "en": "Explosion protection"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 1.85,
+                    "max": 3.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Золотистый грави",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.45,
+                    "max": 0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 2.1,
+                    "max": 4.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 6.5,
+                    "max": 13
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Янтарник",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 1.4,
+                    "max": 2.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 2.35,
+                    "max": 4.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.55,
+                    "max": 1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Криоген",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.5,
+                    "max": -1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 1.2,
+                    "max": 2.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.thermal_dmg_factor",
+                "value": {
+                    "min": 3.1,
+                    "max": 6.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление температуре",
+                    "en": "Thermal resistance"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Черный кристалл",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.45,
+                    "max": -0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 0.4,
+                    "max": 0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 0.35,
+                    "max": 0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Спираль",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.5,
+                    "max": 1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 1.2,
+                    "max": 2.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 3.1,
+                    "max": 6.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Зеркало",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -1.15,
+                    "max": -2.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 1.25,
+                    "max": 2.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_electroshock",
+                "value": {
+                    "min": 0.65,
+                    "max": 1.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на электричество",
+                    "en": "Reaction to electricity"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Осколок",
+        "additionalStats": [
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 1.15,
+                    "max": 2.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.health_bonus",
+                "value": {
+                    "min": 0.35,
+                    "max": 0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Живучесть",
+                    "en": "Vitality"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 1.45,
+                    "max": 2.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Призма",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 2.2,
+                    "max": 4.4
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.explosion_dmg_factor",
+                "value": {
+                    "min": 1.35,
+                    "max": 2.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от взрыва",
+                    "en": "Explosion protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 1.8,
+                    "max": 3.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Атом",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.55,
+                    "max": -1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.55,
+                    "max": -1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.55,
+                    "max": -1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -1.15,
+                    "max": -2.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Иней",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.3,
+                    "max": -0.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.tear_dmg_factor",
+                "value": {
+                    "min": 1.55,
+                    "max": 3.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от разрыва",
+                    "en": "Melee protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 1,
+                    "max": 2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Хрусталь",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.25,
+                    "max": -0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.25,
+                    "max": -0.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -0.3,
+                    "max": -0.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Корка",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.4,
+                    "max": -0.8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 1.55,
+                    "max": 3.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.tear_dmg_factor",
+                "value": {
+                    "min": 1.3,
+                    "max": 2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от разрыва",
+                    "en": "Melee protection"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Вихрь",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.8,
+                    "max": -1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_burn",
+                "value": {
+                    "min": 0.45,
+                    "max": 0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на ожог",
+                    "en": "Reaction to burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.65,
+                    "max": 1.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Фаренгейт",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.45,
+                    "max": -0.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 1,
+                    "max": 2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.35,
+                    "max": 0.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Каблук",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.8,
+                    "max": -1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 0.55,
+                    "max": 1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 2.75,
+                    "max": 5.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Куриный бог",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.55,
+                    "max": -1.1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 1.1,
+                    "max": 2.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 1.45,
+                    "max": 2.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Глаз бури",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.8,
+                    "max": -1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.bleeding_protection",
+                "value": {
+                    "min": 4.25,
+                    "max": 8.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от кровотечения",
+                    "en": "Bleeding protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 0.5,
+                    "max": 1
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            }
+        ]
+    },
+    {
+        "name": "Рубик",
+        "additionalStats": [
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.radiation_accumulation",
+                "value": {
+                    "min": -0.8,
+                    "max": -1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Радиация",
+                    "en": "Radiation"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.thermal_accumulation",
+                "value": {
+                    "min": -0.8,
+                    "max": -1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Температура",
+                    "en": "Temperature"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.biological_accumulation",
+                "value": {
+                    "min": -0.8,
+                    "max": -1.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Биологическое заражение",
+                    "en": "Biological infection"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.psycho_accumulation",
+                "value": {
+                    "min": -1.3,
+                    "max": -2.6
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пси-излучение",
+                    "en": "Psy-emissions"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bleeding_accumulation",
+                "value": {
+                    "min": -0.27,
+                    "max": -0.54
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Кровотечение",
+                    "en": "Bleeding"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.bullet_dmg_factor",
+                "value": {
+                    "min": 3.65,
+                    "max": 7.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Пулестойкость",
+                    "en": "Bullet resistance"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.explosion_dmg_factor",
+                "value": {
+                    "min": 3.25,
+                    "max": 6.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от взрыва",
+                    "en": "Explosion protection"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.tear_dmg_factor",
+                "value": {
+                    "min": 4.35,
+                    "max": 8.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от разрыва",
+                    "en": "Melee protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_tear",
+                "value": {
+                    "min": 1.1,
+                    "max": 2.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на разрыв",
+                    "en": "Reaction to melee"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_electroshock",
+                "value": {
+                    "min": 1.65,
+                    "max": 3.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на электричество",
+                    "en": "Reaction to electricity"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_burn",
+                "value": {
+                    "min": 1.1,
+                    "max": 2.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на ожог",
+                    "en": "Reaction to burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.reaction_to_chemical_burn",
+                "value": {
+                    "min": 1.65,
+                    "max": 3.3
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Реакция на хим. ожог",
+                    "en": "Reaction to chemical burns"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.bleeding_protection",
+                "value": {
+                    "min": 4,
+                    "max": 8
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Защита от кровотечения",
+                    "en": "Bleeding protection"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.speed_modifier",
+                "value": {
+                    "min": 1.25,
+                    "max": 2.5
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Скорость передвижения",
+                    "en": "Movement speed"
+                }
+            },
+            {
+                "unitKey": null,
+                "key": "stalker.artefact_properties.factor.max_weight_bonus",
+                "value": {
+                    "min": 4.35,
+                    "max": 8.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Переносимый вес",
+                    "en": "Carry weight"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_bonus",
+                "value": {
+                    "min": 6.5,
+                    "max": 13
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Выносливость",
+                    "en": "Stamina"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.stamina_regeneration_bonus",
+                "value": {
+                    "min": 1.45,
+                    "max": 2.9
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Восстановление выносливости",
+                    "en": "Stamina regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.regeneration_bonus",
+                "value": {
+                    "min": 1,
+                    "max": 2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Регенерация здоровья",
+                    "en": "Health regeneration"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.health_bonus",
+                "value": {
+                    "min": 0.6,
+                    "max": 1.2
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Живучесть",
+                    "en": "Vitality"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.heal_efficiency",
+                "value": {
+                    "min": 3.85,
+                    "max": 7.7
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Эффективность лечения",
+                    "en": "Healing effectiveness"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.radiation_dmg_factor",
+                "value": {
+                    "min": 12.5,
+                    "max": 25
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление радиации",
+                    "en": "Radiation resistance"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.thermal_dmg_factor",
+                "value": {
+                    "min": 12.5,
+                    "max": 25
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление температуре",
+                    "en": "Thermal resistance"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.biological_dmg_factor",
+                "value": {
+                    "min": 12.5,
+                    "max": 25
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление биозаражению",
+                    "en": "Bioinfection resistance"
+                }
+            },
+            {
+                "unitKey": "percentage",
+                "key": "stalker.artefact_properties.factor.psycho_dmg_factor",
+                "value": {
+                    "min": 12.5,
+                    "max": 25
+                },
+                "isPositive": 1,
+                "lines": {
+                    "ru": "Сопротивление пси-излучению",
+                    "en": "Psy-emission resistance"
+                }
+            }
+        ]
+    }
+]
