@@ -287,7 +287,7 @@ export function SortProperties(dataJson: any, type: string = '', isAdditionalPro
 
         let isPositive: string = '';
         if (dataJson.category.includes('artefact')) {
-            value = FindRangeValueByKey(dataJson, prop.key, 'float', 1);
+            value = FindRangeValueByKey(dataJson, prop.key, 'float', 2);
             isPositive = (prop.goodIfGreaterThanZero && Number(value.max) > 0) || (!prop.goodIfGreaterThanZero && Number(value.max) < 0)
                 ? '1'
                 : '0';
@@ -296,7 +296,7 @@ export function SortProperties(dataJson: any, type: string = '', isAdditionalPro
                 valueIsNull = true;
             }
         } else {
-            value = FindValueByKey(dataJson, prop.key, 'float', 1);
+            value = FindValueByKey(dataJson, prop.key, 'float', 2);
             isPositive = (prop.goodIfGreaterThanZero && Number(value) > 0) || (!prop.goodIfGreaterThanZero && Number(value) < 0)
                 ? '1'
                 : '0';
