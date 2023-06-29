@@ -116,7 +116,6 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
             });
 
             otherItem.suitableFor = GetSuitableWeaponsOrArmor(dataJson);
-            console.log(otherItem)
 
             const newObj: any = {};
             for (const key in otherItem) {
