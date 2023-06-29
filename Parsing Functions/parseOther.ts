@@ -8,7 +8,6 @@ import {
     GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanks
 } from "../Static/functions";
-import {IndexDirName} from "../index";
 
 
 export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Promise<object[]> {
@@ -117,6 +116,7 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
             });
 
             otherItem.suitableFor = GetSuitableWeaponsOrArmor(dataJson);
+            console.log(otherItem)
 
             const newObj: any = {};
             for (const key in otherItem) {
@@ -140,16 +140,17 @@ function GetSuitableWeaponsOrArmor(dataJson: any): object[] {
     let result: object[] = [];
 
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
-        if (dataJson.infoBlocks[i].type == 'list') {
+        if (dataJson.infoBlocks[i].type === 'list' && dataJson.infoBlocks[i].elements[0]?.text?.lines?.en === 'Suitable for:') {
             result = dataJson.infoBlocks[i].elements as object[];
         }
     }
+
     let resultDump: object[] = [];
-    result.forEach((item: any) => {
-        if (result.indexOf(item) != 0)
+    result.forEach((item: any, index) => {
+        if (index !== 0 && result.indexOf(item) != 0)
         resultDump.push({
-            key: item.text.key,
-            lines: item.text.lines
+            key: item.name.key,
+            lines: item.name.lines
         });
     })
 
