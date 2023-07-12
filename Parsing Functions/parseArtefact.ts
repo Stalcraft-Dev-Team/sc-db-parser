@@ -76,6 +76,9 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
         const files: string[] = fs.readdirSync(folderPath);
 
         files.map((file) => {
+            if (file === '_variants') {
+                return;
+            }
             const fileName: string = file.split('.')[0];
             file = folderPath + file;
 

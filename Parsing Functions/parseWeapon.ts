@@ -71,6 +71,9 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         const files: string[] = fs.readdirSync(folderPath);
 
         files.map((file) => {
+            if (file === '_variants') {
+                return;
+            }
             const fileName: string = file.split('.')[0];
             file = folderPath + '\\' + file;
 
@@ -87,271 +90,293 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                 return result;
             };
 
-            const DamagesAndDistances: any = GetInfoBlockWithDamagesAndDistances();
-            const weapon = new WeaponSchema({
-                exbo_id: fileName,
-                key: dataJson.name.key,
-                lines: dataJson.name.lines,
-                color: dataJson.color,
-                rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
-                class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
-                weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
-                ammoType: FindLinesInValueByKey(dataJson, "weapon.tooltip.weapon.info.ammo_type"),
-                stats: [
-                    {
-                        unitKey: 'units',
-                        key: 'core.tooltip.stat_name.damage_type.direct',
-                        value: DamagesAndDistances.startDamage == undefined
-                            ? FindValueByKey(dataJson, 'core.tooltip.stat_name.damage_type.direct', 'int', null)
-                            : DamagesAndDistances.startDamage.toString(),
-                        mutatedValue: null,
-                        lines: {
-                           ru: 'Урон',
-                           en: 'Damage'
-                        }
-                    },
-                    {
-                        unitKey: 'units',
-                        key: 'core.tooltip.stat_name.damage_type.endDamage',
-                        value: DamagesAndDistances.endDamage,
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Мин. урон',
-                            en: 'End damage'
-                        }
-                    },
-                    {
-                        unitKey: 'meters',
-                        key: 'core.tooltip.stat_name.damage_type.damageDecreaseStart',
-                        value: DamagesAndDistances.damageDecreaseStart,
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Начало падения урона',
-                            en: 'Damage decrease start'
-                        }
-                    },
-                    {
-                        unitKey: 'meters',
-                        key: 'core.tooltip.stat_name.damage_type.damageDecreaseEnd',
-                        value: DamagesAndDistances.damageDecreaseEnd,
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Конец падения урона',
-                            en: 'Damage decrease end'
-                        }
-                    },
-                    {
-                        unitKey: 'meters',
-                        key: 'core.tooltip.stat_name.damage_type.maxDistance',
-                        value: DamagesAndDistances.maxDistance,
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Максимальная дистанция',
-                            en: 'Max distance'
-                        }
-                    },
-                    {
-                        unitKey: null,
-                        key: "weapon.tooltip.weapon.info.clip_size",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Объем магазина',
-                            en: 'Ammo capacity'
-                        }
-                    },
-                    {
-                        unitKey: 'firerate',
-                        key: "weapon.tooltip.weapon.info.rate_of_fire",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.rate_of_fire", "int", null),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Скорострельность',
-                            en: 'Rate of fire'
-                        }
-                    },
-                    {
-                        unitKey: 'time',
-                        key: "weapon.tooltip.weapon.info.reload_time",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Время перезарядки',
-                            en: 'Reload time'
-                        }
-                    },
-                    {
-                        unitKey: 'time',
-                        key: "weapon.tooltip.weapon.info.tactical_reload_time",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Время тактической перезарядки',
-                            en: 'Tactical reload time'
-                        }
-                    },
-                    {
-                        unitKey: 'degrees',
-                        key: "weapon.tooltip.weapon.info.spread",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.spread", "float", 2),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Разброс',
-                            en: 'Spread'
-                        }
-                    },
-                    {
-                        unitKey: 'degrees',
-                        key: "weapon.tooltip.weapon.info.hip_spread",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.hip_spread", "float", 2),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Разброс от бедра',
-                            en: 'Hip spread'
-                        }
-                    },
-                    {
-                        unitKey: 'degrees',
-                        key: "weapon.tooltip.weapon.info.recoil",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.recoil", "float", 2),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Вертикальная отдача',
-                            en: 'Vertical recoil'
-                        }
-                    },
-                    {
-                        unitKey: 'degrees',
-                        key: "weapon.tooltip.weapon.info.horizontal_recoil",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.horizontal_recoil", "float", 2),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Горизонтальная отдача',
-                            en: 'Horizontal recoil'
-                        }
-                    },
-                    {
-                        unitKey: 'time',
-                        key: "weapon.tooltip.weapon.info.draw_time",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.draw_time", "float", 2),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Время доставания',
-                            en: 'Draw time'
-                        }
-                    },
-                    {
-                        unitKey: 'time',
-                        key: "weapon.tooltip.weapon.info.aim_switch",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.aim_switch", "float", 2),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Скорость прицеливания',
-                            en: 'Aiming time'
-                        }
-                    },
-                ],
-                features: [
-                    {
-                        unitKey: 'uniqueFeature',
-                        key: null,
-                        value: null,
-                        lines: FindLinesByKey(dataJson, itemKey() + 'features')
-                    },
-                    {
-                        unitKey: 'burnDamage',
-                        key: null,
-                        value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.burn", "float", 2),
-                        lines: {
-                            ru: 'Огненный урон',
-                            en: 'Burn damage'
-                        }
-                    },
-                    {
-                        unitKey: 'pureDamage',
-                        key: null,
-                        value: FindValueByKey(dataJson, "core.tooltip.stat_name.damage_type.default", "float", 2),
-                        lines: {
-                            ru: 'Чистый урон',
-                            en: 'Pure damage'
-                        }
-                    },
-                ],
-                damageModifiers: [
-                    {
-                        unitKey: 'x',
-                        key: null,
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.head_damage_modifier", "float", 2),
-                        lines: {
-                            ru: 'Множитель урона в голову',
-                            en: 'Headshot damage multiplier'
-                        }
-                    },
-                    {
-                        unitKey: 'x',
-                        key: null,
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.limbs_damage_modifier", "float", 2),
-                        lines: {
-                            ru: 'Множитель урона по конечностям',
-                            en: 'Limbs damage multiplier'
-                        }
-                    },
-                    {
-                        unitKey: 'x',
-                        key: null,
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.mobs_damage_multiplier", "float", 2),
-                        lines: {
-                            ru: 'Множитель урона по мутантам',
-                            en: 'Mutant damage multiplier'
-                        }
-                    },
-                    {
-                        unitKey: null,
-                        key: null,
-                        value: null,
-                        lines: FindFeatureByKey("weapon.tooltip.weapon.constancy_damage_modifier")
-                    },
-                    {
-                        unitKey: null,
-                        key: null,
-                        value: null,
-                        lines: FindFeatureByKey("weapon.tooltip.weapon.execute_damage_modifier")
-                    },
-                ],
-                additionalStats: [
-                    {
-                        unitKey: 'pierce',
-                        key: "weapon.tooltip.weapon.info.piercing",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.piercing", "int", null),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Бронебойность',
-                            en: 'Pierce'
-                        }
-                    },
-                    {
-                        unitKey: 'bleeding',
-                        key: "weapon.tooltip.weapon.info.bleeding",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.bleeding", "int", null),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Кровотечение',
-                            en: 'Bleeding'
-                        }
-                    },
-                    {
-                        unitKey: 'stoppingPower',
-                        key: "weapon.tooltip.weapon.info.stopping_power",
-                        value: FindValueByKey(dataJson, "weapon.tooltip.weapon.info.stopping_power", "int", null),
-                        mutatedValue: null,
-                        lines: {
-                            ru: 'Останавливающая сила',
-                            en: 'Stopping power'
-                        }
-                    },
-                ],
-                description: FindLinesByKey(dataJson, itemKey() + 'description')
-            });
+
+            const getConstructObj = (_fileName: string, _dataJson: any): any => {
+                const DamagesAndDistances: any = GetInfoBlockWithDamagesAndDistances(_dataJson);
+
+                return {
+                    exbo_id: _fileName,
+                    key: _dataJson.name.key,
+                    lines: _dataJson.name.lines,
+                    color: _dataJson.color,
+                    rank: FindLinesInValueByKey(_dataJson, "core.tooltip.info.rank"),
+                    class: FindLinesInValueByKey(_dataJson, "core.tooltip.info.category"),
+                    weight: FindLinesInValueByKey(_dataJson, "core.tooltip.info.weight"),
+                    ammoType: FindLinesInValueByKey(_dataJson, "weapon.tooltip.weapon.info.ammo_type"),
+                    stats: [
+                        {
+                            unitKey: 'units',
+                            key: 'core.tooltip.stat_name.damage_type.direct',
+                            value: DamagesAndDistances.startDamage == undefined
+                                ? FindValueByKey(_dataJson, 'core.tooltip.stat_name.damage_type.direct', 'int', null)
+                                : DamagesAndDistances.startDamage.toString(),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Урон',
+                                en: 'Damage'
+                            }
+                        },
+                        {
+                            unitKey: 'units',
+                            key: 'core.tooltip.stat_name.damage_type.endDamage',
+                            value: DamagesAndDistances.endDamage,
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Мин. урон',
+                                en: 'End damage'
+                            }
+                        },
+                        {
+                            unitKey: 'meters',
+                            key: 'core.tooltip.stat_name.damage_type.damageDecreaseStart',
+                            value: DamagesAndDistances.damageDecreaseStart,
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Начало падения урона',
+                                en: 'Damage decrease start'
+                            }
+                        },
+                        {
+                            unitKey: 'meters',
+                            key: 'core.tooltip.stat_name.damage_type.damageDecreaseEnd',
+                            value: DamagesAndDistances.damageDecreaseEnd,
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Конец падения урона',
+                                en: 'Damage decrease end'
+                            }
+                        },
+                        {
+                            unitKey: 'meters',
+                            key: 'core.tooltip.stat_name.damage_type.maxDistance',
+                            value: DamagesAndDistances.maxDistance,
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Максимальная дистанция',
+                                en: 'Max distance'
+                            }
+                        },
+                        {
+                            unitKey: null,
+                            key: "weapon.tooltip.weapon.info.clip_size",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Объем магазина',
+                                en: 'Ammo capacity'
+                            }
+                        },
+                        {
+                            unitKey: 'firerate',
+                            key: "weapon.tooltip.weapon.info.rate_of_fire",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.rate_of_fire", "int", null),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Скорострельность',
+                                en: 'Rate of fire'
+                            }
+                        },
+                        {
+                            unitKey: 'time',
+                            key: "weapon.tooltip.weapon.info.reload_time",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Время перезарядки',
+                                en: 'Reload time'
+                            }
+                        },
+                        {
+                            unitKey: 'time',
+                            key: "weapon.tooltip.weapon.info.tactical_reload_time",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Время тактической перезарядки',
+                                en: 'Tactical reload time'
+                            }
+                        },
+                        {
+                            unitKey: 'degrees',
+                            key: "weapon.tooltip.weapon.info.spread",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.spread", "float", 2),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Разброс',
+                                en: 'Spread'
+                            }
+                        },
+                        {
+                            unitKey: 'degrees',
+                            key: "weapon.tooltip.weapon.info.hip_spread",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.hip_spread", "float", 2),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Разброс от бедра',
+                                en: 'Hip spread'
+                            }
+                        },
+                        {
+                            unitKey: 'degrees',
+                            key: "weapon.tooltip.weapon.info.recoil",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.recoil", "float", 2),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Вертикальная отдача',
+                                en: 'Vertical recoil'
+                            }
+                        },
+                        {
+                            unitKey: 'degrees',
+                            key: "weapon.tooltip.weapon.info.horizontal_recoil",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.horizontal_recoil", "float", 2),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Горизонтальная отдача',
+                                en: 'Horizontal recoil'
+                            }
+                        },
+                        {
+                            unitKey: 'time',
+                            key: "weapon.tooltip.weapon.info.draw_time",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.draw_time", "float", 2),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Время доставания',
+                                en: 'Draw time'
+                            }
+                        },
+                        {
+                            unitKey: 'time',
+                            key: "weapon.tooltip.weapon.info.aim_switch",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.aim_switch", "float", 2),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Скорость прицеливания',
+                                en: 'Aiming time'
+                            }
+                        },
+                    ],
+                    statsVariants: [],
+                    features: [
+                        {
+                            unitKey: 'uniqueFeature',
+                            key: null,
+                            value: null,
+                            lines: FindLinesByKey(_dataJson, itemKey() + 'features')
+                        },
+                        {
+                            unitKey: 'burnDamage',
+                            key: null,
+                            value: FindValueByKey(_dataJson, "core.tooltip.stat_name.damage_type.burn", "float", 2),
+                            lines: {
+                                ru: 'Огненный урон',
+                                en: 'Burn damage'
+                            }
+                        },
+                        {
+                            unitKey: 'pureDamage',
+                            key: null,
+                            value: FindValueByKey(_dataJson, "core.tooltip.stat_name.damage_type.default", "float", 2),
+                            lines: {
+                                ru: 'Чистый урон',
+                                en: 'Pure damage'
+                            }
+                        },
+                    ],
+                    damageModifiers: [
+                        {
+                            unitKey: 'x',
+                            key: null,
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.head_damage_modifier", "float", 2),
+                            lines: {
+                                ru: 'Множитель урона в голову',
+                                en: 'Headshot damage multiplier'
+                            }
+                        },
+                        {
+                            unitKey: 'x',
+                            key: null,
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.limbs_damage_modifier", "float", 2),
+                            lines: {
+                                ru: 'Множитель урона по конечностям',
+                                en: 'Limbs damage multiplier'
+                            }
+                        },
+                        {
+                            unitKey: 'x',
+                            key: null,
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.mobs_damage_multiplier", "float", 2),
+                            lines: {
+                                ru: 'Множитель урона по мутантам',
+                                en: 'Mutant damage multiplier'
+                            }
+                        },
+                        {
+                            unitKey: null,
+                            key: null,
+                            value: null,
+                            lines: FindFeatureByKey("weapon.tooltip.weapon.constancy_damage_modifier")
+                        },
+                        {
+                            unitKey: null,
+                            key: null,
+                            value: null,
+                            lines: FindFeatureByKey("weapon.tooltip.weapon.execute_damage_modifier")
+                        },
+                    ],
+                    additionalStats: [
+                        {
+                            unitKey: 'pierce',
+                            key: "weapon.tooltip.weapon.info.piercing",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.piercing", "int", null),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Бронебойность',
+                                en: 'Pierce'
+                            }
+                        },
+                        {
+                            unitKey: 'bleeding',
+                            key: "weapon.tooltip.weapon.info.bleeding",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.bleeding", "int", null),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Кровотечение',
+                                en: 'Bleeding'
+                            }
+                        },
+                        {
+                            unitKey: 'stoppingPower',
+                            key: "weapon.tooltip.weapon.info.stopping_power",
+                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.stopping_power", "int", null),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Останавливающая сила',
+                                en: 'Stopping power'
+                            }
+                        },
+                    ],
+                    description: FindLinesByKey(_dataJson, itemKey() + 'description')
+                }
+            }
+
+            // main weapon
+            const weapon = new WeaponSchema(getConstructObj(fileName, dataJson));
+
+            // statsVariants
+            if (fs.existsSync(folderPath + '\\' + '_variants' + '\\' + fileName + '\\')) {
+                for (let i = 1; i <= 15; i++) {
+                    const fileVariant = folderPath + '\\' + '_variants' + '\\' + fileName + '\\' + `${i}.json`;
+                    const dataVariant: Buffer = fs.readFileSync(fileVariant);
+                    const dataJsonVariant = JSON.parse(dataVariant.toString());
+                    const weaponVariant = new WeaponSchema(getConstructObj(fileName, dataJsonVariant));
+                    weapon.statsVariants[i-1] = {
+                        level: i,
+                        value: weaponVariant.stats
+                    }
+                }
+            }
 
             SelectedCategoryWeapons.push(weapon);
         });
@@ -381,7 +406,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
         return null;
     }
 
-    function GetInfoBlockWithDamagesAndDistances(): object {
+    function GetInfoBlockWithDamagesAndDistances(dataJson: any): object {
         for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
             if (dataJson.infoBlocks[i].type == "damage") {
                 return dataJson.infoBlocks[i];

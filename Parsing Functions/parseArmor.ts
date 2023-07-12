@@ -70,6 +70,9 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
         const files: string[] = fs.readdirSync(folderPath);
 
         files.map((file) => {
+            if (file === '_variants') {
+                return;
+            }
             const fileName: string = file.split('.')[0];
             file = folderPath + '\\' + file;
 
@@ -86,22 +89,41 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
                 return result;
             };
 
-            const armor = new ArmorSchema({
-                exbo_id: fileName,
-                lines: dataJson.name.lines,
-                key: dataJson.name.key,
-                color: dataJson.color,
-                rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
-                class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
-                weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
-                nightVisionGlasses: FindLinesForArmorByKey(dataJson, "stalker.tooltip.armor_artefact.night_vision"),
-                compatibilityBackpacks: FindLinesForArmorByKey(dataJson, "stalker.lore.armor_artefact.info.compatible_backpacks"),
-                compatibilityContainers: FindLinesForArmorByKey(dataJson, "stalker.lore.armor_artefact.info.compatible_containers"),
-                stats: [],
-                description: FindLinesByKey(dataJson, itemKey() + 'description'),
-            });
+            const getConstructObj = (_fileName: string, _dataJson: any) => {
+                return {
+                    exbo_id: _fileName,
+                    lines: _dataJson.name.lines,
+                    key: _dataJson.name.key,
+                    color: _dataJson.color,
+                    rank: FindLinesInValueByKey(_dataJson, "core.tooltip.info.rank"),
+                    class: FindLinesInValueByKey(_dataJson, "core.tooltip.info.category"),
+                    weight: FindLinesInValueByKey(_dataJson, "core.tooltip.info.weight"),
+                    nightVisionGlasses: FindLinesForArmorByKey(_dataJson, "stalker.tooltip.armor_artefact.night_vision"),
+                    compatibilityBackpacks: FindLinesForArmorByKey(_dataJson, "stalker.lore.armor_artefact.info.compatible_backpacks"),
+                    compatibilityContainers: FindLinesForArmorByKey(_dataJson, "stalker.lore.armor_artefact.info.compatible_containers"),
+                    stats: [],
+                    statsVariants: [],
+                    description: FindLinesByKey(_dataJson, itemKey() + 'description'),
+                }
+            }
 
+            const armor = new ArmorSchema(getConstructObj(fileName, dataJson));
             armor.stats = SortProperties(dataJson, 'player');
+
+            // statsVariants
+            if (fs.existsSync(folderPath + '\\' + '_variants' + '\\' + fileName + '\\')) {
+                for (let i = 1; i <= 15; i++) {
+                    const fileVariant = folderPath + '\\' + '_variants' + '\\' + fileName + '\\' + `${i}.json`;
+                    const dataVariant: Buffer = fs.readFileSync(fileVariant);
+                    const dataJsonVariant = JSON.parse(dataVariant.toString());
+                    const armorVariant = new ArmorSchema(getConstructObj(fileName, dataJsonVariant));
+                    armorVariant.stats = SortProperties(dataJsonVariant, 'player');
+                    armor.statsVariants[i-1] = {
+                        level: i,
+                        value: armorVariant.stats
+                    }
+                }
+            }
 
             SelectedCategoryArmors.push(armor);
         });

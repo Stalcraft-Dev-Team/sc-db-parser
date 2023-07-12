@@ -405,11 +405,11 @@ export function FindValueByKey(dataJson: any, searchingKey: string, type: string
             : 'integer';
 
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
-        if (dataJson.infoBlocks[i].elements != undefined)
+        if (dataJson.infoBlocks[i].elements !== undefined && dataJson.infoBlocks[i].title?.key !== 'stalker.tooltip.armor_artefact.info.upgrade_stats')
             for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
                 for (const [key, value] of Object.entries(dataJson.infoBlocks[i].elements[j])) {
-                    if ((key == 'name' || key == 'key' || key == 'text') && (value as any).key as string == searchingKey) {
-                        if (dataJson.infoBlocks[i].elements[j].value != null) {
+                    if ((key === 'name' || key === 'key' || key === 'text') && (value as any).key as string === searchingKey) {
+                        if (dataJson.infoBlocks[i].elements[j].value !== null) {
                             result = dataJson.infoBlocks[i].elements[j].value as string;
                         } else if (Object.entries(dataJson.infoBlocks[i].elements[j].text.args).length > 0) {
                             if (searchingKey.includes('melee_weapon')) {

@@ -19,6 +19,7 @@ export class WeaponSchema {
     weight: ILines | null = null;
     ammoType: ILines | null = null;
     stats: object[] = [];
+    statsVariants: object[] = [];
     features: object = [];
     damageModifiers: object = [];
     additionalStats: object = [];
@@ -53,7 +54,7 @@ export class WeaponSchema {
         }
         obj.stats = obj.stats.filter((stat: any) => stat != null);
         this.stats = obj.stats;
-
+        this.statsVariants = obj.statsVariants;
         //////
         let allNullFeaturesDeleted = false;
         while (!allNullFeaturesDeleted) {
@@ -368,7 +369,7 @@ export class ArmorSchema {
     compatibilityBackpacks: ILines | null = null;
     compatibilityContainers: ILines | null = null;
     stats: object[] = [];
-
+    statsVariants: object[] = [];
     description: ILines | null = null;
 
     constructor(obj: any) {
@@ -383,6 +384,7 @@ export class ArmorSchema {
         this.compatibilityBackpacks = obj.compatibilityBackpacks;
         this.compatibilityContainers = obj.compatibilityContainers;
         this.stats = obj.stats;
+        this.statsVariants = obj.statsVariants;
         this.description = obj.description;
     }
 }
