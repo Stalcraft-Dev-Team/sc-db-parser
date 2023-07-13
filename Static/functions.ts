@@ -409,9 +409,10 @@ export function FindValueByKey(dataJson: any, searchingKey: string, type: string
             for (let j = 0; j < (dataJson.infoBlocks[i].elements).length; j++) {
                 for (const [key, value] of Object.entries(dataJson.infoBlocks[i].elements[j])) {
                     if ((key === 'name' || key === 'key' || key === 'text') && (value as any).key as string === searchingKey) {
-                        if (dataJson.infoBlocks[i].elements[j].value !== null) {
+                        if (dataJson.infoBlocks[i].elements[j].value) {
                             result = dataJson.infoBlocks[i].elements[j].value as string;
-                        } else if (Object.entries(dataJson.infoBlocks[i].elements[j].text.args).length > 0) {
+                        }
+                        else if (dataJson.infoBlocks[i].elements[j].text?.args) {
                             if (searchingKey.includes('melee_weapon')) {
                                 result = dataJson.infoBlocks[i].elements[j].text.args.factor as string;
                             } else {
