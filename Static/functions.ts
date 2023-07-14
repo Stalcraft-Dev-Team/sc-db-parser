@@ -243,7 +243,7 @@ export function DeleteDublicatesAndRejectedItems(array: any[]): any[] {
 }
 
 // type must be 'player' or 'weapon'
-export function SortProperties(dataJson: any, type: string = '', isAdditionalPropsArray: boolean = false): object[] {
+export function SortProperties(dataJson: any, type: string = '', isAdditionalPropsArray: boolean = false, isValuesArray: boolean = false): object[] {
     if (type.toLowerCase() != 'player' && type.toLowerCase() != 'weapon') {
         throw new Error('Incorrect type.');
     } else {
@@ -308,13 +308,15 @@ export function SortProperties(dataJson: any, type: string = '', isAdditionalPro
 
 
         if (!valueIsNull) {
-            Stats.push({
+            const stat = {
                 unitKey: unitKey,
                 key: prop.key,
-                value: value,
+                value: isValuesArray ? [{ level: 0, value }] : value,
                 isPositive: isPositive,
                 lines: prop.lines
-            })
+            };
+
+            Stats.push(stat);
         }
     })
 

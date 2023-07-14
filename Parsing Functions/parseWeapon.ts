@@ -91,7 +91,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
             };
 
 
-            const getConstructObj = (_fileName: string, _dataJson: any): any => {
+            const getConstructObj = (_fileName: string, _dataJson: any, index: number = 0, isValueArray: boolean = false): any => {
                 const DamagesAndDistances: any = GetInfoBlockWithDamagesAndDistances(_dataJson);
 
                 return {
@@ -107,7 +107,14 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'units',
                             key: 'core.tooltip.stat_name.damage_type.direct',
-                            value: DamagesAndDistances.startDamage == undefined
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: DamagesAndDistances.startDamage == undefined
+                                        ? FindValueByKey(_dataJson, 'core.tooltip.stat_name.damage_type.direct', 'int', null)
+                                        : DamagesAndDistances.startDamage.toString()
+                                }
+                            ] : DamagesAndDistances.startDamage == undefined
                                 ? FindValueByKey(_dataJson, 'core.tooltip.stat_name.damage_type.direct', 'int', null)
                                 : DamagesAndDistances.startDamage.toString(),
                             mutatedValue: null,
@@ -119,7 +126,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'units',
                             key: 'core.tooltip.stat_name.damage_type.endDamage',
-                            value: DamagesAndDistances.endDamage,
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: DamagesAndDistances.endDamage
+                                }
+                            ] : DamagesAndDistances.endDamage,
                             mutatedValue: null,
                             lines: {
                                 ru: 'Мин. урон',
@@ -129,7 +141,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'meters',
                             key: 'core.tooltip.stat_name.damage_type.damageDecreaseStart',
-                            value: DamagesAndDistances.damageDecreaseStart,
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: DamagesAndDistances.damageDecreaseStart
+                                }
+                            ] : DamagesAndDistances.damageDecreaseStart,
                             mutatedValue: null,
                             lines: {
                                 ru: 'Начало падения урона',
@@ -139,7 +156,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'meters',
                             key: 'core.tooltip.stat_name.damage_type.damageDecreaseEnd',
-                            value: DamagesAndDistances.damageDecreaseEnd,
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: DamagesAndDistances.damageDecreaseEnd
+                                }
+                            ] : DamagesAndDistances.damageDecreaseEnd,
                             mutatedValue: null,
                             lines: {
                                 ru: 'Конец падения урона',
@@ -149,7 +171,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'meters',
                             key: 'core.tooltip.stat_name.damage_type.maxDistance',
-                            value: DamagesAndDistances.maxDistance,
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: DamagesAndDistances.maxDistance
+                                }
+                            ] : DamagesAndDistances.maxDistance,
                             mutatedValue: null,
                             lines: {
                                 ru: 'Максимальная дистанция',
@@ -159,7 +186,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: null,
                             key: "weapon.tooltip.weapon.info.clip_size",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.clip_size", "int", null),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Объем магазина',
@@ -169,7 +201,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'firerate',
                             key: "weapon.tooltip.weapon.info.rate_of_fire",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.rate_of_fire", "int", null),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.rate_of_fire", "int", null)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.rate_of_fire", "int", null),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Скорострельность',
@@ -179,7 +216,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'time',
                             key: "weapon.tooltip.weapon.info.reload_time",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Время перезарядки',
@@ -189,7 +231,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'time',
                             key: "weapon.tooltip.weapon.info.tactical_reload_time",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Время тактической перезарядки',
@@ -199,7 +246,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'degrees',
                             key: "weapon.tooltip.weapon.info.spread",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.spread", "float", 2),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.spread", "float", 2)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.spread", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Разброс',
@@ -209,7 +261,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'degrees',
                             key: "weapon.tooltip.weapon.info.hip_spread",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.hip_spread", "float", 2),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.hip_spread", "float", 2)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.hip_spread", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Разброс от бедра',
@@ -219,7 +276,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'degrees',
                             key: "weapon.tooltip.weapon.info.recoil",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.recoil", "float", 2),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.recoil", "float", 2)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.recoil", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Вертикальная отдача',
@@ -229,7 +291,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'degrees',
                             key: "weapon.tooltip.weapon.info.horizontal_recoil",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.horizontal_recoil", "float", 2),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.horizontal_recoil", "float", 2)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.horizontal_recoil", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Горизонтальная отдача',
@@ -239,7 +306,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'time',
                             key: "weapon.tooltip.weapon.info.draw_time",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.draw_time", "float", 2),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.draw_time", "float", 2)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.draw_time", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Время доставания',
@@ -249,7 +321,12 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         {
                             unitKey: 'time',
                             key: "weapon.tooltip.weapon.info.aim_switch",
-                            value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.aim_switch", "float", 2),
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.aim_switch", "float", 2)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.aim_switch", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Скорость прицеливания',
@@ -257,7 +334,6 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                             }
                         },
                     ],
-                    statsVariants: [],
                     features: [
                         {
                             unitKey: 'uniqueFeature',
@@ -362,18 +438,24 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
             }
 
             // main weapon
-            const weapon = new WeaponSchema(getConstructObj(fileName, dataJson));
+            const weapon = new WeaponSchema(getConstructObj(fileName, dataJson, 0, true));
 
-            // statsVariants
-            if (fs.existsSync(folderPath + '\\' + '_variants' + '\\' + fileName + '\\')) {
-                for (let i = 1; i <= 15; i++) {
-                    const fileVariant = folderPath + '\\' + '_variants' + '\\' + fileName + '\\' + `${i}.json`;
-                    const dataVariant: Buffer = fs.readFileSync(fileVariant);
-                    const dataJsonVariant = JSON.parse(dataVariant.toString());
-                    const weaponVariant = new WeaponSchema(getConstructObj(fileName, dataJsonVariant));
-                    weapon.statsVariants[i-1] = {
-                        level: i,
-                        value: weaponVariant.stats
+            for (let i = 1; i <= weapon.stats.length; i++) {
+                const stat = weapon.stats[i-1];
+                if (stat) {
+                    if (fs.existsSync(folderPath + '\\' + '_variants' + '\\' + fileName + '\\')) {
+                        for (let i = 1; i <= 15; i++) {
+                            const fileVariant = folderPath + '\\' + '_variants' + '\\' + fileName + '\\' + `${i}.json`;
+                            const dataVariant: Buffer = fs.readFileSync(fileVariant);
+                            const dataJsonVariant = JSON.parse(dataVariant.toString());
+                            const weaponVariant = new WeaponSchema(getConstructObj(fileName, dataJsonVariant, i));
+                            if (Array.isArray(stat.value)){
+                                stat.value.push({
+                                    level: i,
+                                    value: weaponVariant.stats.find(s => s.key === stat.key)?.value ?? null
+                                })
+                            }
+                        }
                     }
                 }
             }
