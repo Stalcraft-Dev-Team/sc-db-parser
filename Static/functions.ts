@@ -228,6 +228,94 @@ export function MinimizeItemInfo(array: any[]): object[] {
     return MinimizedArray;
 }
 
+export function MinimizeStalcraftWikiArmorInfo(array: any[], region: string): object[] {
+    const MinimizedArray: object[] = [];
+
+    array.forEach(item => {
+        MinimizedArray.push({
+            exbo_id: item.exbo_id,
+            key: item.key,
+            region,
+            lines: JSON.stringify(item.lines),
+            color: item.color,
+            rank: JSON.stringify(item.rank),
+            class: JSON.stringify(item.class),
+            compabilityBackpacks: JSON.stringify(item.compatibilityBackpacks),
+            compabilityContainers: JSON.stringify(item.compatibilityContainers),
+            stats: JSON.stringify(item.stats)
+        });
+
+        const index: number = MinimizedArray.length - 1;
+
+        const Array = Object.entries(MinimizedArray[index]);
+        const FilteredArray = Array.filter(([key, value]) => value !== "null");
+        if (Array.length != FilteredArray.length) {
+            MinimizedArray[index] = Object.fromEntries(FilteredArray);
+        }
+    });
+
+    return MinimizedArray;
+}
+
+export function MinimizeStalcraftWikiArtefactInfo(array: any[], region: string): object[] {
+    const MinimizedArray: object[] = [];
+
+    array.forEach(item => {
+        MinimizedArray.push({
+            exbo_id: item.exbo_id,
+            key: item.key,
+            region,
+            lines: JSON.stringify(item.lines),
+            color: item.color,
+            category: JSON.stringify(item.category),
+            class: JSON.stringify(item.class),
+            stats: JSON.stringify(item.stats),
+            additionalStats: JSON.stringify(item.additionalStats)
+        });
+
+        const index: number = MinimizedArray.length - 1;
+
+        const Array = Object.entries(MinimizedArray[index]);
+        const FilteredArray = Array.filter(([key, value]) => value !== "null");
+        if (Array.length != FilteredArray.length) {
+            MinimizedArray[index] = Object.fromEntries(FilteredArray);
+        }
+    });
+
+    return MinimizedArray;
+}
+
+export function MinimizeStalcraftWikiContainerInfo(array: any[], region: string): object[] {
+    const MinimizedArray: object[] = [];
+
+
+    array.forEach(item => {
+        MinimizedArray.push({
+            exbo_id: item.exbo_id,
+            key: item.key,
+            region,
+            lines: JSON.stringify(item.lines),
+            color: item.color,
+            rank: JSON.stringify(item.rank),
+            category: JSON.stringify(item.category),
+            class: JSON.stringify(item.class),
+            stats: JSON.stringify(item.stats),
+            capacity: +item.stats.filter((e: any) => e.lines.en == 'Artefact capacity')[0].value
+        });
+
+        const index: number = MinimizedArray.length - 1;
+
+        const Array = Object.entries(MinimizedArray[index]);
+        const FilteredArray = Array.filter(([key, value]) => value !== "null");
+        if (Array.length != FilteredArray.length) {
+            MinimizedArray[index] = Object.fromEntries(FilteredArray);
+        }
+    });
+
+    return MinimizedArray;
+}
+
+
 export function DeleteDublicatesAndRejectedItems(array: any[]): any[] {
     for (let i = array.length - 1; i >= 0; i--) {
         for (let j = 0; j < array.length; j++) {

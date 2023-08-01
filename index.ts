@@ -22,6 +22,9 @@ import {ParseBarterRecipes} from './Parsing Functions/parseBarterRecipes';
 export const IndexDirName: string = __dirname;
 import {UrlToSCDB, PathToClone, PathToParse} from "./Static/fileds";
 import {DeleteDublicatesAndRejectedItems, MinimizeItemInfo} from "./Static/functions";
+import {ParseStalcraftWikiArmor} from "./Parsing Functions/parseStalcraftWikiArmor";
+import {ParseStalcraftWikiArtefact} from "./Parsing Functions/parseStalcraftWikiArtefact";
+import {ParseStalcraftWikiContainer} from "./Parsing Functions/parseStalcraftWikiContainer";
 
 const PathToDB: string = __dirname + '\\' + PathToClone;
 const FoldersNeedsToPullInsteadOfClone: string[] = ['global', 'ru'];
@@ -211,9 +214,46 @@ async function ParseAllData(server = '') {
 
 }
 
+async function ParseDataForStalcraftWiki(server = '') {
+    if (!fs.existsSync(__dirname + '\\' + PathToParse)) {
+        fs.mkdirSync(__dirname + '\\' + PathToParse);
+    }
+
+    const pathToItemsFolder = PathToDB + '\\' + server + '\\' + 'items' + '\\';
+
+    await ParseStalcraftWikiArmor(pathToItemsFolder + 'armor\\')
+      .then(PushToListing)
+      .catch((e) => {
+          console.error(e);
+      })
+      .finally(() => {
+          console.log(server.toUpperCase() + ': ParseStalcraftWikiArmor: complete!');
+      });
+
+    await ParseStalcraftWikiArtefact(pathToItemsFolder + 'artefact\\')
+      .then(PushToListing)
+      .catch((e) => {
+          console.error(e);
+      })
+      .finally(() => {
+          console.log(server.toUpperCase() + ': ParseStalcraftWikiArtefact: complete!');
+      });
+
+    await ParseStalcraftWikiContainer(pathToItemsFolder + 'containers\\')
+      .then(PushToListing)
+      .catch((e) => {
+          console.error(e);
+      })
+      .finally(() => {
+          console.log(server.toUpperCase() + ': ParseStalcraftWikiContainer: complete!');
+      });
+}
+
 async function StartParse() {
-    await ParseAllData('ru');
-    await ParseAllData('global');
+    // await ParseAllData('ru');
+    // await ParseAllData('global');
+    await ParseDataForStalcraftWiki('ru');
+    await ParseDataForStalcraftWiki('global');
 }
 
 let ListingJSON: object[] = [];
@@ -236,7 +276,7 @@ StartParse()
         console.log("Parsing complete!");
         if (EnableNiceLookForJSON) {
             NiceLookForJSON('ru');
-            NiceLookForJSON('global');
+            // NiceLookForJSON('global');
         }
     })
     .catch((e) => {
