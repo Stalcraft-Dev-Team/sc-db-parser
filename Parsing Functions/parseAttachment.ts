@@ -93,9 +93,6 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [],
-                features: {
-                    zoom: FindObjectValueByKey(dataJson, 'weapon.tooltip.sight.info.zoom', 'text')
-                },
                 description: FindLinesByKey(dataJson, itemKey() + 'description'),
                 suitableFor: []
             });
@@ -109,6 +106,18 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
             attachment.suitableFor = GetSuitableWeapons(dataJson);
 
             attachment.stats = SortProperties(dataJson, 'weapon');
+
+            if (attachment.class?.en === 'Sights') {
+                attachment.features = {
+                    unitKey: 'uniqueFeature',
+                    key: null,
+                    value: FindObjectValueByKey(dataJson, 'weapon.tooltip.sight.info.zoom', 'text'),
+                    lines: {
+                        ru: 'Увеличение',
+                        en: 'Magnification'
+                    }
+                }
+            }
 
             SelectedCategoryWeapons.push(attachment);
         });
