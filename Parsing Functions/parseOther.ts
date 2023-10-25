@@ -141,6 +141,8 @@ function GetSuitableWeaponsOrArmor(dataJson: any): object[] {
     for (let i = 0; i < (dataJson.infoBlocks).length; i++) {
         if (dataJson.infoBlocks[i].type === 'list' && dataJson.infoBlocks[i].elements[0]?.text?.lines?.en === 'Suitable for:') {
             result = dataJson.infoBlocks[i].elements as object[];
+        } else {
+            result = [];
         }
     }
 

@@ -1,6 +1,6 @@
 import fs from "fs";
 import { PathToParse } from '../Static/fileds';
-import {ArmorSchema, ILines} from "../itemSchemas";
+import {ArmorSchema, ILines, WeaponSchema} from "../itemSchemas";
 import {
     CreateSubFoldersAndItems,
     FindLinesByKey,
@@ -102,25 +102,29 @@ export const ParseArmor = async function ParseArmor(pathToItemsFolder = ''): Pro
                     compatibilityBackpacks: FindLinesForArmorByKey(_dataJson, "stalker.lore.armor_artefact.info.compatible_backpacks"),
                     compatibilityContainers: FindLinesForArmorByKey(_dataJson, "stalker.lore.armor_artefact.info.compatible_containers"),
                     stats: [],
-                    statsVariants: [],
                     description: FindLinesByKey(_dataJson, itemKey() + 'description'),
                 }
             }
 
             const armor = new ArmorSchema(getConstructObj(fileName, dataJson));
-            armor.stats = SortProperties(dataJson, 'player');
+            armor.stats = SortProperties(dataJson, 'player', false, true);
 
-            // statsVariants
-            if (fs.existsSync(folderPath + '\\' + '_variants' + '\\' + fileName + '\\')) {
-                for (let i = 1; i <= 15; i++) {
-                    const fileVariant = folderPath + '\\' + '_variants' + '\\' + fileName + '\\' + `${i}.json`;
-                    const dataVariant: Buffer = fs.readFileSync(fileVariant);
-                    const dataJsonVariant = JSON.parse(dataVariant.toString());
-                    const armorVariant = new ArmorSchema(getConstructObj(fileName, dataJsonVariant));
-                    armorVariant.stats = SortProperties(dataJsonVariant, 'player');
-                    armor.statsVariants[i-1] = {
-                        level: i,
-                        value: armorVariant.stats
+            // stat variants
+            for (let i = 1; i <= armor.stats.length; i++) {
+                const stat = armor.stats[i-1];
+                if (stat) {
+                    if (fs.existsSync(folderPath + '\\' + '_variants' + '\\' + fileName + '\\')) {
+                        for (let i = 1; i <= 15; i++) {
+                            const fileVariant = folderPath + '\\' + '_variants' + '\\' + fileName + '\\' + `${i}.json`;
+                            const dataVariant: Buffer = fs.readFileSync(fileVariant);
+                            const dataJsonVariant = JSON.parse(dataVariant.toString());
+                            const armorVariant = new ArmorSchema(getConstructObj(fileName, dataJsonVariant));
+                            armorVariant.stats = SortProperties(dataJsonVariant, 'player');
+                            stat.value.push({
+                                level: i,
+                                value: armorVariant.stats.find(s => s.key === stat.key).value
+                            })
+                        }
                     }
                 }
             }

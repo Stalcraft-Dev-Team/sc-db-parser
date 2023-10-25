@@ -18,7 +18,7 @@ export class WeaponSchema {
     class: ILines | null = null;
     weight: ILines | null = null;
     ammoType: ILines | null = null;
-    stats: object[] = [];
+    stats: any[] = [];
     statsVariants: object[] = [];
     features: object = [];
     damageModifiers: object = [];
@@ -368,7 +368,7 @@ export class ArmorSchema {
     nightVisionGlasses: ILines | null = null;
     compatibilityBackpacks: ILines | null = null;
     compatibilityContainers: ILines | null = null;
-    stats: object[] = [];
+    stats: any[] = [];
     statsVariants: object[] = [];
     description: ILines | null = null;
 
