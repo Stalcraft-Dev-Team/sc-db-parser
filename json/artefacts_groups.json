@@ -1,0 +1,1403 @@
+[
+  {
+    "group": "electra_crystal",
+    "factors": {
+      "reaction_to_electroshock": {
+        "min": 1,
+        "max": 2
+      },
+      "psycho_accumulation": {
+        "min": -1.2,
+        "max": -0.6
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.3,
+        "max": 0.6
+      }
+    }
+  },
+  {
+    "group": "electra_bengal",
+    "factors": {
+      "stamina_regeneration_bonus": {
+        "min": 0.85,
+        "max": 1.7
+      },
+      "stamina_bonus": {
+        "min": 1.85,
+        "max": 3.7
+      },
+      "speed_modifier": {
+        "min": 0.25,
+        "max": 0.5
+      }
+    }
+  },
+  {
+    "group": "electra_vspyshka",
+    "factors": {
+      "stamina_regeneration_bonus": {
+        "min": 1.25,
+        "max": 2.5
+      },
+      "stamina_bonus": {
+        "min": 2.7,
+        "max": 5.4
+      },
+      "speed_modifier": {
+        "min": 0.35,
+        "max": 0.7
+      }
+    }
+  },
+  {
+    "group": "electra_batareyka",
+    "factors": {
+      "reaction_to_electroshock": {
+        "min": 0.5,
+        "max": 1
+      },
+      "speed_modifier": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "stamina_bonus": {
+        "min": 5.7,
+        "max": 11.4
+      }
+    }
+  },
+  {
+    "group": "electra_snowflake",
+    "factors": {
+      "stamina_bonus": {
+        "min": 5.2,
+        "max": 10.4
+      },
+      "speed_modifier": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.4,
+        "max": 0.8
+      }
+    }
+  },
+  {
+    "group": "electra_pustishka",
+    "factors": {
+      "reaction_to_burn": {
+        "min": 0.9,
+        "max": 1.8
+      },
+      "speed_modifier": {
+        "min": 0.3,
+        "max": 0.6
+      },
+      "thermal_accumulation": {
+        "min": -0.9,
+        "max": -0.45
+      }
+    }
+  },
+  {
+    "group": "electra_dezintegrator",
+    "factors": {
+      "reaction_to_electroshock": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "psycho_dmg_factor": {
+        "min": 3.1,
+        "max": 6.2
+      },
+      "psycho_accumulation": {
+        "min": -1.8,
+        "max": -0.9
+      }
+    }
+  },
+  {
+    "group": "electra_moonlight",
+    "factors": {
+      "stamina_regeneration_bonus": {
+        "min": 0.4,
+        "max": 0.8
+      },
+      "psycho_accumulation": {
+        "min": -1.8,
+        "max": -0.9
+      },
+      "reaction_to_electroshock": {
+        "min": 1.3,
+        "max": 2.6
+      }
+    }
+  },
+  {
+    "group": "electra_helium",
+    "factors": {
+      "speed_modifier": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.8,
+        "max": 1.6
+      },
+      "regeneration_bonus": {
+        "min": 1.15,
+        "max": 2.3
+      }
+    }
+  },
+  {
+    "group": "electra_transformator",
+    "factors": {
+      "psycho_dmg_factor": {
+        "min": 3.5,
+        "max": 7
+      },
+      "max_weight_bonus": {
+        "min": 1.3,
+        "max": 2.6
+      },
+      "psycho_accumulation": {
+        "min": -2.2,
+        "max": -1.1
+      }
+    }
+  },
+  {
+    "group": "jarka_crystal",
+    "factors": {
+      "reaction_to_burn": {
+        "min": 0.7,
+        "max": 1.4
+      },
+      "thermal_accumulation": {
+        "min": -0.4,
+        "max": -0.2
+      },
+      "stamina_bonus": {
+        "min": 1.3,
+        "max": 2.6
+      }
+    }
+  },
+  {
+    "group": "jarka_fireball",
+    "factors": {
+      "thermal_accumulation": {
+        "min": -0.7,
+        "max": -0.35
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.35,
+        "max": 0.7
+      },
+      "thermal_dmg_factor": {
+        "min": 2.7,
+        "max": 5.4
+      }
+    }
+  },
+  {
+    "group": "jarka_kaplya",
+    "factors": {
+      "max_weight_bonus": {
+        "min": 0.9,
+        "max": 1.8
+      },
+      "reaction_to_tear": {
+        "min": 0.7,
+        "max": 1.4
+      },
+      "radiation_accumulation": {
+        "min": -0.4,
+        "max": -0.2
+      }
+    }
+  },
+  {
+    "group": "jarka_vslezy",
+    "factors": {
+      "thermal_accumulation": {
+        "min": -0.5,
+        "max": -0.25
+      },
+      "thermal_dmg_factor": {
+        "min": 2.35,
+        "max": 4.7
+      },
+      "max_weight_bonus": {
+        "min": 0.9,
+        "max": 1.8
+      }
+    }
+  },
+  {
+    "group": "jarka_mamybusi",
+    "factors": {
+      "stamina_bonus": {
+        "min": 8.1,
+        "max": 16.2
+      },
+      "heal_efficiency": {
+        "min": 2.3,
+        "max": 4.6
+      },
+      "health_bonus": {
+        "min": 0.25,
+        "max": 0.5
+      }
+    }
+  },
+  {
+    "group": "jarka_glaz",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 1.55,
+        "max": 3.1
+      },
+      "explosion_dmg_factor": {
+        "min": 0.95,
+        "max": 1.9
+      },
+      "bleeding_accumulation": {
+        "min": -0.48,
+        "max": -0.24
+      }
+    }
+  },
+  {
+    "group": "jarka_plamya",
+    "factors": {
+      "bleeding_accumulation": {
+        "min": -0.18,
+        "max": -0.09
+      },
+      "regeneration_bonus": {
+        "min": 0.5,
+        "max": 1
+      },
+      "heal_efficiency": {
+        "min": 3.85,
+        "max": 7.7
+      }
+    }
+  },
+  {
+    "group": "jarka_solnce",
+    "factors": {
+      "stamina_regeneration_bonus": {
+        "min": 1.6,
+        "max": 3.2
+      },
+      "reaction_to_burn": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "health_bonus": {
+        "min": 0.35,
+        "max": 0.7
+      }
+    }
+  },
+  {
+    "group": "jarka_radiator",
+    "factors": {
+      "thermal_dmg_factor": {
+        "min": 3.5,
+        "max": 7
+      },
+      "speed_modifier": {
+        "min": 0.35,
+        "max": 0.7
+      },
+      "thermal_accumulation": {
+        "min": -1.1,
+        "max": -0.55
+      }
+    }
+  },
+  {
+    "group": "jarka_magma",
+    "factors": {
+      "reaction_to_burn": {
+        "min": 1.5,
+        "max": 2.5
+      },
+      "burn_dmg_factor": {
+        "min": 10,
+        "max": 20
+      },
+      "stamina_regeneration_bonus": {
+        "min": 3,
+        "max": 5
+      }
+    }
+  },
+  {
+    "group": "karousel_bloodstone",
+    "factors": {
+      "bleeding_accumulation": {
+        "min": -0.16,
+        "max": -0.08
+      },
+      "regeneration_bonus": {
+        "min": 0.6,
+        "max": 1.2
+      },
+      "health_bonus": {
+        "min": 0.15,
+        "max": 0.3
+      }
+    }
+  },
+  {
+    "group": "karousel_lomot",
+    "factors": {
+      "reaction_to_chemical_burn": {
+        "min": 1.25,
+        "max": 2.5
+      },
+      "regeneration_bonus": {
+        "min": 0.4,
+        "max": 0.8
+      },
+      "heal_efficiency": {
+        "min": 1,
+        "max": 2
+      }
+    }
+  },
+  {
+    "group": "karousel_jelch",
+    "factors": {
+      "stamina_regeneration_bonus": {
+        "min": 0.3,
+        "max": 0.6
+      },
+      "biological_accumulation": {
+        "min": -0.5,
+        "max": -0.25
+      },
+      "biological_dmg_factor": {
+        "min": 2.35,
+        "max": 4.7
+      }
+    }
+  },
+  {
+    "group": "karousel_gnilec",
+    "factors": {
+      "biological_accumulation": {
+        "min": -0.7,
+        "max": -0.35
+      },
+      "reaction_to_chemical_burn": {
+        "min": 0.4,
+        "max": 0.8
+      },
+      "biological_dmg_factor": {
+        "min": 2.7,
+        "max": 5.4
+      }
+    }
+  },
+  {
+    "group": "karousel_dusha",
+    "factors": {
+      "heal_efficiency": {
+        "min": 3.4,
+        "max": 6.8
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "regeneration_bonus": {
+        "min": 0.45,
+        "max": 0.9
+      }
+    }
+  },
+  {
+    "group": "karousel_prujina",
+    "factors": {
+      "heal_efficiency": {
+        "min": 1.95,
+        "max": 2.9
+      },
+      "reaction_to_tear": {
+        "min": 0.6,
+        "max": 1.2
+      },
+      "max_weight_bonus": {
+        "min": 4.9,
+        "max": 9.8
+      }
+    }
+  },
+  {
+    "group": "karousel_ostov",
+    "factors": {
+      "radiation_accumulation": {
+        "min": -1.6,
+        "max": -0.8
+      },
+      "max_weight_bonus": {
+        "min": 1.3,
+        "max": 2.6
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.55,
+        "max": 1.1
+      }
+    }
+  },
+  {
+    "group": "karousel_volchok",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 5,
+        "max": 10
+      },
+      "max_weight_bonus": {
+        "min": 0,
+        "max": 2.5
+      },
+      "stamina_bonus": {
+        "min": 0,
+        "max": 5
+      }
+    }
+  },
+  {
+    "group": "kisel_crystal",
+    "factors": {
+      "reaction_to_chemical_burn": {
+        "min": 1,
+        "max": 2
+      },
+      "biological_accumulation": {
+        "min": -0.4,
+        "max": -0.2
+      },
+      "regeneration_bonus": {
+        "min": 0.2,
+        "max": 0.4
+      }
+    }
+  },
+  {
+    "group": "kisel_kisel",
+    "factors": {
+      "reaction_to_tear": {
+        "min": 0.25,
+        "max": 0.5
+      },
+      "radiation_accumulation": {
+        "min": -0.5,
+        "max": -0.25
+      },
+      "radiation_dmg_factor": {
+        "min": 2.35,
+        "max": 4.7
+      }
+    }
+  },
+  {
+    "group": "kisel_sliz",
+    "factors": {
+      "bleeding_accumulation": {
+        "min": -0.11,
+        "max": -0.05
+      },
+      "bleeding_protection": {
+        "min": 2.3,
+        "max": 4.6
+      },
+      "regeneration_bonus": {
+        "min": 0.3,
+        "max": 0.6
+      }
+    }
+  },
+  {
+    "group": "kisel_sliznyak",
+    "factors": {
+      "bleeding_accumulation": {
+        "min": -0.14,
+        "max": -0.07
+      },
+      "bleeding_protection": {
+        "min": 2.85,
+        "max": 5.7
+      },
+      "regeneration_bonus": {
+        "min": 0.4,
+        "max": 0.8
+      }
+    }
+  },
+  {
+    "group": "kisel_slyda",
+    "factors": {
+      "reaction_to_tear": {
+        "min": 0.3,
+        "max": 0.6
+      },
+      "regeneration_bonus": {
+        "min": 0.4,
+        "max": 0.8
+      },
+      "bleeding_accumulation": {
+        "min": -0.44,
+        "max": -0.22
+      }
+    }
+  },
+  {
+    "group": "kisel_svetlyak",
+    "factors": {
+      "regeneration_bonus": {
+        "min": 0.4,
+        "max": 0.8
+      },
+      "speed_modifier": {
+        "min": 1.25,
+        "max": 2.5
+      },
+      "health_bonus": {
+        "min": 0.35,
+        "max": 0.7
+      }
+    }
+  },
+  {
+    "group": "kisel_ulitka",
+    "factors": {
+      "biological_accumulation": {
+        "min": -1,
+        "max": -0.5
+      },
+      "stamina_bonus": {
+        "min": 1.75,
+        "max": 3.5
+      },
+      "psycho_dmg_factor": {
+        "min": 3.2,
+        "max": 6.2
+      }
+    }
+  },
+  {
+    "group": "kisel_puzir",
+    "factors": {
+      "radiation_accumulation": {
+        "min": -1.1,
+        "max": -0.5
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "radiation_dmg_factor": {
+        "min": 3.5,
+        "max": 7
+      }
+    }
+  },
+  {
+    "group": "kisel_plenka",
+    "factors": {
+      "reaction_to_chemical_burn": {
+        "min": 1.3,
+        "max": 2.6
+      },
+      "regeneration_bonus": {
+        "min": 0.3,
+        "max": 0.6
+      },
+      "biological_accumulation": {
+        "min": -0.9,
+        "max": -0.45
+      }
+    }
+  },
+  {
+    "group": "kisel_poly",
+    "factors": {
+      "speed_modifier": {
+        "min": 1,
+        "max": 2
+      },
+      "stamina_bonus": {
+        "min": 1.95,
+        "max": 3.9
+      },
+      "biological_accumulation": {
+        "min": -1.65,
+        "max": -0.82
+      }
+    }
+  },
+  {
+    "group": "puh_koluchka",
+    "factors": {
+      "stamina_bonus": {
+        "min": 1.3,
+        "max": 2.6
+      },
+      "radiation_dmg_factor": {
+        "min": 2.35,
+        "max": 4.7
+      },
+      "radiation_accumulation": {
+        "min": -0.5,
+        "max": -0.25
+      }
+    }
+  },
+  {
+    "group": "puh_kkoluchka",
+    "factors": {
+      "radiation_accumulation": {
+        "min": -0.7,
+        "max": -0.35
+      },
+      "stamina_bonus": {
+        "min": 1.55,
+        "max": 3.1
+      },
+      "radiation_dmg_factor": {
+        "min": 2.7,
+        "max": 5.4
+      }
+    }
+  },
+  {
+    "group": "puh_ej",
+    "factors": {
+      "biological_dmg_factor": {
+        "min": 3.5,
+        "max": 7
+      },
+      "biological_accumulation": {
+        "min": -1.1,
+        "max": -0.5
+      },
+      "stamina_bonus": {
+        "min": 1.95,
+        "max": 3.9
+      }
+    }
+  },
+  {
+    "group": "puh_kolobok",
+    "factors": {
+      "stamina_bonus": {
+        "min": 1.75,
+        "max": 3.5
+      },
+      "reaction_to_tear": {
+        "min": 0.9,
+        "max": 1.8
+      },
+      "radiation_accumulation": {
+        "min": -0.9,
+        "max": -0.45
+      }
+    }
+  },
+  {
+    "group": "puh_steelkolobok",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 1.95,
+        "max": 3.9
+      },
+      "reaction_to_tear": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "stamina_bonus": {
+        "min": 7.3,
+        "max": 14.6
+      }
+    }
+  },
+  {
+    "group": "puh_mochalka",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 5,
+        "max": 10
+      },
+      "radiation_dmg_factor": {
+        "min": 2.5,
+        "max": 7.5
+      },
+      "biological_accumulation": {
+        "min": -1.25,
+        "max": -0.5
+      }
+    }
+  },
+  {
+    "group": "puh_oxyd",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 3.75,
+        "max": 6.25
+      },
+      "bleeding_protection": {
+        "min": 5,
+        "max": 15
+      },
+      "psycho_accumulation": {
+        "min": -1.5,
+        "max": -1
+      }
+    }
+  },
+  {
+    "group": "trampoline_kamencvet",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 1.05,
+        "max": 2.1
+      },
+      "explosion_dmg_factor": {
+        "min": 0.65,
+        "max": 1.3
+      },
+      "max_weight_bonus": {
+        "min": 2.6,
+        "max": 5.2
+      }
+    }
+  },
+  {
+    "group": "trampoline_meduza",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 0.9,
+        "max": 1.8
+      },
+      "stamina_bonus": {
+        "min": 1.3,
+        "max": 2.6
+      },
+      "psycho_accumulation": {
+        "min": -0.6,
+        "max": -0.3
+      }
+    }
+  },
+  {
+    "group": "trampoline_darkmeduza",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 1.75,
+        "max": 3.5
+      },
+      "explosion_dmg_factor": {
+        "min": 1.1,
+        "max": 2.2
+      },
+      "stamina_regeneration_bonus": {
+        "min": 1.45,
+        "max": 2.9
+      }
+    }
+  },
+  {
+    "group": "trampoline_jilnik",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 1.05,
+        "max": 2.1
+      },
+      "psycho_accumulation": {
+        "min": -1.3,
+        "max": -0.65
+      },
+      "max_weight_bonus": {
+        "min": 1.05,
+        "max": 2.1
+      }
+    }
+  },
+  {
+    "group": "trampoline_nightstar",
+    "factors": {
+      "psycho_accumulation": {
+        "min": -1.3,
+        "max": -0.65
+      },
+      "psycho_dmg_factor": {
+        "min": 2.7,
+        "max": 5.4
+      },
+      "max_weight_bonus": {
+        "min": 1.05,
+        "max": 2.1
+      }
+    }
+  },
+  {
+    "group": "trampoline_protomeduza",
+    "factors": {
+      "radiation_accumulation": {
+        "min": -1,
+        "max": -0.5
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.4,
+        "max": 0.8
+      },
+      "radiation_dmg_factor": {
+        "min": 3.1,
+        "max": 6.2
+      }
+    }
+  },
+  {
+    "group": "trampoline_braslet",
+    "factors": {
+      "stamina_bonus": {
+        "min": 8.1,
+        "max": 16.2
+      },
+      "speed_modifier": {
+        "min": 0.65,
+        "max": 1.3
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.6,
+        "max": 1.2
+      }
+    }
+  },
+  {
+    "group": "trampoline_vitok",
+    "factors": {
+      "psycho_accumulation": {
+        "min": -2,
+        "max": -0.75
+      },
+      "speed_modifier": {
+        "min": 0.5,
+        "max": 1.5
+      },
+      "stamina_regeneration_bonus": {
+        "min": 2.5,
+        "max": 3.75
+      }
+    }
+  },
+  {
+    "group": "voronka_vivert",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 0.9,
+        "max": 1.8
+      },
+      "reaction_to_tear": {
+        "min": 0.35,
+        "max": 0.7
+      },
+      "regeneration_bonus": {
+        "min": 0.6,
+        "max": 1.2
+      }
+    }
+  },
+  {
+    "group": "voronka_gravi",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 1.1,
+        "max": 2.2
+      },
+      "max_weight_bonus": {
+        "min": 1.55,
+        "max": 3.1
+      },
+      "bleeding_accumulation": {
+        "min": -0.41,
+        "max": -0.2
+      }
+    }
+  },
+  {
+    "group": "voronka_goldfish",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 1.1,
+        "max": 2.2
+      },
+      "explosion_dmg_factor": {
+        "min": 2.85,
+        "max": 5.7
+      },
+      "max_weight_bonus": {
+        "min": 1.85,
+        "max": 3.7
+      }
+    }
+  },
+  {
+    "group": "voronka_goldgravi",
+    "factors": {
+      "speed_modifier": {
+        "min": 0.4,
+        "max": 0.8
+      },
+      "max_weight_bonus": {
+        "min": 2.1,
+        "max": 4.2
+      },
+      "stamina_bonus": {
+        "min": 6.5,
+        "max": 13
+      }
+    }
+  },
+  {
+    "group": "voronka_yantar",
+    "factors": {
+      "speed_modifier": {
+        "min": 1.25,
+        "max": 2.5
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.55,
+        "max": 1.1
+      },
+      "max_weight_bonus": {
+        "min": 2.35,
+        "max": 4.7
+      }
+    }
+  },
+  {
+    "group": "voronka_kriogen",
+    "factors": {
+      "thermal_accumulation": {
+        "min": -1,
+        "max": -0.5
+      },
+      "thermal_dmg_factor": {
+        "min": 3.1,
+        "max": 6.2
+      },
+      "max_weight_bonus": {
+        "min": 1.2,
+        "max": 2.4
+      }
+    }
+  },
+  {
+    "group": "voronka_crystal",
+    "factors": {
+      "regeneration_bonus": {
+        "min": 0.35,
+        "max": 0.7
+      },
+      "radiation_accumulation": {
+        "min": -0.9,
+        "max": -0.45
+      },
+      "stamina_regeneration_bonus": {
+        "min": 0.4,
+        "max": 0.8
+      }
+    }
+  },
+  {
+    "group": "voronka_magnit",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 3.75,
+        "max": 6.25
+      },
+      "psycho_accumulation": {
+        "min": -1.75,
+        "max": -1
+      },
+      "stamina_regeneration_bonus": {
+        "min": 2.5,
+        "max": 5
+      }
+    }
+  },
+  {
+    "group": "puzir_spiral",
+    "factors": {
+      "max_weight_bonus": {
+        "min": 1.2,
+        "max": 2.4
+      },
+      "speed_modifier": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "heal_efficiency": {
+        "min": 3.1,
+        "max": 6.2
+      }
+    }
+  },
+  {
+    "group": "puzir_zerkalo",
+    "factors": {
+      "reaction_to_electroshock": {
+        "min": 0.65,
+        "max": 1.3
+      },
+      "reaction_to_tear": {
+        "min": 1.25,
+        "max": 2.5
+      },
+      "psycho_accumulation": {
+        "min": -2.3,
+        "max": -1.15
+      }
+    }
+  },
+  {
+    "group": "puzir_oskolok",
+    "factors": {
+      "health_bonus": {
+        "min": 0.35,
+        "max": 0.7
+      },
+      "regeneration_bonus": {
+        "min": 1.15,
+        "max": 2.3
+      },
+      "heal_efficiency": {
+        "min": 1.45,
+        "max": 2.9
+      }
+    }
+  },
+  {
+    "group": "puzir_prisma",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 2.2,
+        "max": 4.4
+      },
+      "explosion_dmg_factor": {
+        "min": 1.35,
+        "max": 2.7
+      },
+      "stamina_regeneration_bonus": {
+        "min": 1.8,
+        "max": 3.6
+      }
+    }
+  },
+  {
+    "group": "puzir_atom",
+    "factors": {
+      "radiation_accumulation": {
+        "min": -1.1,
+        "max": -0.55
+      },
+      "thermal_accumulation": {
+        "min": -1.1,
+        "max": -0.55
+      },
+      "biological_accumulation": {
+        "min": -1.1,
+        "max": -0.55
+      },
+      "psycho_accumulation": {
+        "min": -2.3,
+        "max": -1.15
+      }
+    }
+  },
+  {
+    "group": "puzir_palantir",
+    "factors": {
+      "thermal_dmg_factor": {
+        "min": 10,
+        "max": 25
+      },
+      "psycho_dmg_factor": {
+        "min": 10,
+        "max": 25
+      },
+      "thermal_accumulation": {
+        "min": -5,
+        "max": -3
+      },
+      "psycho_accumulation": {
+        "min": -5,
+        "max": -3
+      }
+    }
+  },
+  {
+    "group": "blizzard_frost",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 1.55,
+        "max": 3.1
+      },
+      "thermal_accumulation": {
+        "min": -0.6,
+        "max": -0.3
+      },
+      "heal_efficiency": {
+        "min": 1,
+        "max": 2
+      }
+    }
+  },
+  {
+    "group": "blizzard_crystal",
+    "factors": {
+      "radiation_accumulation": {
+        "min": -0.5,
+        "max": -0.25
+      },
+      "thermal_accumulation": {
+        "min": -0.5,
+        "max": -0.25
+      },
+      "psycho_accumulation": {
+        "min": -0.6,
+        "max": -0.3
+      }
+    }
+  },
+  {
+    "group": "blizzard_crust",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 1.3,
+        "max": 2.6
+      },
+      "bullet_dmg_factor": {
+        "min": 1.55,
+        "max": 3.1
+      },
+      "thermal_accumulation": {
+        "min": -0.8,
+        "max": -0.4
+      }
+    }
+  },
+  {
+    "group": "blizzard_vortex",
+    "factors": {
+      "thermal_accumulation": {
+        "min": -1.6,
+        "max": -0.8
+      },
+      "reaction_to_burn": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "speed_modifier": {
+        "min": 0.6,
+        "max": 1.2
+      }
+    }
+  },
+  {
+    "group": "blizzard_fahrenheit",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 1,
+        "max": 2
+      },
+      "thermal_accumulation": {
+        "min": -0.9,
+        "max": -0.45
+      },
+      "reaction_to_tear": {
+        "min": 0.35,
+        "max": 0.7
+      }
+    }
+  },
+  {
+    "group": "blizzard_razor",
+    "factors": {
+      "tear_dmg_factor": {
+        "min": 7.5,
+        "max": 15
+      },
+      "reaction_to_burn": {
+        "min": 1,
+        "max": 2
+      },
+      "reaction_to_chemical_burn": {
+        "min": 1,
+        "max": 2
+      }
+    }
+  },
+  {
+    "group": "blizzard_heel",
+    "factors": {
+      "reaction_to_tear": {
+        "min": 0.55,
+        "max": 1.1
+      },
+      "thermal_accumulation": {
+        "min": -1.6,
+        "max": -0.8
+      },
+      "heal_efficiency": {
+        "min": 2.75,
+        "max": 5.5
+      }
+    }
+  },
+  {
+    "group": "blizzard_chickengod",
+    "factors": {
+      "reaction_to_tear": {
+        "min": 1.1,
+        "max": 2.2
+      },
+      "thermal_accumulation": {
+        "min": -1.1,
+        "max": -0.55
+      },
+      "stamina_regeneration_bonus": {
+        "min": 1.45,
+        "max": 2.9
+      }
+    }
+  },
+  {
+    "group": "blizzard_stormeye",
+    "factors": {
+      "thermal_accumulation": {
+        "min": -1.6,
+        "max": -0.8
+      },
+      "bleeding_protection": {
+        "min": 4.25,
+        "max": 8.5
+      },
+      "speed_modifier": {
+        "min": 0.45,
+        "max": 0.9
+      }
+    }
+  },
+  {
+    "group": "special_rubik",
+    "factors": {
+      "bullet_dmg_factor": {
+        "min": 3.65,
+        "max": 7.3
+      },
+      "explosion_dmg_factor": {
+        "min": 3.25,
+        "max": 6.5
+      },
+      "tear_dmg_factor": {
+        "min": 4.35,
+        "max": 8.7
+      },
+      "reaction_to_tear": {
+        "min": 1.1,
+        "max": 2.2
+      },
+      "reaction_to_electroshock": {
+        "min": 1.65,
+        "max": 3.3
+      },
+      "reaction_to_burn": {
+        "min": 1.1,
+        "max": 2.2
+      },
+      "reaction_to_chemical_burn": {
+        "min": 1.65,
+        "max": 3.3
+      },
+      "radiation_dmg_factor": {
+        "min": 13,
+        "max": 25
+      },
+      "thermal_dmg_factor": {
+        "min": 13,
+        "max": 25
+      },
+      "biological_dmg_factor": {
+        "min": 13,
+        "max": 25
+      },
+      "psycho_dmg_factor": {
+        "min": 13,
+        "max": 25
+      },
+      "bleeding_protection": {
+        "min": 4,
+        "max": 8
+      },
+      "radiation_accumulation": {
+        "min": -1.6,
+        "max": -0.8
+      },
+      "thermal_accumulation": {
+        "min": -1.6,
+        "max": -0.8
+      },
+      "biological_accumulation": {
+        "min": -1.6,
+        "max": -0.8
+      },
+      "psycho_accumulation": {
+        "min": -2.6,
+        "max": -1.3
+      },
+      "bleeding_accumulation": {
+        "min": -0.54,
+        "max": -0.27
+      },
+      "speed_modifier": {
+        "min": 1.1,
+        "max": 2.2
+      },
+      "max_weight_bonus": {
+        "min": 4.35,
+        "max": 8.7
+      },
+      "heal_efficiency": {
+        "min": 3.85,
+        "max": 7.7
+      },
+      "health_bonus": {
+        "min": 0.6,
+        "max": 1.2
+      },
+      "regeneration_bonus": {
+        "min": 1,
+        "max": 2
+      },
+      "stamina_bonus": {
+        "min": 6.5,
+        "max": 13
+      },
+      "stamina_regeneration_bonus": {
+        "min": 1.45,
+        "max": 2.9
+      }
+    }
+  }
+]

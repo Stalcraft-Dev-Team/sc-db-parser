@@ -9,8 +9,8 @@ import {
     SortProperties, SortSomethingLikeInGame
 } from "../Static/functions";
 import {ItemProperties} from "../Static/itemProperties-class";
-import FileWithArtefactAdditionalStats from "../artefactsAdditionalProps.json";
 import SortedArtefacts from "../SortedSomething/artefacts.json";
+import {parseAdditionalStats} from "./parseAdditionalStats";
 
 export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
@@ -146,13 +146,8 @@ export const ParseArtefact = async function ParseArtefact(pathToItemsFolder = ''
             }
             artefact.stats = artefact.stats.concat(SortProperties(dataJson, 'player'));
 
-            const artWithAdditionalStats = FileWithArtefactAdditionalStats.filter(artAP => artAP.name === artefact.lines?.ru)[0]
-            if (artWithAdditionalStats?.additionalStats === undefined) {
-                // на бритву не завезли допов чета
-            } else {
-                artefact.additionalStats = SortProperties(artWithAdditionalStats.additionalStats, 'player', true);
-            }
-
+            const artWithAdditionalStats = parseAdditionalStats(artefact.key, artefact.lines?.ru!);
+            artefact.additionalStats = SortProperties(artWithAdditionalStats, 'player', true);
             SelectedArtefactType.push(artefact);
         });
 
