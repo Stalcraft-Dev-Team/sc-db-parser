@@ -6,7 +6,7 @@
   "scripts": {
     "build": "npx tsc --project ./",
     "parse": "node ./build/index.js",
-    "buildAndParse": "npx tsc --project ./ && node ./build/index.js"
+    "buildandparse": "npx tsc --project ./ && node ./build/index.js"
   },
   "repository": {
     "type": "git",
