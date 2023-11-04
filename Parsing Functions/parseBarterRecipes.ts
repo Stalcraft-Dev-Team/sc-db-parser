@@ -45,7 +45,7 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
                             }
                         }
 
-                        let otherItemsFromListing = offer.requiredItems.filter((item: any, index: number) => index !== 0);
+                        let otherItemsFromListing = offer.requiredItems.filter((item: any, index: number) => index !== 0 || (index === 0 && MainItemID === null));
                         ListingJson.forEach((item: any) => {
                             if (typeof item[0] != 'object')
                             otherItemsFromListing = otherItemsFromListing.map((otherItem: any) => {
