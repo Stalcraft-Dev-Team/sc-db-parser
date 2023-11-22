@@ -56,7 +56,6 @@
 		"weapon.stat_factor.rate_of_fire",
 		"weapon.stat_factor.draw_time",
 		"weapon.stat_factor.reload_time",
-		"weapon.stat_factor.recoil_gain",
-		"weapon.stat_factor.stopping_power"
+		"weapon.stat_factor.recoil_gain"
 	]
 }
