@@ -34,7 +34,8 @@
 		"stalker.artefact_properties.factor.biological_protection",
 		"stalker.artefact_properties.factor.thermal_protection",
 		"stalker.artefact_properties.factor.psycho_protection",
-		"stalker.artefact_properties.factor.bleeding_protection"
+		"stalker.artefact_properties.factor.bleeding_protection",
+		"stalker.artefact_properties.factor.stopping_protection"
 	],
 	"attachmentOrBullet": [
 	    "weapon.tooltip.magazine.info.additive_clip_size",

@@ -29,7 +29,7 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
                     }
                 } else {
                     recipe.offers.forEach((offer: any) => {
-                        const MainItemID = offer.requiredItems.length > 0 && offer.requiredItems[0].amount == 1 ? offer.requiredItems[0].item : null;
+                        const MainItemID = offer.requiredItems.length > 0 && offer.requiredItems[0].amount === 1 ? offer.requiredItems[0].item : null;
                         let mainItem = null;
                         let canPushItem = true;
                         if (MainItemID) {
@@ -45,7 +45,7 @@ export const ParseBarterRecipes = async function ParseBarterRecipes(PathToListin
                             }
                         }
 
-                        let otherItemsFromListing = offer.requiredItems.filter((item: any) => item.amount > 1);
+                        let otherItemsFromListing = offer.requiredItems.filter((item: any, index: number) => index !== 0 || (index === 0 && MainItemID === null));
                         ListingJson.forEach((item: any) => {
                             if (typeof item[0] != 'object')
                             otherItemsFromListing = otherItemsFromListing.map((otherItem: any) => {

@@ -157,7 +157,7 @@ export class ItemProperties {
 
                 const errorMessage: string =
                     `${value}: FileWithSortedProps (${FileWithSortedProps[value].length}) and ItemProperties.AllProperties (${ItemProperties.AllProperties[value].length}) lengths not equal!\n`;
-                throw new Error(errorMessage + difference);
+                throw new Error(errorMessage + '\n' + JSON.stringify(difference, null, 2));
             }
 
             // @ts-ignore
