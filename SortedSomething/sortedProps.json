@@ -34,13 +34,12 @@
 		"stalker.artefact_properties.factor.biological_protection",
 		"stalker.artefact_properties.factor.thermal_protection",
 		"stalker.artefact_properties.factor.psycho_protection",
+		"stalker.artefact_properties.factor.frost_protection",
 		"stalker.artefact_properties.factor.bleeding_protection",
 		"stalker.artefact_properties.factor.stopping_protection"
 	],
 	"attachmentOrBullet": [
 	    "weapon.tooltip.magazine.info.additive_clip_size",
-	    "weapon.stat_factor.distance",
-	    "weapon.stat_factor.damage_distant",
         "weapon.stat_factor.recoil",
 		"weapon.stat_factor.horizontal_recoil",
 		"weapon.tooltip.bullet.stat_name.damage",
@@ -53,8 +52,6 @@
 		"weapon.stat_factor.wiggle",
 		"weapon.stat_factor.aim_switch_time",
 		"weapon.stat_factor.hip_spread",
-		"weapon.stat_factor.tick_spread_multiplier_reduction",
-		"weapon.stat_factor.rate_of_fire",
 		"weapon.stat_factor.draw_time",
 		"weapon.stat_factor.reload_time",
 		"weapon.stat_factor.recoil_gain"
