@@ -563,9 +563,9 @@
   {
     "group": "kisel_svetlyak",
     "factors": {
-      "regeneration_bonus": {
-        "min": 0.4,
-        "max": 0.8
+      "stamina_bonus": {
+        "min": 2.45,
+        "max": 4.9
       },
       "speed_modifier": {
         "min": 1.25,
