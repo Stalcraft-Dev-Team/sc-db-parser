@@ -54,6 +54,7 @@
 		"weapon.stat_factor.hip_spread",
 		"weapon.stat_factor.draw_time",
 		"weapon.stat_factor.reload_time",
-		"weapon.stat_factor.recoil_gain"
+		"weapon.stat_factor.recoil_gain",
+		"weapon.stat_factor.tick_spread_multiplier_reduction"
 	]
 }

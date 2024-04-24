@@ -28,8 +28,8 @@
         "max": 3.7
       },
       "speed_modifier": {
-        "min": 0.25,
-        "max": 0.5
+        "min": 0.15,
+        "max": 0.3
       }
     }
   },
@@ -45,8 +45,8 @@
         "max": 5.4
       },
       "speed_modifier": {
-        "min": 0.35,
-        "max": 0.7
+        "min": 0.2,
+        "max": 0.4
       }
     }
   },
@@ -58,8 +58,8 @@
         "max": 1
       },
       "speed_modifier": {
-        "min": 0.45,
-        "max": 0.9
+        "min": 0.3,
+        "max": 0.6
       },
       "stamina_bonus": {
         "min": 5.7,
@@ -75,8 +75,8 @@
         "max": 10.4
       },
       "speed_modifier": {
-        "min": 0.45,
-        "max": 0.9
+        "min": 0.3,
+        "max": 0.6
       },
       "stamina_regeneration_bonus": {
         "min": 0.4,
@@ -92,8 +92,8 @@
         "max": 1.8
       },
       "speed_modifier": {
-        "min": 0.3,
-        "max": 0.6
+        "min": 0.2,
+        "max": 0.4
       },
       "thermal_accumulation": {
         "min": -0.9,
@@ -139,8 +139,8 @@
     "group": "electra_helium",
     "factors": {
       "speed_modifier": {
-        "min": 0.45,
-        "max": 0.9
+        "min": 0.25,
+        "max": 0.5
       },
       "stamina_regeneration_bonus": {
         "min": 0.8,
@@ -313,8 +313,8 @@
         "max": 7
       },
       "speed_modifier": {
-        "min": 0.35,
-        "max": 0.7
+        "min": 0.2,
+        "max": 0.4
       },
       "thermal_accumulation": {
         "min": -1.1,
@@ -568,8 +568,8 @@
         "max": 4.9
       },
       "speed_modifier": {
-        "min": 1.25,
-        "max": 2.5
+        "min": 0.75,
+        "max": 1.5
       },
       "health_bonus": {
         "min": 0.35,
@@ -632,8 +632,8 @@
     "group": "kisel_poly",
     "factors": {
       "speed_modifier": {
-        "min": 1,
-        "max": 2
+        "min": 0.6,
+        "max": 1.2
       },
       "stamina_bonus": {
         "min": 1.95,
@@ -874,8 +874,8 @@
         "max": 16.2
       },
       "speed_modifier": {
-        "min": 0.65,
-        "max": 1.3
+        "min": 0.4,
+        "max": 0.8
       },
       "stamina_regeneration_bonus": {
         "min": 0.6,
@@ -955,8 +955,8 @@
     "group": "voronka_goldgravi",
     "factors": {
       "speed_modifier": {
-        "min": 0.4,
-        "max": 0.8
+        "min": 0.25,
+        "max": 0.5
       },
       "max_weight_bonus": {
         "min": 2.1,
@@ -972,8 +972,8 @@
     "group": "voronka_yantar",
     "factors": {
       "speed_modifier": {
-        "min": 1.25,
-        "max": 2.5
+        "min": 0.75,
+        "max": 1.5
       },
       "stamina_regeneration_bonus": {
         "min": 0.55,
@@ -1044,8 +1044,8 @@
         "max": 2.4
       },
       "speed_modifier": {
-        "min": 0.45,
-        "max": 0.9
+        "min": 0.3,
+        "max": 0.6
       },
       "heal_efficiency": {
         "min": 3.1,
@@ -1209,8 +1209,8 @@
         "max": 0.9
       },
       "speed_modifier": {
-        "min": 0.6,
-        "max": 1.2
+        "min": 0.45,
+        "max": 0.9
       }
     }
   },
@@ -1294,8 +1294,8 @@
         "max": 8.5
       },
       "speed_modifier": {
-        "min": 0.45,
-        "max": 0.9
+        "min": 0.25,
+        "max": 0.5
       }
     }
   },
@@ -1371,8 +1371,8 @@
         "max": -0.27
       },
       "speed_modifier": {
-        "min": 1.1,
-        "max": 2.2
+        "min": 0.7,
+        "max": 1.4
       },
       "max_weight_bonus": {
         "min": 4.35,
