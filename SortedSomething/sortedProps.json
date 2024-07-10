@@ -36,7 +36,10 @@
 		"stalker.artefact_properties.factor.psycho_protection",
 		"stalker.artefact_properties.factor.frost_protection",
 		"stalker.artefact_properties.factor.bleeding_protection",
-		"stalker.artefact_properties.factor.stopping_protection"
+		"stalker.artefact_properties.factor.stopping_protection",
+		"stalker.artefact_properties.factor.frost_dmg_factor",
+		"stalker.artefact_properties.factor.combustion_accumulation",
+		"stalker.artefact_properties.factor.recoil_bonus"
 	],
 	"attachmentOrBullet": [
 	    "weapon.tooltip.magazine.info.additive_clip_size",

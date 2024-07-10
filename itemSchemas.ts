@@ -452,6 +452,7 @@ export class OtherItemSchema {
     category: ILines | null = { ru: "Прочее", en: "Other" };
     class: ILines | null = null;
     weight: ILines | null = null;
+    basePrice: string = '';
     useCategory: ILines | null = null;
     suitableFor: object[] | null = null;
     description: ILines | null = null;
@@ -465,6 +466,7 @@ export class OtherItemSchema {
         this.category = { ru: "Прочее", en: "Other" };
         this.class = obj.class;
         this.weight = obj.weight;
+        this.basePrice = obj.basePrice;
         this.useCategory = obj.useCategory ?? null;
         this.suitableFor = obj.suitableFor ?? null;
         this.description = obj.description;
