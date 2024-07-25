@@ -56,8 +56,8 @@
 		"weapon.stat_factor.aim_switch_time",
 		"weapon.stat_factor.hip_spread",
 		"weapon.stat_factor.draw_time",
-		"weapon.stat_factor.reload_time",
 		"weapon.stat_factor.recoil_gain",
-		"weapon.stat_factor.tick_spread_multiplier_reduction"
+		"weapon.stat_factor.shoot_factor_decrement",
+		"weapon.tooltip.bullet.stat_name.weapon_heating"
 	]
 }
