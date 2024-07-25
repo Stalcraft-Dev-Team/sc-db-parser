@@ -12,22 +12,28 @@ const filesObj: any = {};
 
 export function SortSomethingLikeInGame(array: any[], sortedIDs: string[], categoryName: string): object[] {
     const SortedArray: object[] = [];
-    const NotFoundedIDs: string[] = [];
+    const NotFoundedIDs: Map<string, string> = new Map();
     sortedIDs.forEach(id => {
-        array.forEach(item => {
+        array.forEach((item) => {
             if (item.exbo_id !== null && item.exbo_id === id) {
                 SortedArray.push(item);
-            } else if (sortedIDs.length > 0) {
-                NotFoundedIDs.push(`item with ID ${item.exbo_id} not founded`);
+            } else if (sortedIDs.length > 0 && !sortedIDs.includes(item.exbo_id)) {
+                NotFoundedIDs.set(item.exbo_id, `item with ID ${item.exbo_id} not founded`);
             }
         });
     });
 
     // DEBUG
     if (SortedArray.length !== array.length) {
-        SaveErrorLog(categoryName, NotFoundedIDs)
+        SaveErrorLog(categoryName, Array.from(NotFoundedIDs.values()).join('\n').split('\n'))
             .finally(() => {
-                console.error(`Incorrect arrays lengths!\nUnsorted array length = ${array.length}; SortedArray length = ${SortedArray.length}\nReturn unsorted array.`);
+                console.error(
+                `${categoryName} Category\n`+
+                `Incorrect arrays lengths!\n`+
+                `Unsorted array length = ${array.length}; SortedArray length = ${SortedArray.length}\n`+
+                `Return unsorted array.\n`+
+                `${JSON.stringify(Array.from(NotFoundedIDs.keys()), null, 4)}`
+                );
             });
     }
 
@@ -88,7 +94,7 @@ export function CreateSubFoldersAndItems(CategoryPath: string, array: object[] |
     if (!fs.existsSync(CategoryPath.split('.')[0]))
         fs.mkdirSync(CategoryPath.split('.')[0], null);
 
-    const data: any = array == undefined
+    const data: any = array === undefined
         ? JSON.parse(fs.readFileSync(CategoryPath, null).toString())
         : array;
 
