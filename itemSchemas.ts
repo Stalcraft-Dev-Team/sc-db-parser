@@ -336,6 +336,7 @@ export class MedicineSchema {
     category: ILines = { ru: "Медицина", en: "Medicine" };
     class: ILines | null = null;
     weight: ILines | null = null;
+    usedInCrafts: ILines | null = null;
     purpose: ILines | null = null;
     duration: string = '0';
     stats: object[] = [];
@@ -349,6 +350,7 @@ export class MedicineSchema {
         this.rank = obj.rank;
         this.class = obj.class;
         this.weight = obj.weight;
+        this.usedInCrafts = obj.usedInCrafts;
         this.purpose = obj.purpose;
         this.duration = obj.duration;
         this.stats = obj.stats;
@@ -452,6 +454,7 @@ export class OtherItemSchema {
     category: ILines | null = { ru: "Прочее", en: "Other" };
     class: ILines | null = null;
     weight: ILines | null = null;
+    usedInCrafts: ILines | null = null;
     basePrice: string = '';
     useCategory: ILines | null = null;
     suitableFor: object[] | null = null;
@@ -466,6 +469,7 @@ export class OtherItemSchema {
         this.category = { ru: "Прочее", en: "Other" };
         this.class = obj.class;
         this.weight = obj.weight;
+        this.usedInCrafts = obj.usedInCrafts;
         this.basePrice = obj.basePrice;
         this.useCategory = obj.useCategory ?? null;
         this.suitableFor = obj.suitableFor ?? null;

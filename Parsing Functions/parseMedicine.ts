@@ -89,6 +89,7 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
+                usedInCrafts: FindLinesInValueByKey(dataJson, "core.tooltip.used_in_crafts"),
                 purpose: FindLinesInValueByKey(dataJson, 'stalker.tooltip.medicine.info.effect_type'),
                 duration: FindValueByKey(dataJson, 'stalker.tooltip.medicine.info.duration', 'int', null),
                 stats: [],
