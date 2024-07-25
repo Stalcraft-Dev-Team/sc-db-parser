@@ -244,6 +244,21 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                             }
                         },
                         {
+                            unitKey: 'percentage',
+                            key: "weapon.stat_factor.reload_modifier",
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "int", null)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "int", null),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Эргономичность оружия',
+                                en: 'Weapon Ergonomics'
+                            }
+                        },
+                        {
                             unitKey: 'degrees',
                             key: "weapon.tooltip.weapon.info.spread",
                             value: isValueArray ? [
