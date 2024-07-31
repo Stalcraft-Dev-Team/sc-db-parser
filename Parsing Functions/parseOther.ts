@@ -46,8 +46,12 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
     let AllOtherItems: OtherItemSchema[] = [];
     let dataJson: any;
 
-    await parseItemsInFolder(pathToItemsFolder);
-    await parseItemsInFolder(pathToItemsFolder.replace('other', 'misc'));
+
+
+    await Promise.all([
+        parseItemsInFolder(pathToItemsFolder),
+        parseItemsInFolder(pathToItemsFolder.replace('other', 'misc')),
+    ]);
 
     const CategoryPath = resultFolder + '\\' + `all_other.json`;
     AllOtherItems = DeleteDublicatesAndRejectedItems(AllOtherItems) as OtherItemSchema[]; // Временное решение

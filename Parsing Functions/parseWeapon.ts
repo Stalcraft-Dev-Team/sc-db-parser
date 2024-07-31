@@ -184,7 +184,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                             }
                         },
                         {
-                            unitKey: null,
+                            unitKey: 'units',
                             key: "weapon.tooltip.weapon.info.clip_size",
                             value: isValueArray ? [
                                 {

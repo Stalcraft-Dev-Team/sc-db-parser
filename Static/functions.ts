@@ -31,8 +31,8 @@ export function SortSomethingLikeInGame(array: any[], sortedIDs: string[], categ
                 `${categoryName} Category\n`+
                 `Incorrect arrays lengths!\n`+
                 `Unsorted array length = ${array.length}; SortedArray length = ${SortedArray.length}\n`+
-                `Return unsorted array.\n`+
-                `${JSON.stringify(Array.from(NotFoundedIDs.keys()), null, 4)}`
+                `Return unsorted array.\n`/*+
+                `${JSON.stringify(Array.from(NotFoundedIDs.keys()), null, 4)}`*/
                 );
             });
     }
