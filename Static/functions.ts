@@ -27,11 +27,11 @@ export function SortSomethingLikeInGame(array: any[], sortedIDs: string[], categ
     if (SortedArray.length !== array.length) {
         SaveErrorLog(categoryName, Array.from(NotFoundedIDs.values()).join('\n').split('\n'))
             .finally(() => {
-                console.error(
+                console.warn(`\n`+
                 `${categoryName} Category\n`+
                 `Incorrect arrays lengths!\n`+
                 `Unsorted array length = ${array.length}; SortedArray length = ${SortedArray.length}\n`+
-                `Return unsorted array.\n`/*+
+                `Return unsorted array.`/*+
                 `${JSON.stringify(Array.from(NotFoundedIDs.keys()), null, 4)}`*/
                 );
             });
@@ -52,7 +52,12 @@ export function GetAndCopyIcons(DirectoryToItems: string, Server: string, Folder
         ["other", "misc"].forEach(fName => {
             LocalFuncThroughDirectory(DirectoryToIcons.replace('\\other\\', `\\${fName}\\`), funcID);
         });
-    } else {
+    } else if (FolderName == 'medicine') {
+        ["medicine", "food", "drink"].forEach(fName => {
+            LocalFuncThroughDirectory(DirectoryToIcons.replace('\\medicine\\', `\\${fName}\\`), funcID);
+        });
+    }
+    else {
         LocalFuncThroughDirectory(DirectoryToIcons, funcID);
     }
 
