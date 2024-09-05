@@ -1,6 +1,6 @@
 {
 	"player": [
-	    "stalker.tooltip.medicine.info.toxicity",
+		"stalker.tooltip.medicine.info.toxicity",
 		"stalker.artefact_properties.factor.stamina_bonus",
 		"stalker.artefact_properties.factor.health_bonus",
 		"stalker.artefact_properties.factor.speed_modifier",
@@ -24,7 +24,7 @@
 		"stalker.artefact_properties.factor.bleeding_accumulation",
 		"stalker.artefact_properties.factor.frost_accumulation",
 		"stalker.artefact_properties.factor.toxic_accumulation",
-        "stalker.artefact_properties.factor.bullet_dmg_factor",
+		"stalker.artefact_properties.factor.bullet_dmg_factor",
 		"stalker.artefact_properties.factor.tear_dmg_factor",
 		"stalker.artefact_properties.factor.explosion_dmg_factor",
 		"stalker.artefact_properties.factor.electra_dmg_factor",
@@ -42,8 +42,8 @@
 		"stalker.artefact_properties.factor.recoil_bonus"
 	],
 	"attachmentOrBullet": [
-	    "weapon.tooltip.magazine.info.additive_clip_size",
-        "weapon.stat_factor.recoil",
+		"weapon.tooltip.magazine.info.additive_clip_size",
+		"weapon.stat_factor.recoil",
 		"weapon.stat_factor.horizontal_recoil",
 		"weapon.tooltip.bullet.stat_name.damage",
 		"weapon.tooltip.bullet.stat_name.piercing",
@@ -58,6 +58,15 @@
 		"weapon.stat_factor.draw_time",
 		"weapon.stat_factor.recoil_gain",
 		"weapon.stat_factor.shoot_factor_decrement",
-		"weapon.tooltip.bullet.stat_name.weapon_heating"
+		"weapon.tooltip.bullet.stat_name.weapon_heating",
+		"core.tooltip.stat_name.damage_type.default",
+		"core.tooltip.stat_name.damage_type.burn",
+		"core.tooltip.stat_name.damage_type.tear",
+		"weapon.stat_factor.armor_plate_damage",
+		"weapon.stat_factor.limbs_damage_modifier",
+		"core.tooltip.stat_name.damage_type.frost",
+		"core.tooltip.stat_name.damage_type.electroshock",
+		"core.tooltip.stat_name.damage_type.chemical_burn",
+		"core.tooltip.stat_name.damage_type.explosion"
 	]
 }
