@@ -184,7 +184,7 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                             }
                         },
                         {
-                            unitKey: null,
+                            unitKey: 'units',
                             key: "weapon.tooltip.weapon.info.clip_size",
                             value: isValueArray ? [
                                 {
@@ -215,13 +215,13 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         },
                         {
                             unitKey: 'time',
-                            key: "weapon.tooltip.weapon.info.reload_time",
+                            key: "weapon.tooltip.magazine.info.reload_time",
                             value: isValueArray ? [
                                 {
                                     level: index,
-                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2)
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.magazine.info.reload_time", "float", 2)
                                 }
-                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.reload_time", "float", 2),
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.magazine.info.reload_time", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Время перезарядки',
@@ -230,17 +230,32 @@ export const ParseWeapon = async function ParseWeapon(pathToItemsFolder = ''): P
                         },
                         {
                             unitKey: 'time',
-                            key: "weapon.tooltip.weapon.info.tactical_reload_time",
+                            key: "weapon.tooltip.magazine.info.reload_time_tactical",
                             value: isValueArray ? [
                                 {
                                     level: index,
-                                    value: FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2)
+                                    value: FindValueByKey(_dataJson, "weapon.tooltip.magazine.info.reload_time_tactical", "float", 2)
                                 }
-                            ] : FindValueByKey(_dataJson, "weapon.tooltip.weapon.info.tactical_reload_time", "float", 2),
+                            ] : FindValueByKey(_dataJson, "weapon.tooltip.magazine.info.reload_time_tactical", "float", 2),
                             mutatedValue: null,
                             lines: {
                                 ru: 'Время тактической перезарядки',
                                 en: 'Tactical reload time'
+                            }
+                        },
+                        {
+                            unitKey: 'percentage',
+                            key: "weapon.stat_factor.reload_modifier",
+                            value: isValueArray ? [
+                                {
+                                    level: index,
+                                    value: FindValueByKey(_dataJson, "weapon.stat_factor.reload_modifier", "int", null)
+                                }
+                            ] : FindValueByKey(_dataJson, "weapon.stat_factor.reload_modifier", "int", null),
+                            mutatedValue: null,
+                            lines: {
+                                ru: 'Эргономичность оружия',
+                                en: 'Weapon Ergonomics'
                             }
                         },
                         {

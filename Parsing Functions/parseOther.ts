@@ -46,8 +46,12 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
     let AllOtherItems: OtherItemSchema[] = [];
     let dataJson: any;
 
-    await parseItemsInFolder(pathToItemsFolder);
-    await parseItemsInFolder(pathToItemsFolder.replace('other', 'misc'));
+
+
+    await Promise.all([
+        parseItemsInFolder(pathToItemsFolder),
+        parseItemsInFolder(pathToItemsFolder.replace('other', 'misc')),
+    ]);
 
     const CategoryPath = resultFolder + '\\' + `all_other.json`;
     AllOtherItems = DeleteDublicatesAndRejectedItems(AllOtherItems) as OtherItemSchema[]; // Временное решение
@@ -102,6 +106,8 @@ export const ParseOther = async function ParseOther(pathToItemsFolder = ''): Pro
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
+                usedInCrafts: FindLinesInValueByKey(dataJson, "core.tooltip.used_in_crafts"),
+                basePrice: FindLinesInValueByKey(dataJson, "core.tooltip.info.base_price"),
                 suitableFor: [],
                 useCategory:
                     FindLinesByKey(dataJson, "item.weapon_skin.additional_stats_tip")

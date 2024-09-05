@@ -132,12 +132,30 @@ export const ParseGrenade = async function ParseGrenade(pathToItemsFolder = ''):
                         }
                     },
                     {
+                        unitKey: 'meters',
+                        key: "weapon.grenade.flash.stats.info.explosion_size",
+                        value: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.explosion_size", 'float', 2),
+                        lines: {
+                            ru: 'Радиус действия',
+                            en: 'Range'
+                        }
+                    },
+                    {
                         unitKey: 'time',
                         key: "weapon.grenade.frag.stats.info.flash_time",
                         value: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.flash_time", 'float', 2),
                         lines: {
                             ru: 'Макс. время ослепления',
                             en: 'Max flash time'
+                        }
+                    },
+                    {
+                        unitKey: 'time',
+                        key: "weapon.grenade.flash.stats.info.lifetime",
+                        value: FindValueByKey(dataJson, "weapon.grenade.flash.stats.info.lifetime", 'float', 2),
+                        lines: {
+                            ru: 'Время до срабатывания',
+                            en: 'Time until activation'
                         }
                     },
                     {

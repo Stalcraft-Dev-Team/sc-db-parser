@@ -45,18 +45,21 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
     ////////
     const AllMedicine: MedicineSchema[] = [];
     let dataJson: any;
-    parseItemsInFolder(pathToItemsFolder).then(() => {
-        const CategoryPath = resultFolder + '\\' + `all_medicine.json`;
-        fs.writeFileSync(CategoryPath, JSON.stringify(
-            MinimizeItemInfo(
-                SortSomethingLikeInGame(AllMedicine, SortedMedicine, 'Medicine')
-            )
-        ));
-        CreateSubFoldersAndItems(CategoryPath, AllMedicine);
-        GetAndCopyIcons(pathToItemsFolder, server, 'medicine');
-    }).catch(e => {
-        console.error(e);
-    });
+
+    await Promise.all([
+        parseItemsInFolder(pathToItemsFolder),
+        parseItemsInFolder(pathToItemsFolder.replace('medicine', 'drink')),
+        parseItemsInFolder(pathToItemsFolder.replace('medicine', 'food')),
+    ]);
+
+    const CategoryPath = resultFolder + '\\' + `all_medicine.json`;
+    fs.writeFileSync(CategoryPath, JSON.stringify(
+        MinimizeItemInfo(
+            SortSomethingLikeInGame(AllMedicine, SortedMedicine, 'Medicine')
+        )
+    ));
+    CreateSubFoldersAndItems(CategoryPath, AllMedicine);
+    GetAndCopyIcons(pathToItemsFolder, server, 'medicine');
 
     return AllMedicine; /* IMPORTANT */
     ////////
@@ -89,6 +92,7 @@ export const ParseMedicine = async function ParseMedicine(pathToItemsFolder = ''
                 rank: FindLinesInValueByKey(dataJson, "core.tooltip.info.rank"),
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
+                usedInCrafts: FindLinesInValueByKey(dataJson, "core.tooltip.used_in_crafts"),
                 purpose: FindLinesInValueByKey(dataJson, 'stalker.tooltip.medicine.info.effect_type'),
                 duration: FindValueByKey(dataJson, 'stalker.tooltip.medicine.info.duration', 'int', null),
                 stats: [],
