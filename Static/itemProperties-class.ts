@@ -68,7 +68,9 @@ export class ItemProperties {
             'stalker.artefact_properties.factor.psycho_accumulation',
             'stalker.artefact_properties.factor.bleeding_accumulation',
             'stalker.artefact_properties.factor.frost_accumulation',
-            'stalker.artefact_properties.factor.toxic_accumulation'
+            'stalker.artefact_properties.factor.toxic_accumulation',
+            'stalker.artefact_properties.factor.wiggle_bonus',
+            'stalker.artefact_properties.factor.recoil_bonus'
         ];
 
         IP_ThroughDirectory(IndexDirName + '\\' + PathToClone + '\\' + 'ru' + '\\' + 'items');
