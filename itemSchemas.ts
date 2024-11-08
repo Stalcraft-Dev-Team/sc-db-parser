@@ -125,10 +125,11 @@ export class AttachmentSchema {
     category: ILines = { ru: "Обвес", en: "Attachment" };
     class: ILines | null = null;
     weight: ILines | null = null;
-    stats: object[] = [];
+    stats?: object[] = [];
     features: object = {
         zoom: null
     }
+    reticle: string | null;
     suitableFor: object[] = [];
     description: ILines | null = null;
 
@@ -141,6 +142,7 @@ export class AttachmentSchema {
         this.class = obj.class;
         this.weight = obj.weight;
         this.stats = obj.stats;
+        this.reticle = obj.reticle;
         if (obj.features != undefined)
             this.features = obj.features;
         this.description = obj.description;

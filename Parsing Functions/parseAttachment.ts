@@ -1,4 +1,5 @@
 import fs from "fs";
+import axios from "axios";
 import { PathToParse } from '../Static/fileds';
 import { AttachmentSchema } from "../itemSchemas";
 import {
@@ -9,8 +10,6 @@ import {
     GetAndCopyIcons, MinimizeItemInfo,
     SortByGearRanks, SortProperties
 } from "../Static/functions";
-
-
 
 export const ParseAttachment = async function ParseAttachment(pathToItemsFolder = ''): Promise<object[]> {
     if (pathToItemsFolder === '' || !fs.existsSync(pathToItemsFolder)) {
@@ -54,9 +53,10 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
 
     const AllAttachments: AttachmentSchema[] = [];
     let dataJson: any;
-    subFolders.map(async folder => {
+    // Промисы нужны для того, чтобы дождаться завершения всех запросов перед выполнением функции.
+    await Promise.all(subFolders.map(async folder => {
         await parseItemsInFolder(pathToItemsFolder + folder + '\\');
-    })
+    }));
     fs.writeFileSync(resultFolder + '\\' + 'all_attachments.json', JSON.stringify(MinimizeItemInfo(SortByGearRanks(AllAttachments))));
     GetAndCopyIcons(pathToItemsFolder, server, 'attachment');
 
@@ -66,8 +66,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
     async function parseItemsInFolder(folderPath: string) {
         const SelectedCategoryWeapons: AttachmentSchema[] = [];
         const files: string[] = fs.readdirSync(folderPath);
-
-        files.map((file) => {
+        const promises =  files.map(async (file) => {
             const fileName: string = file.split('.')[0];
             file = folderPath + file;
             const data: Buffer = fs.readFileSync(file);
@@ -93,6 +92,7 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
                 class: FindLinesInValueByKey(dataJson, "core.tooltip.info.category"),
                 weight: FindLinesInValueByKey(dataJson, "core.tooltip.info.weight"),
                 stats: [],
+                reticle: null,
                 description: FindLinesByKey(dataJson, itemKey() + 'description'),
                 suitableFor: []
             });
@@ -108,20 +108,34 @@ export const ParseAttachment = async function ParseAttachment(pathToItemsFolder 
             attachment.stats = SortProperties(dataJson, 'weapon');
 
             if (attachment.class?.en === 'Sights') {
-                attachment.features = {
-                    unitKey: 'uniqueFeature',
-                    key: null,
-                    value: FindObjectValueByKey(dataJson, 'weapon.tooltip.sight.info.zoom', 'text'),
-                    lines: {
-                        ru: 'Увеличение',
-                        en: 'Magnification'
+                attachment.features = [
+                    {
+                        unitKey: 'uniqueFeature',
+                        key: null,
+                        value: FindObjectValueByKey(dataJson, 'weapon.tooltip.sight.info.zoom', 'text'),
+                        lines: {
+                            ru: 'Увеличение',
+                            en: 'Magnification'
+                        }
                     }
+                ]
+                const imageURL = "https://stalcraftwiki-prod.b-cdn.net/reticle/";
+
+                try {
+                    const res = await axios.get(imageURL + attachment.exbo_id + ".png");
+                    if (res.status === 200) {
+                        attachment.reticle = imageURL + attachment.exbo_id + ".png";
+                    }
+                } catch (error) {
+                    console.error("There is no reticle for", attachment.exbo_id);
                 }
             }
-
+            if (attachment.stats.length === 0) {
+                delete attachment.stats;
+            }
             SelectedCategoryWeapons.push(attachment);
         });
-
+        await Promise.all(promises);
         const CategoryName = folderPath.split('\\')[folderPath.split('\\').length - 2];
         const CategoryPath = `${resultFolder}\\${CategoryName}.json`;
         fs.writeFileSync(CategoryPath, JSON.stringify(SortByGearRanks(SelectedCategoryWeapons)));
