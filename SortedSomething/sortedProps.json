@@ -68,6 +68,8 @@
 		"core.tooltip.stat_name.damage_type.frost",
 		"core.tooltip.stat_name.damage_type.electroshock",
 		"core.tooltip.stat_name.damage_type.chemical_burn",
-		"core.tooltip.stat_name.damage_type.explosion"
+		"core.tooltip.stat_name.damage_type.explosion",
+		"weapon.tooltip.bullet.stat_name.distance",
+		"weapon.stat_factor.mobs_damage_multiplier"
 	]
 }
