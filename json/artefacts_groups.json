@@ -1300,6 +1300,23 @@
     }
   },
   {
+    "group": "blizzard_chilly",
+    "factors": {
+      "health_bonus": {
+        "min": 0.45,
+        "max": 0.9
+      },
+      "burning": {
+        "min": -0.2,
+        "max": -0.1
+      },
+      "thermal_accumulation": {
+        "min": -1.6,
+        "max": -0.8
+      }
+    }
+  },
+  {
     "group": "special_rubik",
     "factors": {
       "bullet_dmg_factor": {
