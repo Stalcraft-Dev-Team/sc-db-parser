@@ -564,12 +564,12 @@
     "group": "kisel_svetlyak",
     "factors": {
       "stamina_bonus": {
-        "min": 2.45,
-        "max": 4.9
+        "min": 7.3,
+        "max": 14.6
       },
       "speed_modifier": {
-        "min": 0.75,
-        "max": 1.5
+        "min": 0.25,
+        "max": 0.5
       },
       "health_bonus": {
         "min": 0.35,
@@ -631,13 +631,13 @@
   {
     "group": "kisel_poly",
     "factors": {
-      "speed_modifier": {
-        "min": 0.6,
-        "max": 1.2
+      "stamina_regeneration_bonus": {
+        "min": 1.25,
+        "max": 2.5
       },
       "stamina_bonus": {
-        "min": 1.95,
-        "max": 3.9
+        "min": 5.85,
+        "max": 11.7
       },
       "biological_accumulation": {
         "min": -1.65,
