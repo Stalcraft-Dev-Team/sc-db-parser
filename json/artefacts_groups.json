@@ -1300,7 +1300,7 @@
     }
   },
   {
-    "group": "blizzard_chilly",
+    "group": "blizzard_palantir",
     "factors": {
       "health_bonus": {
         "min": 0.45,
